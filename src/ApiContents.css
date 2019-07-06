@@ -1,0 +1,24 @@
+.contents {
+    text-align: left !important;
+}
+
+.swagger-ui .main {
+    text-align: left;
+}
+
+.swagger-ui .description {
+    text-align: left;
+}
+
+.swagger-ui .scheme-container {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-box-sizing: none !important;
+    box-sizing: none !important;
+    box-shadow: none !important;
+}
+
+.swagger-ui .link {
+    display: none;
+}
