@@ -6,21 +6,21 @@
                 {
                     "name": "19r2",
                     "services": [
-                        { "name": "Case", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_cases.json" },
+                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_identity.json" },
+                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_messaging.json" },
+                        { "name": "Payments", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_payments.json" }
                     ]
                 },
                 {
                     "name": "19r3",
                     "services": [
-                        { "name": "Case", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_cases.json" },
+                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_identity.json" },
+                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_messaging.json" },
+                        { "name": "Payments", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_payments.json" }
                     ]
                 }
             ]
@@ -31,21 +31,21 @@
                 {
                     "name": "v3",
                     "services": [
-                        { "name": "Case", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_cases.json" },
+                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_identity.json" },
+                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_messaging.json" },
+                        { "name": "Payments", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_payments.json" }
                     ]
                 },
                 {
                     "name": "v3.5",
                     "services": [
-                        { "name": "Case", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_cases.json" },
+                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_identity.json" },
+                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_messaging.json" },
+                        { "name": "Payments", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_payments.json" }
                     ]
                 }
             ]
@@ -56,21 +56,21 @@
                 {
                     "name": "2017",
                     "services": [
-                        { "name": "Case", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_cases.json" },
+                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_identity.json" },
+                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_messaging.json" },
+                        { "name": "Payments", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_payments.json" }
                     ]
                 },
                 {
                     "name": "2019",
                     "services": [
-                        { "name": "Case", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "http://localhost:3000/docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_cases.json" },
+                        { "name": "Debtor", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_identity.json" },
+                        { "name": "Messaging", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_messaging.json" },
+                        { "name": "Payments", "jsonUrl": "http://localhost:3000/DocPortal/docs/collections/19r2/swagger_payments.json" }
                     ]
                 }
             ]
