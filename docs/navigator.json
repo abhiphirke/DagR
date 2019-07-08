@@ -10,7 +10,8 @@
                         { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
                         { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
                         { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/collections/19r2/swagger_telephony.json" }
                     ]
                 },
                 {
@@ -20,7 +21,8 @@
                         { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
                         { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
                         { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/collections/19r2/swagger_telephony.json" }
                     ]
                 }
             ]
@@ -35,7 +37,8 @@
                         { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
                         { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
                         { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/collections/19r2/swagger_telephony.json" }
                     ]
                 },
                 {
@@ -45,7 +48,8 @@
                         { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
                         { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
                         { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/collections/19r2/swagger_telephony.json" }
                     ]
                 }
             ]
@@ -60,7 +64,8 @@
                         { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
                         { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
                         { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/collections/19r2/swagger_telephony.json" }
                     ]
                 },
                 {
@@ -70,7 +75,8 @@
                         { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
                         { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
                         { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/collections/19r2/swagger_telephony.json" }
                     ]
                 }
             ]
