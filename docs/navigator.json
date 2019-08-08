@@ -24,6 +24,19 @@
                         { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" },
                         { "name": "Telephony", "jsonUrl": "docs/collections/19r2/swagger_telephony.json" }
                     ]
+                },
+                {
+                    "name": "NewAPI",
+                    "services": [
+                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/swagger_casesvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/swagger_claimsvc.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/swagger_debtorsvc.json" },
+                        { "name": "History", "jsonUrl": "docs/collections/NewAPI/swagger_historysvc.json" },
+                        { "name": "LimCom", "jsonUrl": "docs/collections/NewAPI/swagger_limcomsvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/collections/NewAPI/swagger_messagesvc.json" },
+                        { "name": "Payment", "jsonUrl": "docs/collections/NewAPI/swagger_paymentsvc.json" },
+                        { "name": "Workflow", "jsonUrl": "docs/collections/NewAPI/swagger_workflowsvc.json" }
+                    ]
                 }
             ]
         },
