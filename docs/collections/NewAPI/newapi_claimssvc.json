@@ -1,0 +1,2026 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Claim API",
+    "description": "Claim API performs Nova claim operations and exposes the basic and core claim information.",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/claimsvc"
+    }
+  ],
+  "paths": {
+    "/Cases/{caseNo}/claims": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns information of claims of specific case using Nova case number.",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the case all type of amounts information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/claims/amounts": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns all type of amounts information of specific case using Nova case number.",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the case all type of amounts information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/claims/remainingamounts": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns remainingamounts information of specific case using Nova case number.",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the case remainingamounts information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/amounts": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns all type of amounts information of specific case using Nova case number.",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the case all type of amounts information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/remainingamounts": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns remainingamounts information of specific case using Nova case number.",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the case remainingamounts information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Returns information of claim using Nova claim number.",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/foreignclaim": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Returns information of claim using Nova claim number.",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForeignClaimDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForeignClaimDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForeignClaimDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/interestconditions": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Returns interest condition information of specific claim using Nova claim number.",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim interest condition information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestConditionDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestConditionDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestConditionDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/invoicerows": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Returns invoicerows information of specific claim using Nova claim number.",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim invoicerows information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceRowsDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceRowsDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceRowsDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/vatdetails": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Returns vatdetails information of specific claim using Nova claim number.",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim vatdetails information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/VatDetailDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VatDetailDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VatDetailDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/amounts": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Returns all type of amounts information of specific claim using Nova claim number.",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim all type of amounts information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/remainingamounts": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Returns remainingamounts information of specific claim using Nova claim number.",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim remainingamounts information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the claims for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims/remainingamounts": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the claims remaining amounts for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims/amounts": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the claims amounts for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}/remainingamounts": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns the remaining amount for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim remaining amount information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}/amounts": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns the all type of amounts (orginial, turned-in, paid and remaining) of specific claim for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim amount information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/claims": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the claims for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/remainingamounts": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns the remaining amount for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim remaining amount information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/amounts": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns the all type of amounts (orginial, turned-in, paid and remaining) of specific case for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the case amount information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/claims/remainingamounts": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the claims remaining amounts for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/claims/amounts": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the claims amounts for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResourceSpecificationDTO": {
+        "enum": [
+          "case",
+          "solicitor",
+          "creditor",
+          "debtor",
+          "pledge",
+          "payment",
+          "amortisationplan",
+          "partner",
+          "document",
+          "collateral",
+          "collateralaccount",
+          "mandate",
+          "collector",
+          "lawyer",
+          "instance",
+          "claim",
+          "invoice",
+          "creditinvoice",
+          "fee",
+          "debtorcost",
+          "history"
+        ],
+        "type": "string",
+        "description": "ResourceSpecificationDTO."
+      },
+      "ReferenceIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number",
+            "format": "int32"
+          },
+          "specification": {
+            "$ref": "#/components/schemas/ResourceSpecificationDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Unique identification for the reference types (that cannot be identified by an unique identification number) within Nova."
+      },
+      "ExternalIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id1": {
+            "type": "string",
+            "description": "Id1",
+            "nullable": true
+          },
+          "id2": {
+            "type": "string",
+            "description": "Id2",
+            "nullable": true
+          },
+          "id3": {
+            "type": "string",
+            "description": "Id3",
+            "nullable": true
+          },
+          "id4": {
+            "type": "string",
+            "description": "Id4",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides more identification information of an entity typically used in other integrating/older/authority systems."
+      },
+      "RegistrationDTO": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date of registration",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "User who registered it",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about registration of an entity/object."
+      },
+      "ClaimDTO": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "external": {
+            "$ref": "#/components/schemas/ExternalIdentifierDTO"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a claim",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of a claim",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of a claim",
+            "nullable": true
+          },
+          "linkedCaseId": {
+            "type": "integer",
+            "description": "The case id on which this claim is associated with",
+            "format": "int32"
+          },
+          "linkedClaim": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "registration": {
+            "$ref": "#/components/schemas/RegistrationDTO"
+          },
+          "invoiceDate": {
+            "type": "string",
+            "description": "Date on which this claim is invoiced",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "description": "Date from which this claim is due",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentTerms": {
+            "type": "integer",
+            "description": "Payment terms",
+            "format": "int32",
+            "nullable": true
+          },
+          "interestCondition": {
+            "type": "integer",
+            "description": "Interest condition",
+            "format": "int32",
+            "nullable": true
+          },
+          "foreign": {
+            "type": "boolean",
+            "description": "Indicates whether claim is from a foreign country. True if from foreign country."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides core information about a claim"
+      },
+      "AmountLayerDTO": {
+        "enum": [
+          "original",
+          "limitedcommitement",
+          "adjuged"
+        ],
+        "type": "string",
+        "description": "Provides type of amount whether original or derived from limited commitment or adjudged amounts"
+      },
+      "AmountDTO": {
+        "type": "object",
+        "properties": {
+          "remaining": {
+            "type": "number",
+            "description": "Remaining amount of a claim",
+            "format": "double"
+          },
+          "original": {
+            "type": "number",
+            "description": "Original amount of a claim",
+            "format": "double"
+          },
+          "turnedIn": {
+            "type": "number",
+            "description": "The amount to be considered for debt collection",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides distribution of amounts (original/turned-in/remaining)"
+      },
+      "InterestSplitDTO": {
+        "type": "object",
+        "properties": {
+          "capitalized": {
+            "type": "number",
+            "description": "Capitalized amounts",
+            "format": "double"
+          },
+          "toCapitalize": {
+            "type": "number",
+            "description": "To capitalized amounts",
+            "format": "double"
+          },
+          "notToCapitalize": {
+            "type": "number",
+            "description": "Not to capitalized amounts",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides distribution of interest among interest in capitalized and non-capitalized amounts"
+      },
+      "InterestDTO": {
+        "type": "object",
+        "properties": {
+          "updatedDate": {
+            "type": "string",
+            "description": "Interest calculated till this date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "interestSplit": {
+            "$ref": "#/components/schemas/InterestSplitDTO"
+          },
+          "remaining": {
+            "type": "number",
+            "description": "Remaining amount of a claim",
+            "format": "double"
+          },
+          "original": {
+            "type": "number",
+            "description": "Original amount of a claim",
+            "format": "double"
+          },
+          "turnedIn": {
+            "type": "number",
+            "description": "The amount to be considered for debt collection",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides distribution of all interest (original, turned-in and remaining) amounts."
+      },
+      "ClaimAmountDTO": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "layer": {
+            "$ref": "#/components/schemas/AmountLayerDTO"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency of the amounts",
+            "nullable": true
+          },
+          "principal": {
+            "$ref": "#/components/schemas/AmountDTO"
+          },
+          "interest": {
+            "$ref": "#/components/schemas/InterestDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides distribution of all (original, turned-in and remaining) amounts on a claim."
+      },
+      "ClaimRemainingAmountDTO": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "layer": {
+            "$ref": "#/components/schemas/AmountLayerDTO"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency of the amounts",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "description": "Interest calculated till this date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "principal": {
+            "type": "number",
+            "description": "Principal remaining amount of a claim",
+            "format": "double"
+          },
+          "interest": {
+            "type": "number",
+            "description": "Interest remaining amount of a claim",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information on remaining amounts on a claim."
+      },
+      "CaseAmountDTO": {
+        "type": "object",
+        "properties": {
+          "interestToDate": {
+            "type": "string",
+            "description": "Interest calculated till this date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "principal": {
+            "$ref": "#/components/schemas/AmountDTO"
+          },
+          "interest": {
+            "$ref": "#/components/schemas/AmountDTO"
+          },
+          "fee": {
+            "$ref": "#/components/schemas/AmountDTO"
+          },
+          "cost": {
+            "$ref": "#/components/schemas/AmountDTO"
+          },
+          "costInterest": {
+            "$ref": "#/components/schemas/AmountDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides distribution of all (original, turned-in and remaining) amounts on a case. This involves accumulation of amounts from different debts and costs for a case."
+      },
+      "CaseAmountDistributionDTO": {
+        "type": "object",
+        "properties": {
+          "principal": {
+            "type": "number",
+            "description": "Summary (sum) of all the pricipal amounts of debts",
+            "format": "double"
+          },
+          "interest": {
+            "type": "number",
+            "description": "Summary (sum) of all the interest amounts calculated on debts",
+            "format": "double"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Summary (sum) of all the fee amounts on debts",
+            "format": "double"
+          },
+          "cost": {
+            "type": "number",
+            "description": "Summary (sum) of all the cost amounts",
+            "format": "double"
+          },
+          "costInterest": {
+            "type": "number",
+            "description": "Summary (sum) of all interest amounts calculated on costs",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides overall amount distribution of a case. This involves accumulation of amounts from different debts and costs for a case."
+      },
+      "CaseRemainingAmountsDTO": {
+        "type": "object",
+        "properties": {
+          "interestToDate": {
+            "type": "string",
+            "description": "Interest calculated till this date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "remainingAmounts": {
+            "$ref": "#/components/schemas/CaseAmountDistributionDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information on remaining amounts on a case."
+      },
+      "BaseAmountDTO": {
+        "type": "object",
+        "properties": {
+          "original": {
+            "type": "number",
+            "description": "Original amount of a claim",
+            "format": "double"
+          },
+          "turnedIn": {
+            "type": "number",
+            "description": "The amount to be considered for debt collection",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides distribution of amounts (original/turned-in)"
+      },
+      "ForeignClaimDTO": {
+        "type": "object",
+        "properties": {
+          "prinicple": {
+            "$ref": "#/components/schemas/BaseAmountDTO"
+          },
+          "interest": {
+            "$ref": "#/components/schemas/BaseAmountDTO"
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "Foreign currency code in which this claim is registered",
+            "nullable": true
+          },
+          "calculationDate": {
+            "type": "string",
+            "description": "Date of calculation of currency conversions",
+            "format": "date-time"
+          },
+          "exchangeRate": {
+            "type": "number",
+            "description": "Exchange rate on the CalculationDate for given currency",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about claim from a foreign country"
+      },
+      "InterestConditionRoleDTO": {
+        "enum": [
+          "orginial",
+          "temporary",
+          "limitedcommitment"
+        ],
+        "type": "string",
+        "description": "Indicates where the interest is applicable"
+      },
+      "InterestConditionDTO": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "role": {
+            "$ref": "#/components/schemas/InterestConditionRoleDTO"
+          },
+          "rate": {
+            "type": "number",
+            "description": "Rate of interest",
+            "format": "double"
+          },
+          "code": {
+            "type": "string",
+            "description": "Interest code",
+            "nullable": true
+          },
+          "usedRate": {
+            "type": "number",
+            "description": "Rate used for calculation of interest. Base rate is added into rate of interest for calculations",
+            "format": "double"
+          },
+          "fromDate": {
+            "type": "string",
+            "description": "Interest calculation from date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "toDate": {
+            "type": "string",
+            "description": "Interest calculation till date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "stopDate": {
+            "type": "string",
+            "description": "Stop calculating interest on this date",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides details for calculating interest on a claim"
+      },
+      "InvoiceRowsDTO": {
+        "type": "object",
+        "properties": {
+          "rowNo": {
+            "type": "integer",
+            "description": "Row number",
+            "format": "int32"
+          },
+          "stockNo": {
+            "type": "string",
+            "description": "Stock number",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "description": "Price",
+            "format": "double"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantity",
+            "format": "double"
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit",
+            "nullable": true
+          },
+          "discount": {
+            "type": "number",
+            "description": "Discount",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "description": "Total",
+            "format": "double"
+          },
+          "vatRate": {
+            "type": "number",
+            "description": "Vat rate",
+            "format": "double"
+          },
+          "vatTotal": {
+            "type": "number",
+            "description": "Vat total",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about invoice"
+      },
+      "VatDetailDTO": {
+        "type": "object",
+        "properties": {
+          "rate": {
+            "type": "number",
+            "description": "Rate VAT calculation",
+            "format": "double"
+          },
+          "original": {
+            "type": "number",
+            "description": "Original amount",
+            "format": "double"
+          },
+          "paid": {
+            "type": "number",
+            "description": "Paid amount",
+            "format": "double"
+          },
+          "remaining": {
+            "type": "number",
+            "description": "Remaining amount",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides VAT information available on cost"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

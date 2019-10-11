@@ -1,0 +1,1086 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Payment API",
+    "description": "Payment Commitment API to expose related information and perform relevant Nova operations.",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/paymentsvc"
+    }
+  ],
+  "paths": {
+    "/Cases/{caseNo}/payments": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Gets the payments based on specified case number irrespective of debtor",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/debtors/{debtorNo}/payments": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Gets the payments booked by specified debtor on case using specified case number",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/paidamounts": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Gets the paid amount on case based on specified case number irrespective of debtor",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/debtors/{debtorNo}/paidamounts": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Gets the amount paid by specified debtor on case using specified case number",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/debtors/{debtorNo}/paidamountsbyother": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Gets the amount paid Not by this specified debtor on case using specified case number",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePaidAmountsDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/payments": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Gets the payments booked on specified claim based on specified claim info.",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/debtors/{debtorNo}/payments": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": ": Gets the payments booked by specified debtor on specified claim based on specified claim info",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/paidamounts": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Gets the paid amount on case based on specified case number",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/debtors/{debtorNo}/paidamounts": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Gets the amount paid by specified debtor on claim using specified claim info",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refId}/debtors/{debtorNo}/paidamountsbyother": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Gets the amount paid Not by this specified debtor on claim using specified claim info",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimPaidAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/payments": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Gets the payments based on specified debtor number",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookedPaymentDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PaymentSenderRoleDTO": {
+        "enum": [
+          "unknown",
+          "debtor",
+          "authority",
+          "other"
+        ],
+        "type": "string",
+        "description": "Types of payers"
+      },
+      "SenderDTO": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/PaymentSenderRoleDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about sender of payment"
+      },
+      "PaymentReceiverRoleDTO": {
+        "enum": [
+          "creditor",
+          "solicitor"
+        ],
+        "type": "string",
+        "description": "Types of recipients of a payment"
+      },
+      "ReceiverDTO": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/PaymentReceiverRoleDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about recipient of payment"
+      },
+      "ResourceSpecificationDTO": {
+        "enum": [
+          "case",
+          "solicitor",
+          "creditor",
+          "debtor",
+          "pledge",
+          "payment",
+          "amortisationplan",
+          "partner",
+          "document",
+          "collateral",
+          "collateralaccount",
+          "mandate",
+          "collector",
+          "lawyer",
+          "instance",
+          "claim",
+          "invoice",
+          "creditinvoice",
+          "fee",
+          "debtorcost",
+          "history"
+        ],
+        "type": "string",
+        "description": "ResourceSpecificationDTO."
+      },
+      "ReferenceIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number",
+            "format": "int32"
+          },
+          "specification": {
+            "$ref": "#/components/schemas/ResourceSpecificationDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Unique identification for the reference types (that cannot be identified by an unique identification number) within Nova."
+      },
+      "AccountTypeDTO": {
+        "enum": [
+          "unidentified"
+        ],
+        "type": "string",
+        "description": "Provides types of accounts"
+      },
+      "AccountNumberDTO": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/AccountTypeDTO"
+          },
+          "value": {
+            "type": "string",
+            "description": "Actual bank account number",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides bank account number information"
+      },
+      "AccountDTO": {
+        "type": "object",
+        "properties": {
+          "accountNo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountNumberDTO"
+            },
+            "description": "Account numbers. Refer: Nova.DTO.Common.AccountNumberDTO",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency of the bank account",
+            "nullable": true
+          },
+          "bankName": {
+            "type": "string",
+            "description": "Name of the bank",
+            "nullable": true
+          },
+          "bankCode": {
+            "type": "string",
+            "description": "Bank Code",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Prvides bank account information of an entity"
+      },
+      "RegistrationDTO": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date of registration",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "User who registered it",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about registration of an entity/object."
+      },
+      "BookingStatusDTO": {
+        "enum": [
+          "booked",
+          "deducted"
+        ],
+        "type": "string",
+        "description": "Types of booking statuses of a payment"
+      },
+      "SettelmentStatusDTO": {
+        "enum": [
+          "placed",
+          "unplaced",
+          "transfered"
+        ],
+        "type": "string",
+        "description": "Types of settlement statuses for payments"
+      },
+      "BookedPaymentDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number",
+            "format": "int32"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/SenderDTO"
+          },
+          "receiver": {
+            "$ref": "#/components/schemas/ReceiverDTO"
+          },
+          "beneficiary": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "amortisationPlan": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "senderAccount": {
+            "$ref": "#/components/schemas/AccountDTO"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "description": "Payment method as configured in Nova settings",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency",
+            "nullable": true
+          },
+          "receivedAmount": {
+            "type": "number",
+            "description": "Actual amount received in a payment",
+            "format": "double"
+          },
+          "bookedAmount": {
+            "type": "number",
+            "description": "Amount distributed over debt/cost of a case/debtor",
+            "format": "double"
+          },
+          "overpaidAmount": {
+            "type": "number",
+            "description": "Amount in excess of remaining amount of a case",
+            "format": "double"
+          },
+          "paymentDate": {
+            "type": "string",
+            "description": "Date on which payment was made",
+            "format": "date-time"
+          },
+          "accountingDate": {
+            "type": "string",
+            "description": "Date on which accounted",
+            "format": "date-time"
+          },
+          "deductionDate": {
+            "type": "string",
+            "description": "Date on which deducted",
+            "format": "date-time",
+            "nullable": true
+          },
+          "registration": {
+            "$ref": "#/components/schemas/RegistrationDTO"
+          },
+          "description": {
+            "type": "string",
+            "description": "Free text description about payment made",
+            "nullable": true
+          },
+          "information": {
+            "type": "string",
+            "description": "Free text information about payment made",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/BookingStatusDTO"
+          },
+          "settelment": {
+            "$ref": "#/components/schemas/SettelmentStatusDTO"
+          },
+          "manual": {
+            "type": "boolean",
+            "description": "Indicates if payment is booked manually or automated. True if booked manually."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about a payment booked on case/debtor"
+      },
+      "CasePaidAmountsDTO": {
+        "type": "object",
+        "properties": {
+          "principal": {
+            "type": "number",
+            "description": "Summary (sum) of all the pricipal paid on debts",
+            "format": "double"
+          },
+          "interest": {
+            "type": "number",
+            "description": "Summary (sum) of all the interest paid on debt",
+            "format": "double"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Summary (sum) of all the fee paid",
+            "format": "double"
+          },
+          "cost": {
+            "type": "number",
+            "description": "Summary (sum) of all the cost amounts paid",
+            "format": "double"
+          },
+          "costInterest": {
+            "type": "number",
+            "description": "Summary (sum) of all the interest paid on costs",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides overall paid amounts distribution of a case. This involves accumulation of paid amounts from different debts and costs for a case."
+      },
+      "ClaimPaidAmountDTO": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "principal": {
+            "type": "number",
+            "description": "Principal paid on claim",
+            "format": "double"
+          },
+          "interest": {
+            "type": "number",
+            "description": "Interest paid on claim",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides overall paid amounts distribution of a claim."
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

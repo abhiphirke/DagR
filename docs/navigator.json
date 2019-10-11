@@ -1,4 +1,4 @@
-{
+r3{
     "apps": [
         {
             "name": "Collections",
@@ -16,24 +16,28 @@
                 {
                     "name": "19r3",
                     "services": [
-                        { "name": "Case", "jsonUrl": "docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "docs/collections/19r2/19r3_cases.json" },
+                        { "name": "Claim", "jsonUrl": "docs/collections/19r2/19r3_claims.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/collections/19r2/19r3_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "docs/collections/19r2/19r3_identitysvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/collections/19r2/19r3_messagingsvc.json" },
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/19r3_paymentssvc.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/collections/19r2/19r3_telephonysvc.json" }
                     ]
                 },
                 {
                     "name": "NewAPI",
                     "services": [
-                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/swagger_casesvc.json" },
-                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/swagger_claimsvc.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/swagger_debtorsvc.json" },
-                        { "name": "History", "jsonUrl": "docs/collections/NewAPI/swagger_historysvc.json" },
-                        { "name": "LimCom", "jsonUrl": "docs/collections/NewAPI/swagger_limcomsvc.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/NewAPI/swagger_messagesvc.json" },
-                        { "name": "Payment", "jsonUrl": "docs/collections/NewAPI/swagger_paymentsvc.json" },
-                        { "name": "Workflow", "jsonUrl": "docs/collections/NewAPI/swagger_workflowsvc.json" }
+                        { "name": "Amortisation", "jsonUrl": "docs/collections/NewAPI/newapi_amortisationsvc.json" },
+                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/newapi_casessvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/newapi_claimssvc.json" },
+                        { "name": "Config", "jsonUrl": "docs/collections/NewAPI/newapi_configsvc.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/newapi_debtorsvc.json" },
+                        { "name": "History", "jsonUrl": "docs/collections/NewAPI/newapi_historysvc.json" },
+                        { "name": "LimCom", "jsonUrl": "docs/collections/NewAPI/newapi_limcomsvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/collections/NewAPI/newapi_messagesvc.json" },
+                        { "name": "Payment", "jsonUrl": "docs/collections/NewAPI/newapi_paymentsvc.json" },
+                        { "name": "Workflow", "jsonUrl": "docs/collections/NewAPI/newapi_workflowsvc.json" }
                     ]
                 }
             ]

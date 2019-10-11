@@ -1,0 +1,585 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Workflow API",
+    "description": "Workflow API to expose related information and perform relevant Nova operations.",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/workflowsvc"
+    }
+  ],
+  "paths": {
+    "/Cases/{caseNo}/workflows": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns all the workflows for a case using Nova case number.",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/debtors/workflows": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns all the workflows for a specific case and all associated debtor using Nova case number .",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/debtors/{debtorNo}/workflows": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns all the workflows for a specific case and debtor using Nova case number .",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/workflows": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the workflows for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/amortisationplans/workflows": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the workflows of amortisation plan for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/amortisationplans/{amortisationNo}/workflows": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns all the workflows for a debtor using Nova debtor number and specific amortisation number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "amortisationNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResourceSpecificationDTO": {
+        "enum": [
+          "case",
+          "solicitor",
+          "creditor",
+          "debtor",
+          "pledge",
+          "payment",
+          "amortisationplan",
+          "partner",
+          "document",
+          "collateral",
+          "collateralaccount",
+          "mandate",
+          "collector",
+          "lawyer",
+          "instance",
+          "claim",
+          "invoice",
+          "creditinvoice",
+          "fee",
+          "debtorcost",
+          "history"
+        ],
+        "type": "string",
+        "description": "ResourceSpecificationDTO."
+      },
+      "ReferenceIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number",
+            "format": "int32"
+          },
+          "specification": {
+            "$ref": "#/components/schemas/ResourceSpecificationDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Unique identification for the reference types (that cannot be identified by an unique identification number) within Nova."
+      },
+      "ActionPositionDTO": {
+        "enum": [
+          "caseonly",
+          "casedebtor",
+          "debtoronly",
+          "amortisationplan"
+        ],
+        "type": "string",
+        "description": "Places where an action is booked"
+      },
+      "ActionCategoryDTO": {
+        "enum": [
+          "debtcollection",
+          "debtsurveillance",
+          "amortisation",
+          "respite",
+          "waiting",
+          "debtoronly",
+          "creditoronly",
+          "partner",
+          "surveillance",
+          "invoicing",
+          "document",
+          "manual"
+        ],
+        "type": "string",
+        "description": "Categories of actions"
+      },
+      "ActionTypeDTO": {
+        "enum": [
+          "letter",
+          "phone",
+          "goto",
+          "manual",
+          "note",
+          "update",
+          "export",
+          "list",
+          "move",
+          "change",
+          "wait",
+          "close",
+          "error",
+          "jumpto",
+          "return",
+          "watchdog",
+          "templetter",
+          "cost",
+          "email",
+          "history"
+        ],
+        "type": "string",
+        "description": "Type of actions"
+      },
+      "WorkflowDTO": {
+        "type": "object",
+        "properties": {
+          "linkedReference": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+          },
+          "position": {
+            "$ref": "#/components/schemas/ActionPositionDTO"
+          },
+          "automatic": {
+            "type": "boolean",
+            "description": "Action booked automatically by Nova"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ActionCategoryDTO"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status",
+            "nullable": true
+          },
+          "tree": {
+            "type": "string",
+            "description": "Workflow tree name",
+            "nullable": true
+          },
+          "treeDescription": {
+            "type": "string",
+            "description": "Workflow tree description",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "description": "Name of an action",
+            "nullable": true
+          },
+          "actionDescription": {
+            "type": "string",
+            "description": "Action description",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "description": "Date when action is booked",
+            "format": "date-time",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActionTypeDTO"
+          },
+          "extendedStatus": {
+            "type": "string",
+            "description": "Extended status",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about workflow/action associated with an entity"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

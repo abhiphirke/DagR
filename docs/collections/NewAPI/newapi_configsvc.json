@@ -1,0 +1,933 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Nova configuration store API",
+    "description": "Nova configuration store Commitment API to expose related information and perform relevant Nova operations.",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/configsvc"
+    }
+  ],
+  "paths": {
+    "/CostDefinitions/{keyName}/countrycode/{countryCode}": {
+      "get": {
+        "tags": [
+          "CostDefinitions"
+        ],
+        "summary": "Get system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "countryCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostDefinitionDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostDefinitionDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostDefinitionDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DebtTypes/{keyName}/lanuage/{lanuage}": {
+      "get": {
+        "tags": [
+          "DebtTypes"
+        ],
+        "summary": "Get system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lanuage",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/InterestDefinitions/interestcodes/{keyName}": {
+      "get": {
+        "tags": [
+          "InterestDefinitions"
+        ],
+        "summary": "Get system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterestCodeDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterestCodeDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterestCodeDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/InterestDefinitions/interesttables/{keyName}": {
+      "get": {
+        "tags": [
+          "InterestDefinitions"
+        ],
+        "summary": "Get system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestTableDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestTableDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestTableDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PaymentMethods/{keyName}": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Get system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentMethodDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentMethodDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentMethodDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PaymentMethods": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Get system variable",
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SystemConstants/{keyName}/value": {
+      "get": {
+        "tags": [
+          "SystemConstants"
+        ],
+        "summary": "Get system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SystemConstants/{keyName}": {
+      "get": {
+        "tags": [
+          "SystemConstants"
+        ],
+        "summary": "Get system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemVariableDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemVariableDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemVariableDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SystemConstants"
+        ],
+        "summary": "Update system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SystemConstants"
+        ],
+        "summary": "Update system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemVariableDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemVariableDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemVariableDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TypeLists/{keyName}": {
+      "get": {
+        "tags": [
+          "TypeLists"
+        ],
+        "summary": "Get system variable",
+        "parameters": [
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TypeListDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TypeListDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TypeListDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VatTypeDTO": {
+        "enum": [
+          "none",
+          "capital",
+          "capitalinterest",
+          "interest"
+        ],
+        "type": "string",
+        "description": "VatTypeDTO"
+      },
+      "OutlayDTO": {
+        "enum": [
+          "fee",
+          "outlayinadvance",
+          "outlayinvoice"
+        ],
+        "type": "string",
+        "description": "OutlayDTO"
+      },
+      "CostDefinitionDTO": {
+        "type": "object",
+        "properties": {
+          "countryCode": {
+            "type": "string",
+            "description": "CountryCode",
+            "nullable": true
+          },
+          "costName": {
+            "type": "string",
+            "description": "CostName",
+            "nullable": true
+          },
+          "costType": {
+            "type": "string",
+            "description": "CostType",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description",
+            "nullable": true
+          },
+          "costGroup": {
+            "type": "string",
+            "description": "CostGroup",
+            "nullable": true
+          },
+          "accountCode": {
+            "type": "string",
+            "description": "AccountCode",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount",
+            "format": "double"
+          },
+          "costTariff": {
+            "type": "string",
+            "description": "CostTariff",
+            "nullable": true
+          },
+          "costTariffBase": {
+            "type": "string",
+            "description": "CostTariffBase",
+            "nullable": true
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "InterestRate",
+            "format": "double"
+          },
+          "interestCode": {
+            "type": "string",
+            "description": "InterestCode",
+            "nullable": true
+          },
+          "debtorCost": {
+            "type": "boolean",
+            "description": "DebtorCost"
+          },
+          "courtCost": {
+            "type": "boolean",
+            "description": "CourtCost"
+          },
+          "vat": {
+            "$ref": "#/components/schemas/VatTypeDTO"
+          },
+          "writeOffTime": {
+            "type": "integer",
+            "description": "WriteOffTime",
+            "format": "int32",
+            "nullable": true
+          },
+          "disbursement": {
+            "type": "string",
+            "description": "Disbursement",
+            "nullable": true
+          },
+          "debtorVat": {
+            "type": "number",
+            "description": "DebtorVat",
+            "format": "double"
+          },
+          "retainer": {
+            "$ref": "#/components/schemas/OutlayDTO"
+          },
+          "defaultLimitInterval": {
+            "type": "integer",
+            "description": "DefaultLimitInterval",
+            "format": "int32",
+            "nullable": true
+          },
+          "noComission": {
+            "type": "boolean",
+            "description": "NoComission"
+          },
+          "excludeCostEnforcement": {
+            "type": "boolean",
+            "description": "ExcludeCostEnforcement"
+          },
+          "consumerCosts": {
+            "type": "boolean",
+            "description": "ConsumerCosts"
+          },
+          "santraCostDefinition": {
+            "type": "string",
+            "description": "SantraCostDefinition",
+            "nullable": true
+          },
+          "obcode": {
+            "type": "string",
+            "description": "Obcode",
+            "nullable": true
+          },
+          "highCostCredit": {
+            "type": "boolean",
+            "description": "HighCostCredit"
+          }
+        },
+        "additionalProperties": false,
+        "description": "CostDefinitionDTO"
+      },
+      "InterestCalculationTypeDTO": {
+        "enum": [
+          "calctype360by360",
+          "calctype365by365",
+          "calctype2831by360",
+          "calctype2831by365",
+          "calctype2831by366"
+        ],
+        "type": "string",
+        "description": "InterestCalculationTypeDTO"
+      },
+      "InterestPeriodicityTypeDTO": {
+        "enum": [
+          "daybyday",
+          "monthbymonth",
+          "days30"
+        ],
+        "type": "string",
+        "description": "InterestPeriodicityTypeDTO"
+      },
+      "InterestCodeDTO": {
+        "type": "object",
+        "properties": {
+          "interestCode": {
+            "type": "string",
+            "description": "InterestCode",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description",
+            "nullable": true
+          },
+          "tableCode": {
+            "type": "string",
+            "description": "TableCode",
+            "nullable": true
+          },
+          "calculationType": {
+            "$ref": "#/components/schemas/InterestCalculationTypeDTO"
+          },
+          "periodicityType": {
+            "$ref": "#/components/schemas/InterestPeriodicityTypeDTO"
+          },
+          "capitalize": {
+            "type": "boolean",
+            "description": "Capitalize"
+          }
+        },
+        "additionalProperties": false,
+        "description": "InterestCodeDTO"
+      },
+      "InterestTableDTO": {
+        "type": "object",
+        "properties": {
+          "tableCode": {
+            "type": "string",
+            "description": "TableCode",
+            "nullable": true
+          },
+          "startingDate": {
+            "type": "string",
+            "description": "StartingDate",
+            "format": "date-time"
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "InterestRate",
+            "format": "double"
+          },
+          "maxInterest": {
+            "type": "number",
+            "description": "MaxInterest",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "InterestTableDTO"
+      },
+      "PaymentMethodDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "nullable": true
+          },
+          "giro": {
+            "type": "string",
+            "description": "Giro",
+            "nullable": true
+          },
+          "transCode": {
+            "type": "string",
+            "description": "TransCode",
+            "nullable": true
+          },
+          "deductionCode": {
+            "type": "string",
+            "description": "DeductionCode",
+            "nullable": true
+          },
+          "accountingBook": {
+            "type": "string",
+            "description": "AccountingBook",
+            "nullable": true
+          },
+          "fromCreditor": {
+            "type": "boolean",
+            "description": "FromCreditor"
+          },
+          "fromInstance": {
+            "type": "boolean",
+            "description": "FromInstance"
+          },
+          "lawyer": {
+            "type": "boolean",
+            "description": "Lawyer"
+          },
+          "access": {
+            "type": "string",
+            "description": "Access",
+            "nullable": true
+          },
+          "iban": {
+            "type": "string",
+            "description": "IBAN",
+            "nullable": true
+          },
+          "bic": {
+            "type": "string",
+            "description": "BIC",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "PaymentMethodDTO"
+      },
+      "SystemVariableDTO": {
+        "type": "object",
+        "properties": {
+          "varId": {
+            "type": "string",
+            "description": "VarId",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description",
+            "nullable": true
+          },
+          "dateCreate": {
+            "type": "string",
+            "description": "DateCreate",
+            "format": "date-time"
+          },
+          "dateUpdate": {
+            "type": "string",
+            "description": "DateUpdate",
+            "format": "date-time"
+          },
+          "updatedBy": {
+            "type": "string",
+            "description": "UpdatedBy",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "description": "Value",
+            "nullable": true
+          },
+          "cachable": {
+            "type": "boolean",
+            "description": "Cachable"
+          }
+        },
+        "additionalProperties": false,
+        "description": "SystemVariableDTO"
+      },
+      "TypeListDTO": {
+        "type": "object",
+        "properties": {
+          "typeListNo": {
+            "type": "integer",
+            "description": "TypeListNo",
+            "format": "int32"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category",
+            "nullable": true
+          },
+          "typeRowId": {
+            "type": "integer",
+            "description": "TypeRowId",
+            "format": "int32"
+          },
+          "sortOrder": {
+            "type": "integer",
+            "description": "SortOrder",
+            "format": "int32"
+          },
+          "defaultText": {
+            "type": "string",
+            "description": "DefaultText",
+            "nullable": true
+          },
+          "available": {
+            "type": "integer",
+            "description": "Available",
+            "format": "int32"
+          },
+          "subcategoryType": {
+            "type": "integer",
+            "description": "SubcategoryType",
+            "format": "int32",
+            "nullable": true
+          },
+          "subcategory": {
+            "type": "string",
+            "description": "Subcategory",
+            "nullable": true
+          },
+          "dataString": {
+            "type": "string",
+            "description": "DataString",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "IsDefault"
+          }
+        },
+        "additionalProperties": false,
+        "description": "TypeListDTO"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
