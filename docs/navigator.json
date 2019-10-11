@@ -16,13 +16,13 @@
                 {
                     "name": "19r3",
                     "services": [
-                        { "name": "Case", "jsonUrl": "docs/collections/19r2/19r3_cases.json" },
-                        { "name": "Claim", "jsonUrl": "docs/collections/19r2/19r3_claims.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/19r2/19r3_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "docs/collections/19r2/19r3_identitysvc.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/19r2/19r3_messagingsvc.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/19r3_paymentssvc.json" },
-                        { "name": "Telephony", "jsonUrl": "docs/collections/19r2/19r3_telephonysvc.json" }
+                        { "name": "Case", "jsonUrl": "docs/collections/19r3/19r3_cases.json" },
+                        { "name": "Claim", "jsonUrl": "docs/collections/19r3/19r3_claims.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/collections/19r3/19r3_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "docs/collections/19r3/19r3_identitysvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/collections/19r3/19r3_messagingsvc.json" },
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r3/19r3_paymentssvc.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/collections/19r3/19r3_telephonysvc.json" }
                     ]
                 },
                 {
