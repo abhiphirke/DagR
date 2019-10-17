@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "History API",
+    "title": "History Service",
     "description": "History Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "v1"
+    "version": "20R1"
   },
   "servers": [
     {
@@ -869,20 +869,20 @@
           "debtor",
           "pledge",
           "payment",
-          "amortisationplan",
+          "amortisationPlan",
           "partner",
           "document",
           "collateral",
-          "collateralaccount",
+          "collateralAccount",
           "mandate",
           "collector",
           "lawyer",
           "instance",
           "claim",
           "invoice",
-          "creditinvoice",
+          "creditInvoice",
           "fee",
-          "debtorcost",
+          "debtorCost",
           "history"
         ],
         "type": "string",
@@ -906,24 +906,52 @@
       "HistoryCategoryDTO": {
         "enum": [
           "letter",
-          "postaladdress",
-          "contactpoints",
+          "postalAddress",
+          "contactPoints",
           "payment",
-          "amortisationplan",
+          "amortisationPlan",
           "general",
-          "userdefined"
+          "userDefined"
         ],
         "type": "string",
         "description": "Various categories of history types. Refer: Nova.DTO.History.Enums.HistoryTypeDTO"
       },
       "HistoryTypeDTO": {
         "enum": [
-          "letterprinted",
-          "lettersaved",
-          "lettermodifiedsaved",
-          "letterreceived",
-          "letterreceviedscanned",
-          "addedfirst"
+          "letterPrinted",
+          "letterSaved",
+          "letterModifiedSaved",
+          "letterReceived",
+          "letterReceviedScanned",
+          "phoneCallMade",
+          "phoneCallReceived",
+          "manualNote",
+          "systemNote",
+          "postalAddressUpdated",
+          "payment",
+          "objectMoved",
+          "letterModifiedOnly",
+          "ole",
+          "archiveExternalFile",
+          "paymentRetransfered",
+          "emailSent",
+          "emailReceived",
+          "amortisationPlanCreated",
+          "visitDebtor",
+          "dynamic",
+          "smsSend",
+          "onlineRequest",
+          "xmlLetterPrinted",
+          "noteReceivedFromEnova",
+          "noteSentToEnova",
+          "limitationInterruption",
+          "noteSentFromDebitorRegistret",
+          "externalData",
+          "postalAddressUpdatedForMultipleAddress",
+          "contactPointsUpdatedForMultipleAddress",
+          "creditInformationExport",
+          "creditInformationOnlineRequest",
+          "ocrGeneratedUsingOB"
         ],
         "type": "string",
         "description": "Various history types available in Nova"
@@ -1107,14 +1135,14 @@
       },
       "ChangedPropertiesDTO": {
         "enum": [
-          "idnochanged",
-          "namechanged",
-          "addressline1changed",
-          "addressline2changed",
-          "countrycodechanged",
-          "zipcodechanged",
-          "citychanged",
-          "contactpointschanged"
+          "idNoChanged",
+          "nameChanged",
+          "addressLine1Changed",
+          "addressLine2Changed",
+          "countryCodeChanged",
+          "zipCodeChanged",
+          "cityChanged",
+          "contactPointsChanged"
         ],
         "type": "string",
         "description": "Different types of changes in various properties of objects"
@@ -1199,13 +1227,23 @@
             "description": "If the entity is a foreigner. True if a foreigner."
           },
           "civilStatus": {
-            "type": "integer",
+            "type": "string",
             "description": "Civil status (Marital status)",
-            "format": "int32"
+            "nullable": true
           },
           "nationality": {
             "type": "string",
             "description": "Nationality",
+            "nullable": true
+          },
+          "housingType": {
+            "type": "string",
+            "description": "Housing condition of person",
+            "nullable": true
+          },
+          "occupation": {
+            "type": "string",
+            "description": "Occupation or profession of person",
             "nullable": true
           }
         },
@@ -1244,7 +1282,7 @@
         "enum": [
           "main",
           "alternate",
-          "multipleaddress"
+          "multipleAddress"
         ],
         "type": "string",
         "description": "Provides for the types of postal address"
@@ -1421,12 +1459,12 @@
       },
       "HistoryStatusDTO": {
         "enum": [
-          "addedfirst",
-          "addedlater",
+          "addedFirst",
+          "addedLater",
           "deleted",
           "add",
           "delete",
-          "deletemask",
+          "deleteMask",
           "all"
         ],
         "type": "string",

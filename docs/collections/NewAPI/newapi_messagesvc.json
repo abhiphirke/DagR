@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Message API",
+    "title": "Message Service",
     "description": "Message Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "v1"
+    "version": "20R1"
   },
   "servers": [
     {

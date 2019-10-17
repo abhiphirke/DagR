@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Debtor API",
-    "description": "Debtor API performs Nova debtor operations and exposes the basic and core debtor information.",
-    "version": "v1"
+    "title": "Debtor API Service",
+    "description": "Debtor API Commitment API to expose related information and perform relevant Nova operations.",
+    "version": "20R1"
   },
   "servers": [
     {
@@ -31,21 +31,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the core debtor information. (Nova.DTO.Debtor.DebtorDTO)",
+            "description": "Returns the core debtor information. (Nova.DTO.Debtor.DebtorCoreInfoDTO)",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/DebtorDTO"
+                  "$ref": "#/components/schemas/DebtorCoreInfoDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DebtorDTO"
+                  "$ref": "#/components/schemas/DebtorCoreInfoDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DebtorDTO"
+                  "$ref": "#/components/schemas/DebtorCoreInfoDTO"
                 }
               }
             }
@@ -65,7 +65,7 @@
         }
       }
     },
-    "/Debtors/idno/{debtorID}": {
+    "/Debtors/idno/{debtorId}": {
       "get": {
         "tags": [
           "Debtors"
@@ -90,7 +90,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DebtorDTO"
+                    "$ref": "#/components/schemas/DebtorCoreInfoDTO"
                   }
                 }
               },
@@ -98,7 +98,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DebtorDTO"
+                    "$ref": "#/components/schemas/DebtorCoreInfoDTO"
                   }
                 }
               },
@@ -106,7 +106,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DebtorDTO"
+                    "$ref": "#/components/schemas/DebtorCoreInfoDTO"
                   }
                 }
               }
@@ -509,7 +509,7 @@
         },
         "responses": {
           "200": {
-            "description": "Returns the core debtor information. (Nova.DTO.Debtor.DebtorDTO)",
+            "description": "Returns the core debtor information. (Nova.DTO.Debtor.DebtorCoreInfoDTO)",
             "content": {
               "text/plain": {
                 "schema": {
@@ -555,6 +555,24 @@
   },
   "components": {
     "schemas": {
+      "RegistrationDTO": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date of registration",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "User who registered it",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about registration of an entity/object."
+      },
       "ExternalIdentifierDTO": {
         "type": "object",
         "properties": {
@@ -584,33 +602,23 @@
       },
       "PersonTypeDTO": {
         "enum": [
-          "naturalperson",
-          "legalperson"
+          "naturalPerson",
+          "legalPerson"
         ],
         "type": "string",
         "description": "Provides for types of person"
       },
-      "RegistrationDTO": {
+      "DebtorCoreInfoDTO": {
         "type": "object",
         "properties": {
-          "date": {
+          "registration": {
+            "$ref": "#/components/schemas/RegistrationDTO"
+          },
+          "paymentReference": {
             "type": "string",
-            "description": "Date of registration",
-            "format": "date-time",
+            "description": "This is used as payment reference number for matching incoming payment into Nova.",
             "nullable": true
           },
-          "userName": {
-            "type": "string",
-            "description": "User who registered it",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides information about registration of an entity/object."
-      },
-      "DebtorDTO": {
-        "type": "object",
-        "properties": {
           "id": {
             "type": "integer",
             "description": "Unique identification number in Nova",
@@ -626,9 +634,6 @@
           },
           "partyType": {
             "$ref": "#/components/schemas/PersonTypeDTO"
-          },
-          "registration": {
-            "$ref": "#/components/schemas/RegistrationDTO"
           }
         },
         "additionalProperties": false,
@@ -714,13 +719,23 @@
             "description": "If the entity is a foreigner. True if a foreigner."
           },
           "civilStatus": {
-            "type": "integer",
+            "type": "string",
             "description": "Civil status (Marital status)",
-            "format": "int32"
+            "nullable": true
           },
           "nationality": {
             "type": "string",
             "description": "Nationality",
+            "nullable": true
+          },
+          "housingType": {
+            "type": "string",
+            "description": "Housing condition of person",
+            "nullable": true
+          },
+          "occupation": {
+            "type": "string",
+            "description": "Occupation or profession of person",
             "nullable": true
           }
         },
@@ -759,7 +774,7 @@
         "enum": [
           "main",
           "alternate",
-          "multipleaddress"
+          "multipleAddress"
         ],
         "type": "string",
         "description": "Provides for the types of postal address"
@@ -944,8 +959,8 @@
       },
       "StatisticsNameDTO": {
         "enum": [
-          "noofinjunction",
-          "noofdistress"
+          "noOfInjunction",
+          "noOfDistress"
         ],
         "type": "string",
         "description": "Provides names of statistics withing Nova"
@@ -979,6 +994,29 @@
         },
         "additionalProperties": false,
         "description": "Provides more information about debtor."
+      },
+      "DebtorDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number in Nova",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "nullable": true
+          },
+          "external": {
+            "$ref": "#/components/schemas/ExternalIdentifierDTO"
+          },
+          "partyType": {
+            "$ref": "#/components/schemas/PersonTypeDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides basic/core information about debtor"
       }
     },
     "securitySchemes": {

@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Limited Commitment API",
+    "title": "Limited Commitment Service",
     "description": "Limited Commitment API Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "v1"
+    "version": "20R1"
   },
   "servers": [
     {
@@ -934,20 +934,20 @@
           "debtor",
           "pledge",
           "payment",
-          "amortisationplan",
+          "amortisationPlan",
           "partner",
           "document",
           "collateral",
-          "collateralaccount",
+          "collateralAccount",
           "mandate",
           "collector",
           "lawyer",
           "instance",
           "claim",
           "invoice",
-          "creditinvoice",
+          "creditInvoice",
           "fee",
-          "debtorcost",
+          "debtorCost",
           "history"
         ],
         "type": "string",
@@ -971,10 +971,10 @@
       "ReasonOfLimComCreationDTO": {
         "enum": [
           "normal",
-          "amortisationplan",
-          "debtrestructuring",
-          "debtorbankruptcy",
-          "debtordeceased"
+          "amortisationPlan",
+          "debtRestructuring",
+          "debtorBankruptcy",
+          "debtorDeceased"
         ],
         "type": "string",
         "description": "Provides type of reson for creating a limited commitment."
@@ -1063,7 +1063,7 @@
       "AmountLayerDTO": {
         "enum": [
           "original",
-          "limitedcommitement",
+          "limitedCommitement",
           "adjuged"
         ],
         "type": "string",
@@ -1206,7 +1206,7 @@
         "enum": [
           "orginial",
           "temporary",
-          "limitedcommitment"
+          "limitedCommitment"
         ],
         "type": "string",
         "description": "Indicates where the interest is applicable"

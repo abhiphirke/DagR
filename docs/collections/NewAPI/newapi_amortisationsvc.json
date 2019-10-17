@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Amortisation API",
+    "title": "Amortisation Service",
     "description": "Amortisation API performs Nova amortisation operations and exposes the basic and core amortisation information.",
-    "version": "v1"
+    "version": "20R1"
   },
   "servers": [
     {
@@ -93,20 +93,20 @@
           "debtor",
           "pledge",
           "payment",
-          "amortisationplan",
+          "amortisationPlan",
           "partner",
           "document",
           "collateral",
-          "collateralaccount",
+          "collateralAccount",
           "mandate",
           "collector",
           "lawyer",
           "instance",
           "claim",
           "invoice",
-          "creditinvoice",
+          "creditInvoice",
           "fee",
-          "debtorcost",
+          "debtorCost",
           "history"
         ],
         "type": "string",

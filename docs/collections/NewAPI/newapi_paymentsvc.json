@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Payment API",
+    "title": "Payment Service",
     "description": "Payment Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "v1"
+    "version": "20R1"
   },
   "servers": [
     {
@@ -804,20 +804,20 @@
           "debtor",
           "pledge",
           "payment",
-          "amortisationplan",
+          "amortisationPlan",
           "partner",
           "document",
           "collateral",
-          "collateralaccount",
+          "collateralAccount",
           "mandate",
           "collector",
           "lawyer",
           "instance",
           "claim",
           "invoice",
-          "creditinvoice",
+          "creditInvoice",
           "fee",
-          "debtorcost",
+          "debtorCost",
           "history"
         ],
         "type": "string",
@@ -840,7 +840,7 @@
       },
       "AccountTypeDTO": {
         "enum": [
-          "unidentified"
+          "unIdentified"
         ],
         "type": "string",
         "description": "Provides types of accounts"
