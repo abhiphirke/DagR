@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/tieto/collection/casesvc"
+      "url": "/tieto/collection/CaseSvc"
     }
   ],
   "paths": {

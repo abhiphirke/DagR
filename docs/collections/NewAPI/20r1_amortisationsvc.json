@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/tieto/collection/amortisationsvc"
+      "url": "/tieto/collection/AmortisationSvc"
     }
   ],
   "paths": {

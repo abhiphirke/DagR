@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/tieto/collection/limcomsvc"
+      "url": "/tieto/collection/LimComSvc"
     }
   ],
   "paths": {

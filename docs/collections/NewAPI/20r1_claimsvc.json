@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/tieto/collection/claimsvc"
+      "url": "/tieto/collection/ClaimSvc"
     }
   ],
   "paths": {
@@ -74,7 +74,7 @@
         }
       }
     },
-    "/Cases/{caseNo}/claims/amounts": {
+    "/Cases/{caseNo}/claims/original/amounts": {
       "get": {
         "tags": [
           "Cases"
@@ -137,7 +137,7 @@
         }
       }
     },
-    "/Cases/{caseNo}/claims/remainingamounts": {
+    "/Cases/{caseNo}/claims/original/remainingamounts": {
       "get": {
         "tags": [
           "Cases"
@@ -200,7 +200,7 @@
         }
       }
     },
-    "/Cases/{caseNo}/amounts": {
+    "/Cases/{caseNo}/original/amounts": {
       "get": {
         "tags": [
           "Cases"
@@ -254,7 +254,7 @@
         }
       }
     },
-    "/Cases/{caseNo}/remainingamounts": {
+    "/Cases/{caseNo}/original/remainingamounts": {
       "get": {
         "tags": [
           "Cases"
@@ -641,7 +641,7 @@
         }
       }
     },
-    "/Claims/spec/{spec}/refid/{refId}/amounts": {
+    "/Claims/spec/{spec}/refid/{refId}/original/amounts": {
       "get": {
         "tags": [
           "Claims"
@@ -704,7 +704,7 @@
         }
       }
     },
-    "/Claims/spec/{spec}/refid/{refId}/remainingamounts": {
+    "/Claims/spec/{spec}/refid/{refId}/original/remainingamounts": {
       "get": {
         "tags": [
           "Claims"
@@ -830,12 +830,12 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/claims/remainingamounts": {
+    "/Debtors/{debtorNo}/claims/payable/remainingamounts": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns all the claims remaining amounts for a debtor using Nova debtor number.",
+        "summary": "Returns all the claims remaining amounts payable for a debtor using Nova debtor number.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -893,12 +893,12 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/claims/amounts": {
+    "/Debtors/{debtorNo}/claims/payable/amounts": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns all the claims amounts for a debtor using Nova debtor number.",
+        "summary": "Returns all the claims amounts payable for a debtor using Nova debtor number.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -956,12 +956,12 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}/remainingamounts": {
+    "/Debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}/payable/remainingamounts": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns the remaining amount for a debtor using Nova debtor number.",
+        "summary": "Returns the remaining amount payable for a debtor using Nova debtor number.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -1029,12 +1029,12 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}/amounts": {
+    "/Debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}/payable/amounts": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns the all type of amounts (orginial, turned-in, paid and remaining) of specific claim for a debtor using Nova debtor number.",
+        "summary": "Returns the all type of amounts (orginial, turned-in, paid and remaining) of specific claim payable for a debtor using Nova debtor number.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -1175,12 +1175,12 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/cases/{caseNo}/remainingamounts": {
+    "/Debtors/{debtorNo}/cases/{caseNo}/payable/remainingamounts": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns the remaining amount for a debtor using Nova debtor number.",
+        "summary": "Returns the remaining amount payable for a debtor using Nova debtor number.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -1239,12 +1239,12 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/cases/{caseNo}/amounts": {
+    "/Debtors/{debtorNo}/cases/{caseNo}/payable/amounts": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns the all type of amounts (orginial, turned-in, paid and remaining) of specific case for a debtor using Nova debtor number.",
+        "summary": "Returns the all type of amounts (orginial, turned-in, paid and remaining) of specific case payable for a debtor using Nova debtor number.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -1303,12 +1303,12 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/cases/{caseNo}/claims/remainingamounts": {
+    "/Debtors/{debtorNo}/cases/{caseNo}/claims/payable/remainingamounts": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns all the claims remaining amounts for a debtor using Nova debtor number.",
+        "summary": "Returns all the claims remaining amounts payable for a debtor using Nova debtor number.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -1376,12 +1376,558 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/cases/{caseNo}/claims/amounts": {
+    "/Debtors/{debtorNo}/cases/{caseNo}/claims/payable/amounts": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns all the claims amounts for a debtor using Nova debtor number.",
+        "summary": "Returns all the claims amounts payable for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims/commited/remainingamounts": {
+      "get": {
+        "tags": [
+          "LimitedCommitement"
+        ],
+        "summary": "Returns all the claims remaining amounts (limited commitment) for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims/commited/amounts": {
+      "get": {
+        "tags": [
+          "LimitedCommitement"
+        ],
+        "summary": "Returns all the claims amounts (limited commitment) for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}/commited/remainingamounts": {
+      "get": {
+        "tags": [
+          "LimitedCommitement"
+        ],
+        "summary": "Returns the remaining amount (limited commitment) for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim remaining amount information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}/commited/amounts": {
+      "get": {
+        "tags": [
+          "LimitedCommitement"
+        ],
+        "summary": "Returns the all type of amounts (orginial, turned-in, paid and remaining) of specific claim (limited commitment) for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Type of claim i.e. Invoice, CreditInvoice, Fee, DebtorCost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Nova debt number/cost number based on type",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim amount information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/commited/remainingamounts": {
+      "get": {
+        "tags": [
+          "LimitedCommitement"
+        ],
+        "summary": "Returns the remaining amount (limited commitment) for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim remaining amount information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseRemainingAmountsDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/commited/amounts": {
+      "get": {
+        "tags": [
+          "LimitedCommitement"
+        ],
+        "summary": "Returns the all type of amounts (orginial, turned-in, paid and remaining) of specific case (limited commitment) for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the case amount information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseAmountDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/claims/commited/remainingamounts": {
+      "get": {
+        "tags": [
+          "LimitedCommitement"
+        ],
+        "summary": "Returns all the claims remaining amounts (limited commitment) for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimRemainingAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/claims/commited/amounts": {
+      "get": {
+        "tags": [
+          "LimitedCommitement"
+        ],
+        "summary": "Returns all the claims amounts (limited commitment) for a debtor using Nova debtor number.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -1751,6 +2297,14 @@
       "CaseAmountDTO": {
         "type": "object",
         "properties": {
+          "layer": {
+            "$ref": "#/components/schemas/AmountLayerDTO"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency of the amounts",
+            "nullable": true
+          },
           "interestToDate": {
             "type": "string",
             "description": "Interest calculated till this date",
@@ -1811,6 +2365,14 @@
       "CaseRemainingAmountsDTO": {
         "type": "object",
         "properties": {
+          "layer": {
+            "$ref": "#/components/schemas/AmountLayerDTO"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency of the amounts",
+            "nullable": true
+          },
           "interestToDate": {
             "type": "string",
             "description": "Interest calculated till this date",

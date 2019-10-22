@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/tieto/collection/workflowsvc"
+      "url": "/tieto/collection/WorkflowSvc"
     }
   ],
   "paths": {

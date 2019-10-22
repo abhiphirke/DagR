@@ -28,16 +28,17 @@
                 {
                     "name": "NewAPI",
                     "services": [
-                        { "name": "Amortisation", "jsonUrl": "docs/collections/NewAPI/newapi_amortisationsvc.json" },
-                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/newapi_casessvc.json" },
-                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/newapi_claimssvc.json" },
-                        { "name": "Config", "jsonUrl": "docs/collections/NewAPI/newapi_configsvc.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/newapi_debtorsvc.json" },
-                        { "name": "History", "jsonUrl": "docs/collections/NewAPI/newapi_historysvc.json" },
-                        { "name": "LimCom", "jsonUrl": "docs/collections/NewAPI/newapi_limcomsvc.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/NewAPI/newapi_messagesvc.json" },
-                        { "name": "Payment", "jsonUrl": "docs/collections/NewAPI/newapi_paymentsvc.json" },
-                        { "name": "Workflow", "jsonUrl": "docs/collections/NewAPI/newapi_workflowsvc.json" }
+                        { "name": "Amortisation", "jsonUrl": "docs/collections/NewAPI/20r1_amortisationsvc.json" },
+                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/20r1_casessvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/20r1_claimssvc.json" },
+                        { "name": "Config", "jsonUrl": "docs/collections/NewAPI/20r1_configsvc.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/20r1_debtorsvc.json" },
+                        { "name": "History", "jsonUrl": "docs/collections/NewAPI/20r1_historysvc.json" },
+                        { "name": "LimCom", "jsonUrl": "docs/collections/NewAPI/20r1_limcomsvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/collections/NewAPI/20r1_messagesvc.json" },
+                        { "name": "Ocr", "jsonUrl": "docs/collections/NewAPI/20r1_ocrsvc.json" },
+                        { "name": "Payment", "jsonUrl": "docs/collections/NewAPI/20r1_paymentsvc.json" },
+                        { "name": "Workflow", "jsonUrl": "docs/collections/NewAPI/20r1_workflowsvc.json" }
                     ]
                 }
             ]

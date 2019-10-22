@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/tieto/collection/configsvc"
+      "url": "/tieto/collection/ConfigSvc"
     }
   ],
   "paths": {
@@ -33,7 +33,7 @@
             "description": "",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/CountryCodesDTO"
             }
           }
         ],
@@ -152,7 +152,7 @@
             "description": "",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/LanguageCodesDTO"
             }
           }
         ],
@@ -193,7 +193,7 @@
             "description": "",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/LanguageCodesDTO"
             }
           }
         ],
@@ -609,39 +609,30 @@
             }
           }
         }
-      },
+      }
+    },
+    "/SystemConstants": {
       "put": {
         "tags": [
           "SystemConstants"
         ],
         "summary": "Update system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/SystemVariableDTO"
               }
             },
             "text/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/SystemVariableDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/SystemVariableDTO"
               }
             }
           }
@@ -674,17 +665,6 @@
           "SystemConstants"
         ],
         "summary": "Update system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -900,10 +880,122 @@
           }
         }
       }
+    },
+    "/Users/list": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get creditor",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message retrieved successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "CountryCodesDTO": {
+        "enum": [
+          "at",
+          "be",
+          "ch",
+          "cz",
+          "de",
+          "dk",
+          "ee",
+          "es",
+          "fi",
+          "fr",
+          "gb",
+          "hu",
+          "ie",
+          "it",
+          "lt",
+          "lv",
+          "nl",
+          "no",
+          "pl",
+          "ru",
+          "se",
+          "sk",
+          "tr"
+        ],
+        "type": "string",
+        "description": "Country codes supported in Nova system."
+      },
       "VatTypeDTO": {
         "enum": [
           "none",
@@ -1046,6 +1138,37 @@
         },
         "additionalProperties": false,
         "description": "CostDefinitionDTO"
+      },
+      "LanguageCodesDTO": {
+        "enum": [
+          "dan",
+          "dut",
+          "eng",
+          "fin",
+          "fra",
+          "ger",
+          "aut",
+          "pol",
+          "ice",
+          "ita",
+          "irl",
+          "nld",
+          "bel",
+          "tur",
+          "rus",
+          "ltu",
+          "nor",
+          "swe",
+          "esp",
+          "cze",
+          "hun",
+          "est",
+          "sui",
+          "slk",
+          "lva"
+        ],
+        "type": "string",
+        "description": "Language codes supported in Nova system."
       },
       "DebtTypeDTO": {
         "type": "object",

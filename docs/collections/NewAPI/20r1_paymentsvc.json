@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/tieto/collection/paymentsvc"
+      "url": "/tieto/collection/PaymentSvc"
     }
   ],
   "paths": {

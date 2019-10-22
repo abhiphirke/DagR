@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/tieto/collection/historysvc"
+      "url": "/tieto/collection/HistorySvc"
     }
   ],
   "paths": {
