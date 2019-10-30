@@ -29,8 +29,8 @@
                     "name": "NewAPI",
                     "services": [
                         { "name": "Amortisation", "jsonUrl": "docs/collections/NewAPI/20r1_amortisationsvc.json" },
-                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/20r1_casessvc.json" },
-                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/20r1_claimssvc.json" },
+                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/20r1_casesvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/20r1_claimsvc.json" },
                         { "name": "Config", "jsonUrl": "docs/collections/NewAPI/20r1_configsvc.json" },
                         { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/20r1_debtorsvc.json" },
                         { "name": "History", "jsonUrl": "docs/collections/NewAPI/20r1_historysvc.json" },
