@@ -16,7 +16,7 @@
         "tags": [
           "Debtors"
         ],
-        "summary": "Finds debtor using Nova debtor number",
+        "summary": "Return information of a debtor.",
         "parameters": [
           {
             "name": "debtorNo",
@@ -70,12 +70,12 @@
         "tags": [
           "Debtors"
         ],
-        "summary": "Finds debtors using a unique personal identification number (Debtor Id)",
+        "summary": "Find debtors by national identification number.",
         "parameters": [
           {
             "name": "debtorId",
             "in": "path",
-            "description": "Debtor Id number",
+            "description": "National identification number",
             "required": true,
             "schema": {
               "type": "string"
