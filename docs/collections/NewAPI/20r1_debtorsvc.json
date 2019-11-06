@@ -2,12 +2,12 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Debtor API Service",
-    "description": "Debtor API Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "20R1"
+    "description": "Debtor service expose operations on the Nova debtor object. <br><br>The debtor object is expressed as a party of type natural person (a human being) or legal person (e.g. an organisation or a company not represented as a person). A debtor's role in relation to case or claims is not expressed at the debtor object.",
+    "version": "20r1"
   },
   "servers": [
     {
-      "url": "/tieto/collection/DebtorSvc"
+      "url": "/tieto/collection/debtorsvc"
     }
   ],
   "paths": {
