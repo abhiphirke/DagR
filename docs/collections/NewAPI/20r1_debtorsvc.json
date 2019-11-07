@@ -560,45 +560,45 @@
         "properties": {
           "date": {
             "type": "string",
-            "description": "Date of registration",
+            "description": "Registration date.",
             "format": "date-time",
             "nullable": true
           },
           "userName": {
             "type": "string",
-            "description": "User who registered it",
+            "description": "Registered by.",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides information about registration of an entity/object."
+        "description": "Object registration."
       },
       "ExternalIdentifierDTO": {
         "type": "object",
         "properties": {
           "id1": {
             "type": "string",
-            "description": "Id1",
+            "description": "",
             "nullable": true
           },
           "id2": {
             "type": "string",
-            "description": "Id2",
+            "description": "",
             "nullable": true
           },
           "id3": {
             "type": "string",
-            "description": "Id3",
+            "description": "",
             "nullable": true
           },
           "id4": {
             "type": "string",
-            "description": "Id4",
+            "description": "",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides more identification information of an entity typically used in other integrating/older/authority systems."
+        "description": "Object references other than the Nova unique object identifier. Elements are described in the context where DTO is being used."
       },
       "PersonTypeDTO": {
         "enum": [
@@ -606,7 +606,7 @@
           "legalPerson"
         ],
         "type": "string",
-        "description": "Provides for types of person"
+        "description": ""
       },
       "DebtorCoreInfoDTO": {
         "type": "object",
@@ -616,17 +616,17 @@
           },
           "paymentReference": {
             "type": "string",
-            "description": "This is used as payment reference number for matching incoming payment into Nova.",
+            "description": "Nova debtor OCR (not sequenced based).",
             "nullable": true
           },
           "id": {
             "type": "integer",
-            "description": "Unique identification number in Nova",
+            "description": "Nova debtor number.",
             "format": "int32"
           },
           "name": {
             "type": "string",
-            "description": "Name",
+            "description": "",
             "nullable": true
           },
           "external": {
@@ -637,7 +637,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Provides basic/core information about debtor"
+        "description": "Debtor core information."
       },
       "NaturalPersonTypeDTO": {
         "enum": [
@@ -645,56 +645,56 @@
           "firm"
         ],
         "type": "string",
-        "description": "Provides for types of natural person"
+        "description": ""
       },
       "NameExtensionsDTO": {
         "type": "object",
         "properties": {
           "initial": {
             "type": "string",
-            "description": "Initial",
+            "description": "",
             "nullable": true
           },
           "infix": {
             "type": "string",
-            "description": "Infix",
+            "description": "",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides additional information about name"
+        "description": "Elements of a persons name."
       },
       "NaturalPersonDTO": {
         "type": "object",
         "properties": {
           "idNo": {
             "type": "string",
-            "description": "Identification number in country",
+            "description": "National identification number.",
             "nullable": true
           },
           "title": {
             "type": "string",
-            "description": "Title (Mr/Mrs/Ms etc)",
+            "description": "",
             "nullable": true
           },
           "name": {
             "type": "string",
-            "description": "Name",
+            "description": "",
             "nullable": true
           },
           "firstName": {
             "type": "string",
-            "description": "First name",
+            "description": "",
             "nullable": true
           },
           "lastName": {
             "type": "string",
-            "description": "Last name",
+            "description": "",
             "nullable": true
           },
           "secondaryIdNo": {
             "type": "string",
-            "description": "Secondary identification number",
+            "description": "National identification number.",
             "nullable": true
           },
           "type": {
@@ -702,7 +702,7 @@
           },
           "birthDate": {
             "type": "string",
-            "description": "Birth date",
+            "description": "",
             "format": "date-time",
             "nullable": true
           },
@@ -711,64 +711,64 @@
           },
           "gender": {
             "type": "string",
-            "description": "Gender",
+            "description": "",
             "nullable": true
           },
           "alien": {
             "type": "boolean",
-            "description": "If the entity is a foreigner. True if a foreigner."
+            "description": ""
           },
           "civilStatus": {
             "type": "string",
-            "description": "Civil status (Marital status)",
+            "description": "",
             "nullable": true
           },
           "nationality": {
             "type": "string",
-            "description": "Nationality",
+            "description": "",
             "nullable": true
           },
           "housingType": {
             "type": "string",
-            "description": "Housing condition of person",
+            "description": "Housing type / condition.",
             "nullable": true
           },
           "occupation": {
             "type": "string",
-            "description": "Occupation or profession of person",
+            "description": "Occupation / profession.",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides information of a natural person (individual/firm)"
+        "description": "Party represented as a person (a human being)"
       },
       "LegalPersonDTO": {
         "type": "object",
         "properties": {
           "idNo": {
             "type": "string",
-            "description": "Identification number in country",
+            "description": "National identification number.",
             "nullable": true
           },
           "name": {
             "type": "string",
-            "description": "Name",
+            "description": "",
             "nullable": true
           },
           "organisationType": {
             "type": "string",
-            "description": "Organisation type",
+            "description": "",
             "nullable": true
           },
           "organisation": {
             "type": "integer",
-            "description": "Organisation",
+            "description": "",
             "format": "int32",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides information of a legal person (company/organisation)"
+        "description": "Party represented as a legal entity (e.g. company, organisation)"
       },
       "PostalAddressRoleDTO": {
         "enum": [
@@ -777,7 +777,7 @@
           "multipleAddress"
         ],
         "type": "string",
-        "description": "Provides for the types of postal address"
+        "description": "Specification of address role."
       },
       "PostalAddressDTO": {
         "type": "object",
@@ -787,81 +787,81 @@
           },
           "name": {
             "type": "string",
-            "description": "Name (C/O)",
+            "description": "Name of the party that is used with the current address and role.",
             "nullable": true
           },
           "addressLine1": {
             "type": "string",
-            "description": "Address line 1",
+            "description": "",
             "nullable": true
           },
           "addressLine2": {
             "type": "string",
-            "description": "Address line 2",
+            "description": "",
             "nullable": true
           },
           "addressLine3": {
             "type": "string",
-            "description": "Address line 3",
+            "description": "",
             "nullable": true
           },
           "addressLine4": {
             "type": "string",
-            "description": "Address line 4",
+            "description": "",
             "nullable": true
           },
           "streetNo": {
             "type": "string",
-            "description": "Street number",
+            "description": "",
             "nullable": true
           },
           "flatNo": {
             "type": "string",
-            "description": "Flat number",
+            "description": "",
             "nullable": true
           },
           "zipCode": {
             "type": "string",
-            "description": "Zip code",
+            "description": "",
             "nullable": true
           },
           "city": {
             "type": "string",
-            "description": "City",
+            "description": "",
             "nullable": true
           },
           "countryCode": {
             "type": "string",
-            "description": "Country code",
+            "description": "",
             "nullable": true
           },
           "wrongAddress": {
             "type": "boolean",
-            "description": "Indicates if the address is wrong. True if wrong."
+            "description": "Indicates if the address is incorrect in relation to a party."
           },
           "wrongAddressDate": {
             "type": "string",
-            "description": "Date when wrong address flag is updated",
+            "description": "Date when address was marked as wrong.",
             "format": "date-time",
             "nullable": true
           },
           "addressProtected": {
             "type": "boolean",
-            "description": "Indicates if address is protected. True if protected."
+            "description": "Indicates if the address is protected / confidential in relation to a party."
           },
           "region": {
             "type": "string",
-            "description": "Region",
+            "description": "",
             "nullable": true
           },
           "zipCodeExtension": {
             "type": "string",
-            "description": "Zip code extension",
+            "description": "Used in region / country that applies a two-part zip code.",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides postal address information about an entity"
+        "description": ""
       },
       "ContactMediumDTO": {
         "enum": [
@@ -870,7 +870,7 @@
           "email"
         ],
         "type": "string",
-        "description": "Provides different types of contact mediums available for an individual or organisation"
+        "description": "Specification of contact media."
       },
       "ContactPointRoleDTO": {
         "enum": [
@@ -881,7 +881,7 @@
           "alternate"
         ],
         "type": "string",
-        "description": "Provides types of contact points for an individual or organisation"
+        "description": "Specification of contact point roles."
       },
       "ContactPointDTO": {
         "type": "object",
@@ -891,7 +891,7 @@
           },
           "id": {
             "type": "string",
-            "description": "Contact point unique identification number",
+            "description": "Unique identification (e.g. phone number, email address)",
             "nullable": true
           },
           "role": {
@@ -899,14 +899,14 @@
           }
         },
         "additionalProperties": false,
-        "description": "Provides contact points for an individual or organisation"
+        "description": "Contact points for a party (e.g. phone, email)"
       },
       "ContactPreferencesDTO": {
         "type": "object",
         "properties": {
           "doNotCall": {
             "type": "boolean",
-            "description": "Do not call settings. Do not call if true"
+            "description": "Indicates that communication via phone is not accepted by the party."
           },
           "doNotCallDate": {
             "type": "string",
@@ -916,7 +916,7 @@
           },
           "emailOk": {
             "type": "boolean",
-            "description": "Indicates whether it is ok to communicate through Email. Can communicate with email if true"
+            "description": "Indicates that communication via Email is accepted by the party."
           },
           "emailOkDate": {
             "type": "string",
@@ -926,11 +926,11 @@
           },
           "wrongPhone": {
             "type": "boolean",
-            "description": "Indicates if the phone number is incorrect"
+            "description": "Indicates if the phone number is incorrect in relation to the party."
           }
         },
         "additionalProperties": false,
-        "description": "Contact preference information for a debtor"
+        "description": "Contact preference information for a debtor."
       },
       "DebtorContactInfoDTO": {
         "type": "object",
@@ -948,14 +948,14 @@
           }
         },
         "additionalProperties": false,
-        "description": "Provides contact information for a debtor"
+        "description": "Contact information of debtor."
       },
       "StatisticsCategoryDTO": {
         "enum": [
           "legal"
         ],
         "type": "string",
-        "description": "Provides types of statistics available in Nova"
+        "description": "Specification of statistic / aggregation categories."
       },
       "StatisticsNameDTO": {
         "enum": [
@@ -963,7 +963,7 @@
           "noOfDistress"
         ],
         "type": "string",
-        "description": "Provides names of statistics withing Nova"
+        "description": "Specification of statistic / aggregation values."
       },
       "StatisticsDTO": {
         "type": "object",
@@ -981,31 +981,31 @@
           }
         },
         "additionalProperties": false,
-        "description": "Provides stastical information of an entity"
+        "description": "Statistics / Aggregation information available for an object."
       },
       "DebtorOtherInfoDTO": {
         "type": "object",
         "properties": {
           "authorityCode": {
             "type": "string",
-            "description": "Authority code",
+            "description": "Authority code (a zip code for matching with the registry of authorities within Nova.)",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides more information about debtor."
+        "description": "Additional attributes of the debtor object."
       },
       "DebtorDTO": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Unique identification number in Nova",
+            "description": "Nova debtor number.",
             "format": "int32"
           },
           "name": {
             "type": "string",
-            "description": "Name",
+            "description": "",
             "nullable": true
           },
           "external": {
@@ -1016,7 +1016,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Provides basic/core information about debtor"
+        "description": ""
       }
     },
     "securitySchemes": {
