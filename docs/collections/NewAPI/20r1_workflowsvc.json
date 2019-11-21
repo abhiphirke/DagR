@@ -3,7 +3,7 @@
   "info": {
     "title": "Workflow Service",
     "description": "Workflow API to expose related information and perform relevant Nova operations.",
-    "version": "20R1"
+    "version": "1.0.0.0"
   },
   "servers": [
     {
@@ -138,6 +138,79 @@
       }
     },
     "/Cases/{caseNo}/debtors/{debtorNo}/workflows": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns all the workflows for a specific case and debtor using Nova case number .",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the workflow information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Cases/{caseNo}/debtors/{debtorNo}/include/all/workflows": {
       "get": {
         "tags": [
           "Cases"
@@ -434,7 +507,9 @@
           "creditInvoice",
           "fee",
           "debtorCost",
-          "history"
+          "history",
+          "email",
+          "addressUpdate"
         ],
         "type": "string",
         "description": "ResourceSpecificationDTO."

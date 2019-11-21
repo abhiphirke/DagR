@@ -3,15 +3,15 @@
   "info": {
     "title": "Debtor API Service",
     "description": "Debtor service expose operations on the Nova debtor object. <br><br>The debtor object is expressed as a party of type natural person (a human being) or legal person (e.g. an organisation or a company not represented as a person). A debtor's role in relation to case or claims is not expressed at the debtor object.",
-    "version": "20r1"
+    "version": "1.0.0.0"
   },
   "servers": [
     {
-      "url": "/tieto/collection/debtorsvc"
+      "url": "/tieto/collection/DebtorSvc"
     }
   ],
   "paths": {
-    "/Debtors/{debtorNo}": {
+    "/Debtors/{debtorNo}/coreinfo": {
       "get": {
         "tags": [
           "Debtors"
@@ -65,7 +65,7 @@
         }
       }
     },
-    "/Debtors/idno/{debtorId}": {
+    "/Debtors/idno/{debtorId}/coreinfo": {
       "get": {
         "tags": [
           "Debtors"
@@ -259,26 +259,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostalAddressDTO"
-                  }
+                  "$ref": "#/components/schemas/DebtorPostalAddressDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostalAddressDTO"
-                  }
+                  "$ref": "#/components/schemas/DebtorPostalAddressDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PostalAddressDTO"
-                  }
+                  "$ref": "#/components/schemas/DebtorPostalAddressDTO"
                 }
               }
             }
@@ -376,26 +367,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/StatisticsDTO"
-                  }
+                  "$ref": "#/components/schemas/DebtorStatisticsDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/StatisticsDTO"
-                  }
+                  "$ref": "#/components/schemas/DebtorStatisticsDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/StatisticsDTO"
-                  }
+                  "$ref": "#/components/schemas/DebtorStatisticsDTO"
                 }
               }
             }
@@ -551,6 +533,123 @@
           }
         }
       }
+    },
+    "/Debtors/{debtorNo}": {
+      "get": {
+        "tags": [
+          "Deprecated"
+        ],
+        "summary": "Finds debtor using Nova debtor number",
+        "description": "This is deprecated method. <br />\r\nRecommend you to use other URL.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the core debtor information. (Nova.DTO.DeprecatedDTOs.DebtorDto)",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DebtorDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DebtorDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DebtorDto"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors": {
+      "get": {
+        "tags": [
+          "Deprecated"
+        ],
+        "summary": "Finds debtors using a unique personal identification number (Debtor Id)",
+        "description": "This is deprecated method. <br />\r\nRecommend you to use other URL.",
+        "parameters": [
+          {
+            "name": "debtorId",
+            "in": "query",
+            "description": "Debtor Id number",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the basic debtor information (name and Nova debtor Id) for the specified debtor Id number",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DebtorDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DebtorDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DebtorDto"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -667,6 +766,11 @@
       "NaturalPersonDTO": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Nova debtor number.",
+            "format": "int32"
+          },
           "idNo": {
             "type": "string",
             "description": "National identification number.",
@@ -745,6 +849,11 @@
       "LegalPersonDTO": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number in Nova for objects e.g. debtor, creditor.",
+            "format": "int32"
+          },
           "idNo": {
             "type": "string",
             "description": "National identification number.",
@@ -863,6 +972,26 @@
         "additionalProperties": false,
         "description": ""
       },
+      "DebtorPostalAddressDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Nova debtor number.",
+            "format": "int32"
+          },
+          "postalAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostalAddressDTO"
+            },
+            "description": "List of postal address associated with debtor. Refer: Nova.DTO.Common.PostalAddressDTO",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about a debtor role"
+      },
       "ContactMediumDTO": {
         "enum": [
           "phone",
@@ -935,6 +1064,11 @@
       "DebtorContactInfoDTO": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number of debtor in Nova",
+            "format": "int32"
+          },
           "contactPoints": {
             "type": "array",
             "items": {
@@ -983,9 +1117,34 @@
         "additionalProperties": false,
         "description": "Statistics / Aggregation information available for an object."
       },
+      "DebtorStatisticsDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Nova debtor number.",
+            "format": "int32"
+          },
+          "statistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StatisticsDTO"
+            },
+            "description": "List of statistics associated with debtor. Refer: Nova.DTO.Common.StatisticsDTO",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about a debtor role"
+      },
       "DebtorOtherInfoDTO": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Nova debtor number.",
+            "format": "int32"
+          },
           "authorityCode": {
             "type": "string",
             "description": "Authority code (a zip code for matching with the registry of authorities within Nova.)",
@@ -1017,6 +1176,513 @@
         },
         "additionalProperties": false,
         "description": ""
+      },
+      "ObjectTypeDto": {
+        "enum": [
+          "case",
+          "party",
+          "claim",
+          "verdict",
+          "payment"
+        ],
+        "type": "string",
+        "description": "The object_type property which is part of object_identifiers"
+      },
+      "SpecificationDto": {
+        "enum": [
+          "debtor",
+          "creditor",
+          "invoice",
+          "cost",
+          "authority",
+          "partner"
+        ],
+        "type": "string",
+        "description": "The specification property which is part of object_identifiers"
+      },
+      "ObjectIdentifiersDto": {
+        "type": "object",
+        "properties": {
+          "internal": {
+            "type": "integer",
+            "description": "Nova debtor number",
+            "format": "int32"
+          },
+          "external1": {
+            "type": "string",
+            "description": "Debtor Id",
+            "nullable": true
+          },
+          "external2": {
+            "type": "string",
+            "description": "Debtor Id1",
+            "nullable": true
+          },
+          "external3": {
+            "type": "string",
+            "description": "Debtor Id2",
+            "nullable": true
+          },
+          "external4": {
+            "type": "string",
+            "description": "New debtor Id number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Debtor name",
+            "nullable": true
+          },
+          "paymentReference": {
+            "type": "string",
+            "description": "Payment reference No",
+            "nullable": true
+          },
+          "objectType": {
+            "$ref": "#/components/schemas/ObjectTypeDto"
+          },
+          "specification": {
+            "$ref": "#/components/schemas/SpecificationDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Object Identifier model class"
+      },
+      "DebtorPartyTypeDto": {
+        "enum": [
+          "naturalPerson",
+          "legalPerson"
+        ],
+        "type": "string",
+        "description": "Type of Party:"
+      },
+      "PersonType": {
+        "enum": [
+          "natural",
+          "firm"
+        ],
+        "type": "string",
+        "description": "Type of Person:"
+      },
+      "NameExtensions": {
+        "type": "object",
+        "properties": {
+          "initial": {
+            "type": "string",
+            "description": "Initial",
+            "nullable": true
+          },
+          "infix": {
+            "type": "string",
+            "description": "Infix",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Details of 'Name extension'"
+      },
+      "NaturalPersonDto": {
+        "type": "object",
+        "properties": {
+          "idNo": {
+            "type": "string",
+            "description": "Debtor Id of the 'Natural Person'",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the 'Natural Person'",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Full name of the 'Natural Person'",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First name of the 'Natural Person'",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last name of the 'Natural Person'",
+            "nullable": true
+          },
+          "secondaryIdNo": {
+            "type": "string",
+            "description": "New debtor Id number",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/PersonType"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Date of birth",
+            "nullable": true
+          },
+          "nameExtensions": {
+            "$ref": "#/components/schemas/NameExtensions"
+          },
+          "gender": {
+            "type": "string",
+            "description": "Gender",
+            "nullable": true
+          },
+          "alien": {
+            "type": "boolean",
+            "description": "Foreigner status",
+            "nullable": true
+          },
+          "civilStatus": {
+            "type": "integer",
+            "description": "Marital status",
+            "format": "int32",
+            "nullable": true
+          },
+          "nationality": {
+            "type": "string",
+            "description": "Nationality",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Model class of the ‘Natural Person’"
+      },
+      "LegalPersonDto": {
+        "type": "object",
+        "properties": {
+          "idNo": {
+            "type": "string",
+            "description": "Debtor Id of 'Organization'",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Organization name",
+            "nullable": true
+          },
+          "organizationType": {
+            "type": "string",
+            "description": "Organization type",
+            "nullable": true
+          },
+          "organization": {
+            "type": "integer",
+            "description": "Organization",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Organization model class"
+      },
+      "PostalAddressRole": {
+        "enum": [
+          "main",
+          "alternate",
+          "multipleAddress"
+        ],
+        "type": "string",
+        "description": "Type of Postal Address:"
+      },
+      "PostalAddressDto": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/PostalAddressRole"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "Address line1",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "Address line2",
+            "nullable": true
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "Address line3",
+            "nullable": true
+          },
+          "addressLine4": {
+            "type": "string",
+            "description": "Address line4",
+            "nullable": true
+          },
+          "streetNo": {
+            "type": "string",
+            "description": "Street number",
+            "nullable": true
+          },
+          "flatNo": {
+            "type": "string",
+            "description": "Flat number",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "description": "Zip code",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "City",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Country code",
+            "nullable": true
+          },
+          "wrongAddress": {
+            "type": "boolean",
+            "description": "Status of the 'Wrong address'",
+            "nullable": true
+          },
+          "wrongAddressDate": {
+            "type": "string",
+            "description": "Date on which the ‘Wrong address’ was provided",
+            "format": "date-time",
+            "nullable": true
+          },
+          "addressProtected": {
+            "type": "boolean",
+            "description": "Status of the 'Protected address'",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "description": "Region",
+            "nullable": true
+          },
+          "zipCodeExtension": {
+            "type": "string",
+            "description": "Zip code extension",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Postal address of the 'Person'"
+      },
+      "MediumDto": {
+        "enum": [
+          "phone",
+          "fax",
+          "email"
+        ],
+        "type": "string",
+        "description": "Type of contact medium:"
+      },
+      "ContactPointRoleDto": {
+        "enum": [
+          "priv",
+          "work",
+          "extPriv",
+          "alt"
+        ],
+        "type": "string",
+        "description": "Type of contact role:"
+      },
+      "ContactPointDto": {
+        "type": "object",
+        "properties": {
+          "medium": {
+            "$ref": "#/components/schemas/MediumDto"
+          },
+          "id": {
+            "type": "string",
+            "description": "Value of the contact point",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/ContactPointRoleDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contact point of the 'Person'"
+      },
+      "ContactPreferencesDto": {
+        "type": "object",
+        "properties": {
+          "doNotCall": {
+            "type": "boolean",
+            "description": "'Do not Call' status",
+            "nullable": true
+          },
+          "doNotCallDate": {
+            "type": "string",
+            "description": "Date on which the ‘Do not call’ was selected",
+            "format": "date-time",
+            "nullable": true
+          },
+          "emailOk": {
+            "type": "boolean",
+            "description": "Is the email Id correct?",
+            "nullable": true
+          },
+          "emailOkDate": {
+            "type": "string",
+            "description": "Date on which the email Id was confirmed",
+            "format": "date-time",
+            "nullable": true
+          },
+          "wrongPhone": {
+            "type": "boolean",
+            "description": "Is the phone number incorrect?",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrationDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date on which the Debtor was registered in Nova",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "User name of the collector",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Registration details of the 'Person'"
+      },
+      "StatisticsCategory": {
+        "enum": [
+          "legal"
+        ],
+        "type": "string",
+        "description": "Type of Statistics Category:"
+      },
+      "StatisticsName": {
+        "enum": [
+          "noOfInjunction",
+          "noOfDistress"
+        ],
+        "type": "string",
+        "description": "Type of Statistics Name:"
+      },
+      "StatisticsDto": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "$ref": "#/components/schemas/StatisticsCategory"
+          },
+          "name": {
+            "$ref": "#/components/schemas/StatisticsName"
+          },
+          "value": {
+            "type": "integer",
+            "description": "Number of injunction or distress calls",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Number of injunction or distress calls made by  the 'Person'"
+      },
+      "LanguageCodeDto": {
+        "enum": [
+          "undefined",
+          "bel",
+          "dan",
+          "eng",
+          "fin",
+          "fra",
+          "ger",
+          "irl",
+          "ita",
+          "nld",
+          "nor",
+          "pol",
+          "prt",
+          "rus",
+          "spa",
+          "swe",
+          "tur",
+          "cze",
+          "hun",
+          "est",
+          "ltu",
+          "lva",
+          "sui",
+          "aut",
+          "esp",
+          "slk"
+        ],
+        "type": "string",
+        "description": "Language Code:"
+      },
+      "DebtorDto": {
+        "type": "object",
+        "properties": {
+          "objectIdentifiers": {
+            "$ref": "#/components/schemas/ObjectIdentifiersDto"
+          },
+          "partyType": {
+            "$ref": "#/components/schemas/DebtorPartyTypeDto"
+          },
+          "naturalPerson": {
+            "$ref": "#/components/schemas/NaturalPersonDto"
+          },
+          "legalPerson": {
+            "$ref": "#/components/schemas/LegalPersonDto"
+          },
+          "postalAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostalAddressDto"
+            },
+            "description": "Postal addresses of the debtor",
+            "nullable": true
+          },
+          "contactPoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactPointDto"
+            },
+            "description": "Contact points of the debtor",
+            "nullable": true
+          },
+          "contactPreferences": {
+            "$ref": "#/components/schemas/ContactPreferencesDto"
+          },
+          "registration": {
+            "$ref": "#/components/schemas/RegistrationDto"
+          },
+          "statistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StatisticsDto"
+            },
+            "description": "Statistics of the debtor",
+            "nullable": true
+          },
+          "authorityCode": {
+            "type": "string",
+            "description": "Authority code of the debtor",
+            "nullable": true
+          },
+          "languageCode": {
+            "$ref": "#/components/schemas/LanguageCodeDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Debtor model class"
       }
     },
     "securitySchemes": {

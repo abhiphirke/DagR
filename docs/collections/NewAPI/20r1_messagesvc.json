@@ -3,7 +3,7 @@
   "info": {
     "title": "Message Service",
     "description": "Message Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "20R1"
+    "version": "1.0.0.0"
   },
   "servers": [
     {
@@ -11,6 +11,320 @@
     }
   ],
   "paths": {
+    "/Messages": {
+      "get": {
+        "tags": [
+          "Deprecated"
+        ],
+        "summary": "Gets message based on receiver or sender type",
+        "parameters": [
+          {
+            "name": "actionType",
+            "in": "query",
+            "description": "Message sent or received",
+            "schema": {
+              "$ref": "#/components/schemas/ActionTypeDto"
+            }
+          },
+          {
+            "name": "entityType",
+            "in": "query",
+            "description": "Message sender or receiver entity type",
+            "schema": {
+              "$ref": "#/components/schemas/MessageEntityTypeDTO"
+            }
+          },
+          {
+            "name": "objectId",
+            "in": "query",
+            "description": "Message sender or receiver Id",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "objectSubId",
+            "in": "query",
+            "description": "Creditor department number if the message sender or receiver type is ‘creditor’",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "includeNames",
+            "in": "query",
+            "description": "Includes names of message receiver and sender with response if the default value is true",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message retrieved successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Sends message to debtor or creditor",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message saved successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Messages/{messageId}/readdate": {
+      "put": {
+        "tags": [
+          "Deprecated"
+        ],
+        "summary": "Update message read date",
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "description": "Id of message",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Message read date",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Date updated successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Messages/search": {
+      "get": {
+        "tags": [
+          "Deprecated"
+        ],
+        "summary": "Search message by collector, creditor or debtor.",
+        "parameters": [
+          {
+            "name": "searchBy",
+            "in": "query",
+            "description": "Search message sent or received by collector, debtor or creditor",
+            "schema": {
+              "$ref": "#/components/schemas/MessageEntityTypeDTO"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "Nova collector Id, creditor Id or debtor Id",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "depNo",
+            "in": "query",
+            "description": "Department number when searching content by creditor",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "searchContent",
+            "in": "query",
+            "description": "Search content",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data retrieved successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
     "/Messages/{actionType}/to/{objectType}/{objectId}": {
       "get": {
         "tags": [
@@ -255,68 +569,6 @@
         }
       }
     },
-    "/Messages": {
-      "post": {
-        "tags": [
-          "Messages"
-        ],
-        "summary": "Sends message to debtor or creditor",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MessageDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MessageDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/MessageDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Message saved successfully",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
     "/Messages/{messageId}/markasread": {
       "put": {
         "tags": [
@@ -368,7 +620,7 @@
         }
       }
     },
-    "/Messages/search": {
+    "/Messages/find": {
       "get": {
         "tags": [
           "Messages"
@@ -409,15 +661,6 @@
             "description": "Search content",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "includeNames",
-            "in": "query",
-            "description": "Includes names of message receiver and sender with response if the default value is true",
-            "schema": {
-              "type": "boolean",
-              "default": false
             }
           }
         ],
@@ -469,13 +712,13 @@
   },
   "components": {
     "schemas": {
-      "ActionTypeDTO": {
+      "ActionTypeDto": {
         "enum": [
-          "send",
-          "receive"
+          "sent",
+          "received"
         ],
         "type": "string",
-        "description": "Type of message action"
+        "description": "Type Of entity : 1=sender; 2=receiver;"
       },
       "MessageEntityTypeDTO": {
         "enum": [
@@ -578,6 +821,14 @@
         },
         "additionalProperties": false,
         "description": "Provides information about a message"
+      },
+      "ActionTypeDTO": {
+        "enum": [
+          "send",
+          "receive"
+        ],
+        "type": "string",
+        "description": "Type of message action"
       }
     },
     "securitySchemes": {

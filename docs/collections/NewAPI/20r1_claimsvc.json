@@ -3,7 +3,7 @@
   "info": {
     "title": "Claim Service",
     "description": "Claim API performs Nova claim operations and exposes the basic and core claim information.",
-    "version": "20R1"
+    "version": "1.0.0.0"
   },
   "servers": [
     {
@@ -26,6 +26,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "spec",
+            "in": "query",
+            "description": "claim specfications : invoice | creditinvoice | fee | debtorcost",
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
             }
           }
         ],
@@ -1128,6 +1136,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "spec",
+            "in": "query",
+            "description": "claim specfications : invoice | creditinvoice | fee | debtorcost",
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
           }
         ],
         "responses": {
@@ -1429,6 +1445,69 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/ClaimAmountDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Deprecated/{debtorNo}/claims": {
+      "get": {
+        "tags": [
+          "Deprecated"
+        ],
+        "summary": "Returns all the claims for a debtor using Nova debtor number.",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the claim information",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDto"
                   }
                 }
               }
@@ -2020,7 +2099,9 @@
           "creditInvoice",
           "fee",
           "debtorCost",
-          "history"
+          "history",
+          "email",
+          "addressUpdate"
         ],
         "type": "string",
         "description": "ResourceSpecificationDTO."
@@ -2045,45 +2126,45 @@
         "properties": {
           "id1": {
             "type": "string",
-            "description": "Id1",
+            "description": "",
             "nullable": true
           },
           "id2": {
             "type": "string",
-            "description": "Id2",
+            "description": "",
             "nullable": true
           },
           "id3": {
             "type": "string",
-            "description": "Id3",
+            "description": "",
             "nullable": true
           },
           "id4": {
             "type": "string",
-            "description": "Id4",
+            "description": "",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides more identification information of an entity typically used in other integrating/older/authority systems."
+        "description": "Object references other than the Nova unique object identifier. Elements are described in the context where DTO is being used."
       },
       "RegistrationDTO": {
         "type": "object",
         "properties": {
           "date": {
             "type": "string",
-            "description": "Date of registration",
+            "description": "Registration date.",
             "format": "date-time",
             "nullable": true
           },
           "userName": {
             "type": "string",
-            "description": "User who registered it",
+            "description": "Registered by.",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides information about registration of an entity/object."
+        "description": "Object registration."
       },
       "ClaimDTO": {
         "type": "object",
@@ -2569,6 +2650,426 @@
         },
         "additionalProperties": false,
         "description": "Provides VAT information available on cost"
+      },
+      "ResourceSpecificationDto": {
+        "enum": [
+          "case",
+          "solicitor",
+          "creditor",
+          "debtor",
+          "pledge",
+          "cost",
+          "debt",
+          "payment",
+          "amort",
+          "partner",
+          "document",
+          "collateral",
+          "collateralaccount",
+          "mandate",
+          "collector",
+          "lawyer",
+          "instance",
+          "claim",
+          "invoice",
+          "creditinvoice",
+          "fee",
+          "debtorcost",
+          "history"
+        ],
+        "type": "string",
+        "description": "Resource specification enum property"
+      },
+      "ReferenceIdentifierDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id",
+            "format": "int32"
+          },
+          "specification": {
+            "$ref": "#/components/schemas/ResourceSpecificationDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Reference IdentifierDto"
+      },
+      "ExternalIdentifierDto": {
+        "type": "object",
+        "properties": {
+          "id1": {
+            "type": "string",
+            "description": "Customer No.",
+            "nullable": true
+          },
+          "id2": {
+            "type": "string",
+            "description": "Customer No. 2",
+            "nullable": true
+          },
+          "id3": {
+            "type": "string",
+            "description": "Journal No.",
+            "nullable": true
+          },
+          "id4": {
+            "type": "string",
+            "description": "Original invoice",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "External Identifier class"
+      },
+      "RegistrationDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date on which the Debtor was registered in Nova",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "User name of the collector",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Registration details of the 'Person'"
+      },
+      "AmountLayerDto": {
+        "enum": [
+          "original",
+          "limitedcommitment",
+          "adjuged"
+        ],
+        "type": "string",
+        "description": "Amount layer enum property"
+      },
+      "AmountDto": {
+        "type": "object",
+        "properties": {
+          "original": {
+            "type": "number",
+            "description": "Original amount",
+            "format": "double"
+          },
+          "turnedIn": {
+            "type": "number",
+            "description": "TurnedIn amount",
+            "format": "double"
+          },
+          "paid": {
+            "type": "number",
+            "description": "Paid amount",
+            "format": "double"
+          },
+          "remaining": {
+            "type": "number",
+            "description": "Remaining amount",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Principal amount"
+      },
+      "InterestSplitDto": {
+        "type": "object",
+        "properties": {
+          "capitalized": {
+            "type": "number",
+            "description": "Capitalized interest",
+            "format": "double"
+          },
+          "toCapitalize": {
+            "type": "number",
+            "description": "ToCapitalize interest",
+            "format": "double"
+          },
+          "notToCapitalize": {
+            "type": "number",
+            "description": "Not ToCapitalize interest",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Interest split"
+      },
+      "InterestDto": {
+        "type": "object",
+        "properties": {
+          "updateddate": {
+            "type": "string",
+            "description": "Interest updated date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "original": {
+            "type": "number",
+            "description": "Original interest",
+            "format": "double"
+          },
+          "turnedIn": {
+            "type": "number",
+            "description": "TurnedIn interest",
+            "format": "double"
+          },
+          "paid": {
+            "type": "number",
+            "description": "Paid interest",
+            "format": "double"
+          },
+          "remaining": {
+            "type": "number",
+            "description": "Remaining interest",
+            "format": "double"
+          },
+          "interestSplit": {
+            "$ref": "#/components/schemas/InterestSplitDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Amounts interest"
+      },
+      "AmountsDto": {
+        "type": "object",
+        "properties": {
+          "layer": {
+            "$ref": "#/components/schemas/AmountLayerDto"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Amounts currency code",
+            "nullable": true
+          },
+          "principal": {
+            "$ref": "#/components/schemas/AmountDto"
+          },
+          "interest": {
+            "$ref": "#/components/schemas/InterestDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Claim amounts"
+      },
+      "InterestConditionRoleDto": {
+        "enum": [
+          "original",
+          "temporary",
+          "limitedcommitment"
+        ],
+        "type": "string",
+        "description": "InterestCondition role enum property"
+      },
+      "InterestConditionDto": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/InterestConditionRoleDto"
+          },
+          "rate": {
+            "type": "number",
+            "description": "Interest rate",
+            "format": "double"
+          },
+          "code": {
+            "type": "string",
+            "description": "Interest code",
+            "nullable": true
+          },
+          "usedRate": {
+            "type": "number",
+            "description": "Usedrate",
+            "format": "double"
+          },
+          "fromDate": {
+            "type": "string",
+            "description": "From date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "toDate": {
+            "type": "string",
+            "description": "To date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "stopDate": {
+            "type": "string",
+            "description": "Stop date",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Interest condition"
+      },
+      "InvoiceRowDto": {
+        "type": "object",
+        "properties": {
+          "stockNo": {
+            "type": "string",
+            "description": "Stock No",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "description": "Price",
+            "format": "double"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Quantity",
+            "format": "int32"
+          },
+          "unit": {
+            "type": "string",
+            "description": "Invoice unit",
+            "nullable": true
+          },
+          "discount": {
+            "type": "integer",
+            "description": "Invoice discount",
+            "format": "int32"
+          },
+          "total": {
+            "type": "number",
+            "description": "Invoice total",
+            "format": "double"
+          },
+          "vatRate": {
+            "type": "number",
+            "description": "Vat rate",
+            "format": "double"
+          },
+          "vatTotal": {
+            "type": "number",
+            "description": "Vat total",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Invoice row"
+      },
+      "VatDetailDto": {
+        "type": "object",
+        "properties": {
+          "rate": {
+            "type": "number",
+            "description": "Rate",
+            "format": "double"
+          },
+          "original": {
+            "type": "number",
+            "description": "Original",
+            "format": "double"
+          },
+          "paid": {
+            "type": "number",
+            "description": "Paid",
+            "format": "double"
+          },
+          "remaining": {
+            "type": "number",
+            "description": "Remaining",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Vat detail"
+      },
+      "ClaimDto": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDto"
+          },
+          "external": {
+            "$ref": "#/components/schemas/ExternalIdentifierDto"
+          },
+          "linkedCaseNo": {
+            "type": "integer",
+            "description": "Linked case No.",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "description": "Category",
+            "nullable": true
+          },
+          "linkedClaim": {
+            "$ref": "#/components/schemas/ReferenceIdentifierDto"
+          },
+          "registration": {
+            "$ref": "#/components/schemas/RegistrationDto"
+          },
+          "invoiceDate": {
+            "type": "string",
+            "description": "Invoice date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "description": "Invoice due date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentTerms": {
+            "type": "integer",
+            "description": "Payment terms",
+            "format": "int32",
+            "nullable": true
+          },
+          "interestCondition": {
+            "type": "integer",
+            "description": "Interest condition",
+            "format": "int32",
+            "nullable": true
+          },
+          "amounts": {
+            "$ref": "#/components/schemas/AmountsDto"
+          },
+          "interestConditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InterestConditionDto"
+            },
+            "description": "Interest conditions",
+            "nullable": true
+          },
+          "invoiceRows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceRowDto"
+            },
+            "description": "Invoice rows",
+            "nullable": true
+          },
+          "vatDetails": {
+            "$ref": "#/components/schemas/VatDetailDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Get the debtor claims."
       }
     },
     "securitySchemes": {

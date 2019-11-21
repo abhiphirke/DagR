@@ -3,7 +3,7 @@
   "info": {
     "title": "OCR Service",
     "description": "Payment Reference Number Service to expose related information and perform relevant Nova operations.",
-    "version": "20R1"
+    "version": "1.0.0.0"
   },
   "servers": [
     {
@@ -11,217 +11,67 @@
     }
   ],
   "paths": {
-    "/Ocr/cases/{caseNo}": {
-      "get": {
+    "/Ocr": {
+      "post": {
         "tags": [
           "Ocr"
         ],
         "summary": "Generate OCR number",
-        "parameters": [
-          {
-            "name": "caseNo",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
+        "requestBody": {
+          "description": "List of parameters for which Ocr to be generated.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OcrParamsDTO"
                 }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OcrParamsDTO"
                 }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OcrParamsDTO"
                 }
               }
             }
           }
-        }
-      }
-    },
-    "/Ocr/cases/{caseNo}/debtors/{debtorNo}": {
-      "get": {
-        "tags": [
-          "Ocr"
-        ],
-        "summary": "Generate OCR number",
-        "parameters": [
-          {
-            "name": "caseNo",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "debtorNo",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Return value/default value",
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "string"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OcrParamsDTO"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OcrParamsDTO"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Ocr/debtors/{debtorNo}/amortisations/{amortisationNo}": {
-      "get": {
-        "tags": [
-          "Ocr"
-        ],
-        "summary": "Generate OCR number",
-        "parameters": [
-          {
-            "name": "debtorNo",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "amortisationNo",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Ocr/debtors/{debtorNo}": {
-      "get": {
-        "tags": [
-          "Ocr"
-        ],
-        "summary": "Generate OCR number",
-        "parameters": [
-          {
-            "name": "debtorNo",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Ocr/sequenceNo": {
-      "get": {
-        "tags": [
-          "Ocr"
-        ],
-        "summary": "Generate OCR number",
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OcrParamsDTO"
+                  }
                 }
               }
             }
@@ -231,6 +81,49 @@
     }
   },
   "components": {
+    "schemas": {
+      "OcrTypeDTO": {
+        "enum": [
+          "case",
+          "caseDebtor",
+          "debtor",
+          "amortisation",
+          "sequence"
+        ],
+        "type": "string",
+        "description": "Type of Ocr to generate"
+      },
+      "OcrParamsDTO": {
+        "type": "object",
+        "properties": {
+          "ocrType": {
+            "$ref": "#/components/schemas/OcrTypeDTO"
+          },
+          "caseNo": {
+            "type": "integer",
+            "description": "Case number",
+            "format": "int32"
+          },
+          "debtorNo": {
+            "type": "integer",
+            "description": "Debtor number",
+            "format": "int32"
+          },
+          "amortisationNo": {
+            "type": "integer",
+            "description": "Amortisation plan number",
+            "format": "int32"
+          },
+          "ocrNo": {
+            "type": "string",
+            "description": "Amortisation plan number",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      }
+    },
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",

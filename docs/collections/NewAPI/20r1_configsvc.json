@@ -3,7 +3,7 @@
   "info": {
     "title": "Nova configuration store Service",
     "description": "Nova configuration store Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "20R1"
+    "version": "1.0.0.0"
   },
   "servers": [
     {
@@ -529,10 +529,40 @@
         }
       }
     },
-    "/SystemConstants/{keyName}/value": {
+    "/SystemVariables/defaultcountrycode": {
       "get": {
         "tags": [
-          "SystemConstants"
+          "SystemVariables"
+        ],
+        "summary": "Get default country code",
+        "responses": {
+          "200": {
+            "description": "Return value/default value",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SystemVariables/{keyName}/value": {
+      "get": {
+        "tags": [
+          "SystemVariables"
         ],
         "summary": "Get system variable",
         "parameters": [
@@ -570,10 +600,10 @@
         }
       }
     },
-    "/SystemConstants/{keyName}": {
+    "/SystemVariables/{keyName}": {
       "get": {
         "tags": [
-          "SystemConstants"
+          "SystemVariables"
         ],
         "summary": "Get system variable",
         "parameters": [
@@ -611,10 +641,10 @@
         }
       }
     },
-    "/SystemConstants": {
+    "/SystemVariables": {
       "put": {
         "tags": [
-          "SystemConstants"
+          "SystemVariables"
         ],
         "summary": "Update system variable",
         "requestBody": {
@@ -662,7 +692,7 @@
       },
       "post": {
         "tags": [
-          "SystemConstants"
+          "SystemVariables"
         ],
         "summary": "Update system variable",
         "requestBody": {

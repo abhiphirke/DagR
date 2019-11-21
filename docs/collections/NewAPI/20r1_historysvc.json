@@ -3,7 +3,7 @@
   "info": {
     "title": "History Service",
     "description": "History Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "20R1"
+    "version": "1.0.0.0"
   },
   "servers": [
     {
@@ -16,7 +16,7 @@
         "tags": [
           "Cases"
         ],
-        "summary": "Returns all the history notes for a case using Nova case number and all it's related debtors.",
+        "summary": "Returns all the history notes for a case using Nova case number.",
         "parameters": [
           {
             "name": "caseNo",
@@ -26,6 +26,32 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "historyType",
+            "in": "query",
+            "description": "History type",
+            "schema": {
+              "$ref": "#/components/schemas/HistoryTypeDTO"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "Date from which history to be filtered",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "description": "Date to till which history to be filtered",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
             }
           }
         ],
@@ -54,195 +80,6 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/HistoryDTO"
-                  }
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/Cases/{caseNo}/printedletters": {
-      "get": {
-        "tags": [
-          "Cases"
-        ],
-        "summary": "Returns all the printed letter history notes for a case using Nova case number and all it's related debtors.",
-        "parameters": [
-          {
-            "name": "caseNo",
-            "in": "path",
-            "description": "Nova case number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the printed letter history information",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                  }
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/Cases/{caseNo}/objectupdates": {
-      "get": {
-        "tags": [
-          "Cases"
-        ],
-        "summary": "Returns all the object update history notes for a case using Nova case number and all it's related debtors. Object update includes change of address, name, contact info etc.",
-        "parameters": [
-          {
-            "name": "caseNo",
-            "in": "path",
-            "description": "Nova case number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the object update history information.",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                  }
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/Cases/{caseNo}/attachments": {
-      "get": {
-        "tags": [
-          "Cases"
-        ],
-        "summary": "Returns all the history attachment info for a case using Nova case number and all it's related debtors.",
-        "parameters": [
-          {
-            "name": "caseNo",
-            "in": "path",
-            "description": "Nova case number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the history attachement information.",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryAttachmentDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryAttachmentDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryAttachmentDTO"
                   }
                 }
               }
@@ -279,6 +116,32 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "historyType",
+            "in": "query",
+            "description": "History type",
+            "schema": {
+              "$ref": "#/components/schemas/HistoryTypeDTO"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "Date from which history to be filtered",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "description": "Date to till which history to be filtered",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
           }
         ],
         "responses": {
@@ -307,538 +170,6 @@
                   "items": {
                     "$ref": "#/components/schemas/HistoryDTO"
                   }
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/Debtors/{debtorNo}/printedletters": {
-      "get": {
-        "tags": [
-          "Debtors"
-        ],
-        "summary": "Returns all the printed letter history notes for a debtor using Nova debtor number.",
-        "parameters": [
-          {
-            "name": "debtorNo",
-            "in": "path",
-            "description": "Nova debtor number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the printed letter history information",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                  }
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/Debtors/{debtorNo}/objectupdates": {
-      "get": {
-        "tags": [
-          "Debtors"
-        ],
-        "summary": "Returns all the object update history notes for a debtor using Nova debtor number. Object update includes change of address, name, contact info etc.",
-        "parameters": [
-          {
-            "name": "debtorNo",
-            "in": "path",
-            "description": "Nova debtor number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the object update history information.",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                  }
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/Debtors/{debtorNo}/attachments": {
-      "get": {
-        "tags": [
-          "Debtors"
-        ],
-        "summary": "Returns all the history attachment info for a debtor using Nova debtor number.",
-        "parameters": [
-          {
-            "name": "debtorNo",
-            "in": "path",
-            "description": "Nova debtor number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the history attachement information.",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryAttachmentDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryAttachmentDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HistoryAttachmentDTO"
-                  }
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/History/{historyNo}/printedletters": {
-      "get": {
-        "tags": [
-          "History"
-        ],
-        "summary": "Returns printed letter information of specific history note using Nova history number.",
-        "parameters": [
-          {
-            "name": "historyNo",
-            "in": "path",
-            "description": "Nova history number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the history information",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryPrintedLetterDTO"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/History/{addressNo}/objectupdates": {
-      "get": {
-        "tags": [
-          "History"
-        ],
-        "summary": "Returns object update information of specific history note using Nova history number.",
-        "parameters": [
-          {
-            "name": "addressNo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the history information",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryObjectUpdateDTO"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/History/{historyNo}/attachments/{attachmentNo}": {
-      "get": {
-        "tags": [
-          "History"
-        ],
-        "summary": "Returns attachment information of specific history note using Nova history number.",
-        "parameters": [
-          {
-            "name": "historyNo",
-            "in": "path",
-            "description": "Nova history number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "attachmentNo",
-            "in": "path",
-            "description": "Attachment number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the history content information",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryAttachmentDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryAttachmentDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryAttachmentDTO"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/History/{historyNo}/content": {
-      "get": {
-        "tags": [
-          "History"
-        ],
-        "summary": "Returns content information of specific history note using Nova history number.",
-        "parameters": [
-          {
-            "name": "historyNo",
-            "in": "path",
-            "description": "Nova history number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the history content information",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryContentDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryContentDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryContentDTO"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/History/{historyNo}/printedletters/content": {
-      "get": {
-        "tags": [
-          "History"
-        ],
-        "summary": "Returns printed letter content information of specific history note using Nova history number.",
-        "parameters": [
-          {
-            "name": "historyNo",
-            "in": "path",
-            "description": "Nova history number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the history content information",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryPrintedLetterContentDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryPrintedLetterContentDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryPrintedLetterContentDTO"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/History/{historyNo}/attachments/{attachmentNo}/content": {
-      "get": {
-        "tags": [
-          "History"
-        ],
-        "summary": "Returns attachment content information of specific history note using Nova history number.",
-        "parameters": [
-          {
-            "name": "historyNo",
-            "in": "path",
-            "description": "Nova history number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "attachmentNo",
-            "in": "path",
-            "description": "Attachment number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the history content information",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryAttachmentContentDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryAttachmentContentDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoryAttachmentContentDTO"
                 }
               }
             }
@@ -861,61 +192,6 @@
   },
   "components": {
     "schemas": {
-      "ResourceSpecificationDTO": {
-        "enum": [
-          "case",
-          "solicitor",
-          "creditor",
-          "debtor",
-          "pledge",
-          "payment",
-          "amortisationPlan",
-          "partner",
-          "document",
-          "collateral",
-          "collateralAccount",
-          "mandate",
-          "collector",
-          "lawyer",
-          "instance",
-          "claim",
-          "invoice",
-          "creditInvoice",
-          "fee",
-          "debtorCost",
-          "history"
-        ],
-        "type": "string",
-        "description": "ResourceSpecificationDTO."
-      },
-      "ReferenceIdentifierDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Unique identification number",
-            "format": "int32"
-          },
-          "specification": {
-            "$ref": "#/components/schemas/ResourceSpecificationDTO"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Unique identification for the reference types (that cannot be identified by an unique identification number) within Nova."
-      },
-      "HistoryCategoryDTO": {
-        "enum": [
-          "letter",
-          "postalAddress",
-          "contactPoints",
-          "payment",
-          "amortisationPlan",
-          "general",
-          "userDefined"
-        ],
-        "type": "string",
-        "description": "Various categories of history types. Refer: Nova.DTO.History.Enums.HistoryTypeDTO"
-      },
       "HistoryTypeDTO": {
         "enum": [
           "letterPrinted",
@@ -945,7 +221,7 @@
           "noteReceivedFromEnova",
           "noteSentToEnova",
           "limitationInterruption",
-          "noteSentFromDebitorRegistret",
+          "noteSentFromDebtorRegistret",
           "externalData",
           "postalAddressUpdatedForMultipleAddress",
           "contactPointsUpdatedForMultipleAddress",
@@ -955,6 +231,79 @@
         ],
         "type": "string",
         "description": "Various history types available in Nova"
+      },
+      "ResourceSpecificationDTO": {
+        "enum": [
+          "case",
+          "solicitor",
+          "creditor",
+          "debtor",
+          "pledge",
+          "payment",
+          "amortisationPlan",
+          "partner",
+          "document",
+          "collateral",
+          "collateralAccount",
+          "mandate",
+          "collector",
+          "lawyer",
+          "instance",
+          "claim",
+          "invoice",
+          "creditInvoice",
+          "fee",
+          "debtorCost",
+          "history",
+          "email",
+          "addressUpdate"
+        ],
+        "type": "string",
+        "description": "ResourceSpecificationDTO."
+      },
+      "ReferenceIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number",
+            "format": "int32"
+          },
+          "specification": {
+            "$ref": "#/components/schemas/ResourceSpecificationDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Unique identification for the reference types (that cannot be identified by an unique identification number) within Nova."
+      },
+      "HistoryCategoryDTO": {
+        "enum": [
+          "letter",
+          "contactPoints",
+          "payment",
+          "note",
+          "general",
+          "userDefined"
+        ],
+        "type": "string",
+        "description": "Various categories of history types. Refer: Nova.DTO.History.Enums.HistoryTypeDTO"
+      },
+      "HistorySubTypeDTO": {
+        "enum": [
+          "paymentDeleted",
+          "approvedPaymentDeleted",
+          "caseOrCreditorSpecificAddressChanged",
+          "caseOrCreditorSpecificAddressAdded",
+          "addressObliterated",
+          "mainAddressSwitched",
+          "caseOrCreditorSpecificAddressDeleted",
+          "phoneNumberChanged",
+          "phoneNumberAdded",
+          "phoneNumberObliterated",
+          "mainPhoneNumberChanged"
+        ],
+        "type": "string",
+        "description": "Various sub history types."
       },
       "HistoryPriorityDTO": {
         "enum": [
@@ -969,25 +318,58 @@
         "properties": {
           "date": {
             "type": "string",
-            "description": "Date of registration",
+            "description": "Registration date.",
             "format": "date-time",
             "nullable": true
           },
           "userName": {
             "type": "string",
-            "description": "User who registered it",
+            "description": "Registered by.",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides information about registration of an entity/object."
+        "description": "Object registration."
+      },
+      "ObliteratedDTO": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Obliterated Date",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "Obliterated by",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "description": "Notes for obliterated history",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Details for obliterated history"
+      },
+      "TypeOfContactDTO": {
+        "enum": [
+          "debtor",
+          "creditor",
+          "authority",
+          "others"
+        ],
+        "type": "string",
+        "description": "History note Type of Contact"
       },
       "HistoryDTO": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Id",
+            "description": "Unique (within Nova) Id of a history",
             "format": "int32"
           },
           "linkedObjects": {
@@ -995,12 +377,18 @@
             "items": {
               "$ref": "#/components/schemas/ReferenceIdentifierDTO"
             },
-            "description": "LinkedObjects. Refer: Nova.DTO.Common.Identifiers.ReferenceIdentifierDTO",
+            "description": "Provides information about linked objects for this history note e.g. case, debtor, payment etc.",
+            "nullable": true
+          },
+          "referenceNo": {
+            "type": "integer",
+            "description": "This reference number is only in case system generated note. It provides unique no in Nova respective objects. Refer: Nova.DTO.History.Enums.HistoryTypeDTO",
+            "format": "int32",
             "nullable": true
           },
           "title": {
             "type": "string",
-            "description": "Title",
+            "description": "Title of history",
             "nullable": true
           },
           "category": {
@@ -1009,575 +397,44 @@
           "type": {
             "$ref": "#/components/schemas/HistoryTypeDTO"
           },
+          "subType": {
+            "$ref": "#/components/schemas/HistorySubTypeDTO"
+          },
           "priority": {
             "$ref": "#/components/schemas/HistoryPriorityDTO"
           },
+          "code": {
+            "type": "string",
+            "description": "Code assigned to a note",
+            "nullable": true
+          },
           "registration": {
             "$ref": "#/components/schemas/RegistrationDTO"
           },
-          "remainingAmount": {
-            "type": "number",
-            "description": "RemainingAmount",
-            "format": "double"
-          },
           "ocr": {
             "type": "string",
-            "description": "OCR",
+            "description": "OCR Number",
             "nullable": true
           },
           "obliterated": {
-            "type": "string",
-            "description": "Obliterated",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
-      },
-      "AdditionalIdentifierDTO": {
-        "type": "object",
-        "properties": {
-          "id1": {
+            "$ref": "#/components/schemas/ObliteratedDTO"
+          },
+          "quantity": {
             "type": "integer",
-            "description": "Id1",
+            "description": "Number of letters printed",
             "format": "int32",
             "nullable": true
           },
-          "id2": {
-            "type": "integer",
-            "description": "Id2",
-            "format": "int32",
-            "nullable": true
+          "typeOfContact": {
+            "$ref": "#/components/schemas/TypeOfContactDTO"
           },
-          "id3": {
-            "type": "string",
-            "description": "Id3",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "Name",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
-      },
-      "HistoryPrintedLetterDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Id",
-            "format": "int32"
-          },
-          "linkedObjects": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ReferenceIdentifierDTO"
-            },
-            "description": "LinkedObjects. Refer: Nova.DTO.Common.Identifiers.ReferenceIdentifierDTO",
-            "nullable": true
-          },
-          "registration": {
-            "$ref": "#/components/schemas/RegistrationDTO"
-          },
-          "additional": {
-            "$ref": "#/components/schemas/AdditionalIdentifierDTO"
-          },
-          "printedByUser": {
-            "type": "string",
-            "description": "PrintedByUser",
-            "nullable": true
-          },
-          "bookedByUser": {
-            "type": "string",
-            "description": "BookedByUser",
-            "nullable": true
-          },
-          "amount": {
-            "type": "number",
-            "description": "Amount",
-            "format": "double",
-            "nullable": true
-          },
-          "paymentDate": {
-            "type": "string",
-            "description": "PaymentDate",
-            "format": "date-time",
-            "nullable": true
-          },
-          "returnDate": {
-            "type": "string",
-            "description": "ReturnDate",
-            "format": "date-time",
-            "nullable": true
-          },
-          "ocr": {
-            "type": "string",
-            "description": "OCR",
-            "nullable": true
-          },
-          "paidAmount": {
-            "type": "number",
-            "description": "PaidAmount",
-            "format": "double",
-            "nullable": true
-          },
-          "campaign": {
-            "type": "string",
-            "description": "Campaign",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
-      },
-      "ChangedPropertiesDTO": {
-        "enum": [
-          "idNoChanged",
-          "nameChanged",
-          "addressLine1Changed",
-          "addressLine2Changed",
-          "countryCodeChanged",
-          "zipCodeChanged",
-          "cityChanged",
-          "contactPointsChanged"
-        ],
-        "type": "string",
-        "description": "Different types of changes in various properties of objects"
-      },
-      "NaturalPersonTypeDTO": {
-        "enum": [
-          "natural",
-          "firm"
-        ],
-        "type": "string",
-        "description": "Provides for types of natural person"
-      },
-      "NameExtensionsDTO": {
-        "type": "object",
-        "properties": {
-          "initial": {
-            "type": "string",
-            "description": "Initial",
-            "nullable": true
-          },
-          "infix": {
-            "type": "string",
-            "description": "Infix",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides additional information about name"
-      },
-      "NaturalPersonDTO": {
-        "type": "object",
-        "properties": {
-          "idNo": {
-            "type": "string",
-            "description": "Identification number in country",
-            "nullable": true
-          },
-          "title": {
-            "type": "string",
-            "description": "Title (Mr/Mrs/Ms etc)",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "Name",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "description": "First name",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "description": "Last name",
-            "nullable": true
-          },
-          "secondaryIdNo": {
-            "type": "string",
-            "description": "Secondary identification number",
-            "nullable": true
-          },
-          "type": {
-            "$ref": "#/components/schemas/NaturalPersonTypeDTO"
-          },
-          "birthDate": {
-            "type": "string",
-            "description": "Birth date",
-            "format": "date-time",
-            "nullable": true
-          },
-          "nameExtensions": {
-            "$ref": "#/components/schemas/NameExtensionsDTO"
-          },
-          "gender": {
-            "type": "string",
-            "description": "Gender",
-            "nullable": true
-          },
-          "alien": {
+          "attachmentAvailable": {
             "type": "boolean",
-            "description": "If the entity is a foreigner. True if a foreigner."
-          },
-          "civilStatus": {
-            "type": "string",
-            "description": "Civil status (Marital status)",
-            "nullable": true
-          },
-          "nationality": {
-            "type": "string",
-            "description": "Nationality",
-            "nullable": true
-          },
-          "housingType": {
-            "type": "string",
-            "description": "Housing condition of person",
-            "nullable": true
-          },
-          "occupation": {
-            "type": "string",
-            "description": "Occupation or profession of person",
-            "nullable": true
+            "description": "Indicates whether the history record contains an attachment or not"
           }
         },
         "additionalProperties": false,
-        "description": "Provides information of a natural person (individual/firm)"
-      },
-      "LegalPersonDTO": {
-        "type": "object",
-        "properties": {
-          "idNo": {
-            "type": "string",
-            "description": "Identification number in country",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "Name",
-            "nullable": true
-          },
-          "organisationType": {
-            "type": "string",
-            "description": "Organisation type",
-            "nullable": true
-          },
-          "organisation": {
-            "type": "integer",
-            "description": "Organisation",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides information of a legal person (company/organisation)"
-      },
-      "PostalAddressRoleDTO": {
-        "enum": [
-          "main",
-          "alternate",
-          "multipleAddress"
-        ],
-        "type": "string",
-        "description": "Provides for the types of postal address"
-      },
-      "PostalAddressDTO": {
-        "type": "object",
-        "properties": {
-          "role": {
-            "$ref": "#/components/schemas/PostalAddressRoleDTO"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name (C/O)",
-            "nullable": true
-          },
-          "addressLine1": {
-            "type": "string",
-            "description": "Address line 1",
-            "nullable": true
-          },
-          "addressLine2": {
-            "type": "string",
-            "description": "Address line 2",
-            "nullable": true
-          },
-          "addressLine3": {
-            "type": "string",
-            "description": "Address line 3",
-            "nullable": true
-          },
-          "addressLine4": {
-            "type": "string",
-            "description": "Address line 4",
-            "nullable": true
-          },
-          "streetNo": {
-            "type": "string",
-            "description": "Street number",
-            "nullable": true
-          },
-          "flatNo": {
-            "type": "string",
-            "description": "Flat number",
-            "nullable": true
-          },
-          "zipCode": {
-            "type": "string",
-            "description": "Zip code",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "description": "City",
-            "nullable": true
-          },
-          "countryCode": {
-            "type": "string",
-            "description": "Country code",
-            "nullable": true
-          },
-          "wrongAddress": {
-            "type": "boolean",
-            "description": "Indicates if the address is wrong. True if wrong."
-          },
-          "wrongAddressDate": {
-            "type": "string",
-            "description": "Date when wrong address flag is updated",
-            "format": "date-time",
-            "nullable": true
-          },
-          "addressProtected": {
-            "type": "boolean",
-            "description": "Indicates if address is protected. True if protected."
-          },
-          "region": {
-            "type": "string",
-            "description": "Region",
-            "nullable": true
-          },
-          "zipCodeExtension": {
-            "type": "string",
-            "description": "Zip code extension",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides postal address information about an entity"
-      },
-      "ContactMediumDTO": {
-        "enum": [
-          "phone",
-          "fax",
-          "email"
-        ],
-        "type": "string",
-        "description": "Provides different types of contact mediums available for an individual or organisation"
-      },
-      "ContactPointRoleDTO": {
-        "enum": [
-          "private1",
-          "private2",
-          "work1",
-          "work2",
-          "alternate"
-        ],
-        "type": "string",
-        "description": "Provides types of contact points for an individual or organisation"
-      },
-      "ContactPointDTO": {
-        "type": "object",
-        "properties": {
-          "medium": {
-            "$ref": "#/components/schemas/ContactMediumDTO"
-          },
-          "id": {
-            "type": "string",
-            "description": "Contact point unique identification number",
-            "nullable": true
-          },
-          "role": {
-            "$ref": "#/components/schemas/ContactPointRoleDTO"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides contact points for an individual or organisation"
-      },
-      "HistoryObjectUpdateDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Id",
-            "format": "int32"
-          },
-          "historyId": {
-            "type": "integer",
-            "description": "HistoryId",
-            "format": "int32"
-          },
-          "linkedObject": {
-            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
-          },
-          "registration": {
-            "$ref": "#/components/schemas/RegistrationDTO"
-          },
-          "changedProperties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ChangedPropertiesDTO"
-            },
-            "description": "ChangedProperties. Refer: Nova.DTO.History.Enums.ChangedPropertiesDTO",
-            "nullable": true
-          },
-          "naturalPerson": {
-            "$ref": "#/components/schemas/NaturalPersonDTO"
-          },
-          "legalPerson": {
-            "$ref": "#/components/schemas/LegalPersonDTO"
-          },
-          "postalAddress": {
-            "$ref": "#/components/schemas/PostalAddressDTO"
-          },
-          "contactPoints": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ContactPointDTO"
-            },
-            "description": "ContactPoints. Refer: Nova.DTO.Common.ContactPointDTO",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
-      },
-      "HistoryStatusDTO": {
-        "enum": [
-          "addedFirst",
-          "addedLater",
-          "deleted",
-          "add",
-          "delete",
-          "deleteMask",
-          "all"
-        ],
-        "type": "string",
-        "description": ""
-      },
-      "HistoryAttachmentDTO": {
-        "type": "object",
-        "properties": {
-          "historyId": {
-            "type": "integer",
-            "description": "HistoryId",
-            "format": "int32"
-          },
-          "attachmentId": {
-            "type": "integer",
-            "description": "AttachmentId",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name",
-            "nullable": true
-          },
-          "linkedObjects": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ReferenceIdentifierDTO"
-            },
-            "description": "LinkedObjects. Refer: Nova.DTO.Common.Identifiers.ReferenceIdentifierDTO",
-            "nullable": true
-          },
-          "registration": {
-            "$ref": "#/components/schemas/RegistrationDTO"
-          },
-          "status": {
-            "$ref": "#/components/schemas/HistoryStatusDTO"
-          },
-          "fileExtension": {
-            "type": "string",
-            "description": "FileExtension",
-            "nullable": true
-          },
-          "externalFileName": {
-            "type": "string",
-            "description": "ExternalFileName",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
-      },
-      "HistoryContentDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Id",
-            "format": "int32"
-          },
-          "content": {
-            "type": "string",
-            "description": "Content",
-            "nullable": true
-          },
-          "extraContent": {
-            "type": "string",
-            "description": "ExtraContent",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
-      },
-      "HistoryPrintedLetterContentDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Id",
-            "format": "int32"
-          },
-          "content": {
-            "type": "string",
-            "description": "Content. Refer: System.Byte",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
-      },
-      "HistoryAttachmentContentDTO": {
-        "type": "object",
-        "properties": {
-          "historyId": {
-            "type": "integer",
-            "description": "HistoryId",
-            "format": "int32"
-          },
-          "attachmentId": {
-            "type": "integer",
-            "description": "AttachmentId",
-            "format": "int32"
-          },
-          "content": {
-            "type": "string",
-            "description": "Content. Refer: System.Byte",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
+        "description": "Provides detail information about generated history"
       }
     },
     "securitySchemes": {

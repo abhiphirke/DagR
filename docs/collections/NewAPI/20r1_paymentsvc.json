@@ -3,7 +3,7 @@
   "info": {
     "title": "Payment Service",
     "description": "Payment Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "20R1"
+    "version": "1.0.0.0"
   },
   "servers": [
     {
@@ -818,7 +818,9 @@
           "creditInvoice",
           "fee",
           "debtorCost",
-          "history"
+          "history",
+          "email",
+          "addressUpdate"
         ],
         "type": "string",
         "description": "ResourceSpecificationDTO."
@@ -895,18 +897,18 @@
         "properties": {
           "date": {
             "type": "string",
-            "description": "Date of registration",
+            "description": "Registration date.",
             "format": "date-time",
             "nullable": true
           },
           "userName": {
             "type": "string",
-            "description": "User who registered it",
+            "description": "Registered by.",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides information about registration of an entity/object."
+        "description": "Object registration."
       },
       "BookingStatusDTO": {
         "enum": [
