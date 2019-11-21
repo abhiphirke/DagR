@@ -775,7 +775,7 @@
         }
       }
     },
-    "/Debtors/{debtorNo}/claims": {
+    "/Debtors/{debtorNo}/claims/coreinfo": {
       "get": {
         "tags": [
           "Debtors"
@@ -1465,7 +1465,7 @@
         }
       }
     },
-    "/Deprecated/{debtorNo}/claims": {
+    "/debtors/{debtorNo}/claims": {
       "get": {
         "tags": [
           "Deprecated"
