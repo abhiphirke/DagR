@@ -1,44 +1,44 @@
 {
     "apps": [
         {
-            "name": "Collections",
+            "name": "Nova",
             "versions": [
                 {
-                    "name": "NewAPI",
+                    "name": "20r1",
                     "services": [
-                        { "name": "Amortisation", "jsonUrl": "docs/collections/NewAPI/20r1_amortisationsvc.json" },
-                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/20r1_casesvc.json" },
-                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/20r1_claimsvc.json" },
-                        { "name": "Config", "jsonUrl": "docs/collections/NewAPI/20r1_configsvc.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/20r1_debtorsvc.json" },
-                        { "name": "History", "jsonUrl": "docs/collections/NewAPI/20r1_historysvc.json" },
-                        { "name": "LimCom", "jsonUrl": "docs/collections/NewAPI/20r1_limcomsvc.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/NewAPI/20r1_messagesvc.json" },
-                        { "name": "Ocr", "jsonUrl": "docs/collections/NewAPI/20r1_ocrsvc.json" },
-                        { "name": "Payment", "jsonUrl": "docs/collections/NewAPI/20r1_paymentsvc.json" },
-                        { "name": "Workflow", "jsonUrl": "docs/collections/NewAPI/20r1_workflowsvc.json" }
+                        { "name": "Amortisation", "jsonUrl": "docs/nova/20r1/20r1_amortisationsvc.json" },
+                        { "name": "Case", "jsonUrl": "docs/nova/20r1/20r1_casesvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/nova/20r1/20r1_claimsvc.json" },
+                        { "name": "Config", "jsonUrl": "docs/nova/20r1/20r1_configsvc.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/nova/20r1/20r1_debtorsvc.json" },
+                        { "name": "History", "jsonUrl": "docs/nova/20r1/20r1_historysvc.json" },
+                        { "name": "LimCom", "jsonUrl": "docs/nova/20r1/20r1_limcomsvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/nova/20r1/20r1_messagesvc.json" },
+                        { "name": "Ocr", "jsonUrl": "docs/nova/20r1/20r1_ocrsvc.json" },
+                        { "name": "Payment", "jsonUrl": "docs/nova/20r1/20r1_paymentsvc.json" },
+                        { "name": "Workflow", "jsonUrl": "docs/nova/20r1/20r1_workflowsvc.json" }
                     ]
                 },
                 {
                     "name": "19r3",
                     "services": [
-                        { "name": "Case", "jsonUrl": "docs/collections/19r3/19r3_casesvc.json" },
-                        { "name": "Claim", "jsonUrl": "docs/collections/19r3/19r3_claimsvc.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/19r3/19r3_debtorsvc.json" },
-                        { "name": "Identity", "jsonUrl": "docs/collections/19r3/19r3_identitysvc.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/19r3/19r3_messagingsvc.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r3/19r3_paymentssvc.json" },
-                        { "name": "Telephony", "jsonUrl": "docs/collections/19r3/19r3_telephonysvc.json" }
+                        { "name": "Case", "jsonUrl": "docs/nova/19r3/19r3_casesvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/nova/19r3/19r3_claimsvc.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/nova/19r3/19r3_debtorsvc.json" },
+                        { "name": "Identity", "jsonUrl": "docs/nova/19r3/19r3_identitysvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/nova/19r3/19r3_messagingsvc.json" },
+                        { "name": "Payments", "jsonUrl": "docs/nova/19r3/19r3_paymentssvc.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/nova/19r3/19r3_telephonysvc.json" }
                     ]
                 },
                 {
                     "name": "19r2",
                     "services": [
-                        { "name": "Case", "jsonUrl": "docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "docs/nova/19r2/swagger_cases.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/nova/19r2/swagger_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "docs/nova/19r2/swagger_identity.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/nova/19r2/swagger_messaging.json" },
+                        { "name": "Payments", "jsonUrl": "docs/nova/19r2/swagger_payments.json" }
                     ]
                 }
             ]
