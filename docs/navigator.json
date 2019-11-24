@@ -4,13 +4,19 @@
             "name": "Collections",
             "versions": [
                 {
-                    "name": "19r2",
+                    "name": "NewAPI",
                     "services": [
-                        { "name": "Case", "jsonUrl": "docs/collections/19r2/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
+                        { "name": "Amortisation", "jsonUrl": "docs/collections/NewAPI/20r1_amortisationsvc.json" },
+                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/20r1_casesvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/20r1_claimsvc.json" },
+                        { "name": "Config", "jsonUrl": "docs/collections/NewAPI/20r1_configsvc.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/20r1_debtorsvc.json" },
+                        { "name": "History", "jsonUrl": "docs/collections/NewAPI/20r1_historysvc.json" },
+                        { "name": "LimCom", "jsonUrl": "docs/collections/NewAPI/20r1_limcomsvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/collections/NewAPI/20r1_messagesvc.json" },
+                        { "name": "Ocr", "jsonUrl": "docs/collections/NewAPI/20r1_ocrsvc.json" },
+                        { "name": "Payment", "jsonUrl": "docs/collections/NewAPI/20r1_paymentsvc.json" },
+                        { "name": "Workflow", "jsonUrl": "docs/collections/NewAPI/20r1_workflowsvc.json" }
                     ]
                 },
                 {
@@ -26,69 +32,13 @@
                     ]
                 },
                 {
-                    "name": "NewAPI",
+                    "name": "19r2",
                     "services": [
-                        { "name": "Amortisation", "jsonUrl": "docs/collections/NewAPI/20r1_amortisationsvc.json" },
-                        { "name": "Case", "jsonUrl": "docs/collections/NewAPI/20r1_casesvc.json" },
-                        { "name": "Claim", "jsonUrl": "docs/collections/NewAPI/20r1_claimsvc.json" },
-                        { "name": "Config", "jsonUrl": "docs/collections/NewAPI/20r1_configsvc.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/collections/NewAPI/20r1_debtorsvc.json" },
-                        { "name": "History", "jsonUrl": "docs/collections/NewAPI/20r1_historysvc.json" },
-                        { "name": "LimCom", "jsonUrl": "docs/collections/NewAPI/20r1_limcomsvc.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/collections/NewAPI/20r1_messagesvc.json" },
-                        { "name": "Ocr", "jsonUrl": "docs/collections/NewAPI/20r1_ocrsvc.json" },
-                        { "name": "Payment", "jsonUrl": "docs/collections/NewAPI/20r1_paymentsvc.json" },
-                        { "name": "Workflow", "jsonUrl": "docs/collections/NewAPI/20r1_workflowsvc.json" }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Lending",
-            "versions": [
-                {
-                    "name": "v3",
-                    "services": [
-                        { "name": "Case", "jsonUrl": "docs/lending/v3/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/lending/v3/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "docs/lending/v3/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/lending/v3/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/lending/v3/swagger_payments.json" }
-                    ]
-                },
-                {
-                    "name": "v3.5",
-                    "services": [
-                        { "name": "Case", "jsonUrl": "docs/lending/v35/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/lending/v35/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "docs/lending/v35/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/lending/v35/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/lending/v35/swagger_payments.json" }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Leasing",
-            "versions": [
-                {
-                    "name": "2017",
-                    "services": [
-                        { "name": "Case", "jsonUrl": "docs/leasing/2017/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/leasing/2017/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "docs/leasing/2017/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/leasing/2017/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/leasing/2017/swagger_payments.json" }
-                    ]
-                },
-                {
-                    "name": "2019",
-                    "services": [
-                        { "name": "Case", "jsonUrl": "docs/leasing/2019/swagger_cases.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/leasing/2019/swagger_debtor.json" },
-                        { "name": "Identity", "jsonUrl": "docs/leasing/2019/swagger_identity.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/leasing/2019/swagger_messaging.json" },
-                        { "name": "Payments", "jsonUrl": "docs/leasing/2019/swagger_payments.json" }
+                        { "name": "Case", "jsonUrl": "docs/collections/19r2/swagger_cases.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/collections/19r2/swagger_debtor.json" },
+                        { "name": "Identity", "jsonUrl": "docs/collections/19r2/swagger_identity.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/collections/19r2/swagger_messaging.json" },
+                        { "name": "Payments", "jsonUrl": "docs/collections/19r2/swagger_payments.json" }
                     ]
                 }
             ]
