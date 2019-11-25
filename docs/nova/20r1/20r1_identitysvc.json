@@ -1,0 +1,108 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Identity Service",
+    "description": "Identity Service to expose related information and perform relevant Nova operations.",
+    "version": "20.1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/identitysvc"
+    }
+  ],
+  "paths": {
+    "/Identity/authenticate": {
+      "post": {
+        "tags": [
+          "Identity"
+        ],
+        "summary": "Validates user credentials and returns a token for accessing the APIs.",
+        "requestBody": {
+          "description": "The user name and password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserIdentityDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserIdentityDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserIdentityDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Access token enabling user to access the Nova APIs",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User credentials are invalid"
+          },
+          "400": {
+            "description": "Empty or incorrect user parameters"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserIdentityDTO": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "User credentials to be used for logging on to Nova"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

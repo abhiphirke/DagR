@@ -12,6 +12,7 @@
                         { "name": "Config", "jsonUrl": "docs/nova/20r1/20r1_configsvc.json" },
                         { "name": "Debtor", "jsonUrl": "docs/nova/20r1/20r1_debtorsvc.json" },
                         { "name": "History", "jsonUrl": "docs/nova/20r1/20r1_historysvc.json" },
+                        { "name": "Identity", "jsonUrl": "docs/nova/20r1/20r1_identitysvc.json" },
                         { "name": "LimCom", "jsonUrl": "docs/nova/20r1/20r1_limcomsvc.json" },
                         { "name": "Messaging", "jsonUrl": "docs/nova/20r1/20r1_messagesvc.json" },
                         { "name": "Ocr", "jsonUrl": "docs/nova/20r1/20r1_ocrsvc.json" },
