@@ -3,64 +3,14 @@
   "info": {
     "title": "Nova configuration store Service",
     "description": "Nova configuration store Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "1.0.0.0"
+    "version": "20.1.0.0"
   },
   "servers": [
     {
-      "url": "/tieto/collection/ConfigSvc"
+      "url": "/tieto/collection/configsvc"
     }
   ],
   "paths": {
-    "/CostDefinitions/{keyName}/countrycode/{countryCode}": {
-      "get": {
-        "tags": [
-          "CostDefinitions"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "countryCode",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/CountryCodesDTO"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CostDefinitionDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CostDefinitionDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CostDefinitionDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/CostDefinitions": {
       "get": {
         "tags": [
@@ -106,56 +56,6 @@
           "Currency"
         ],
         "summary": "Get system variable",
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/DebtTypes/{keyName}/language/{language}": {
-      "get": {
-        "tags": [
-          "DebtTypes"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "language",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/LanguageCodesDTO"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Return value/default value",
@@ -230,47 +130,6 @@
         }
       }
     },
-    "/InterestDefinitions/interestcodes/{keyName}": {
-      "get": {
-        "tags": [
-          "InterestDefinitions"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/InterestCodeDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InterestCodeDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InterestCodeDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/InterestDefinitions/interestcodes": {
       "get": {
         "tags": [
@@ -302,56 +161,6 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/InterestCodeDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InterestDefinitions/interesttables/{keyName}": {
-      "get": {
-        "tags": [
-          "InterestDefinitions"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
                   }
                 }
               }
@@ -392,97 +201,6 @@
                   "items": {
                     "$ref": "#/components/schemas/InterestTableDTO"
                   }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InterestDefinitions/interesttables/for/interestcode/{keyName}": {
-      "get": {
-        "tags": [
-          "InterestDefinitions"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/PaymentMethods/{keyName}": {
-      "get": {
-        "tags": [
-          "PaymentMethods"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentMethodDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentMethodDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentMethodDTO"
                 }
               }
             }
@@ -828,89 +546,6 @@
         }
       }
     },
-    "/Users/{keyName}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Users/{userId}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/Users/list": {
       "post": {
         "tags": [
@@ -997,35 +632,6 @@
   },
   "components": {
     "schemas": {
-      "CountryCodesDTO": {
-        "enum": [
-          "at",
-          "be",
-          "ch",
-          "cz",
-          "de",
-          "dk",
-          "ee",
-          "es",
-          "fi",
-          "fr",
-          "gb",
-          "hu",
-          "ie",
-          "it",
-          "lt",
-          "lv",
-          "nl",
-          "no",
-          "pl",
-          "ru",
-          "se",
-          "sk",
-          "tr"
-        ],
-        "type": "string",
-        "description": "Country codes supported in Nova system."
-      },
       "VatTypeDTO": {
         "enum": [
           "none",
