@@ -1,0 +1,5478 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Basic Swagger Combine Example",
+    "version": "19r4"
+  },
+  "paths": {
+    "/debtors/{debtorNo}/cases": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "summary": "Get the list of debtor cases with some basic information using Nova debtor number",
+        "operationId": "GetDebtorCases",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the core case information (object_identifiers, state, registration and closed) for the specified Nova debtor number",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "Case details",
+                "type": "object",
+                "properties": {
+                  "objectIdentifiers": {
+                    "description": "Case identifiers",
+                    "type": "object",
+                    "properties": {
+                      "objectType": {
+                        "description": "Resource type",
+                        "enum": [
+                          "case",
+                          "party",
+                          "claim",
+                          "verdict",
+                          "payment"
+                        ],
+                        "type": "string"
+                      },
+                      "specification": {
+                        "description": "Specification",
+                        "enum": [
+                          "normal",
+                          "sub",
+                          "joint"
+                        ],
+                        "type": "string"
+                      },
+                      "internal": {
+                        "format": "int32",
+                        "description": "Case No",
+                        "type": "integer"
+                      },
+                      "subinternal1": {
+                        "format": "int32",
+                        "description": "Joint collection case No",
+                        "type": "integer"
+                      },
+                      "external1": {
+                        "description": "Reference No",
+                        "type": "string"
+                      },
+                      "external2": {
+                        "description": "Previous No",
+                        "type": "string"
+                      },
+                      "PaymentReference": {
+                        "description": "Payment reference No",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "workflows": {
+                    "description": "Workflows",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "position": {
+                          "description": "Position",
+                          "enum": [
+                            "case_only",
+                            "case_debtor",
+                            "debtor_only",
+                            "amortisation_plan"
+                          ],
+                          "type": "string"
+                        },
+                        "automatic": {
+                          "description": "Automatic",
+                          "type": "boolean"
+                        },
+                        "category": {
+                          "description": "Category",
+                          "enum": [
+                            "Debt collection",
+                            "Debt surveillance",
+                            "Amortisation",
+                            "Respite",
+                            "Waiting",
+                            "Debtor only",
+                            "Creditor only",
+                            "Partner",
+                            "Surveillance",
+                            "Invoicing",
+                            "Document"
+                          ],
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "Status",
+                          "type": "string"
+                        },
+                        "tree": {
+                          "description": "Tree",
+                          "type": "string"
+                        },
+                        "treeDescription": {
+                          "description": "Tree description",
+                          "type": "string"
+                        },
+                        "action": {
+                          "description": "Action",
+                          "type": "string"
+                        },
+                        "actionDescription": {
+                          "description": "Action description",
+                          "type": "string"
+                        },
+                        "date": {
+                          "description": "Date",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "Type",
+                          "enum": [
+                            "Letter",
+                            "Phone",
+                            "GoTo",
+                            "Manual",
+                            "Note",
+                            "Update",
+                            "Export",
+                            "List",
+                            "Move",
+                            "Change",
+                            "Wait",
+                            "Close",
+                            "Error",
+                            "JumpTo",
+                            "Return",
+                            "Watchdog",
+                            "TempLetter",
+                            "Cost",
+                            "Email",
+                            "History"
+                          ],
+                          "type": "string"
+                        },
+                        "extendedStatus": {
+                          "description": "Extended status",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "state": {
+                    "description": "Case state",
+                    "enum": [
+                      "Invoicing",
+                      "Debt collection",
+                      "Debt surveillance"
+                    ],
+                    "type": "string"
+                  },
+                  "registration": {
+                    "description": "Registration details",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Case registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Collector user name",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "closed": {
+                    "description": "Is the case closed?",
+                    "type": "boolean"
+                  },
+                  "parties": {
+                    "description": "Parties",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "objectIdentifiers": {
+                          "description": "PartyObjectIdentifierDto can either be CreditorObjectIdentifiersDto or DebtorObjectIdentifiersDto",
+                          "type": "object",
+                          "properties": {
+                            "objectType": {
+                              "description": "Resource type",
+                              "enum": [
+                                "case",
+                                "party",
+                                "claim",
+                                "verdict",
+                                "payment"
+                              ],
+                              "type": "string"
+                            },
+                            "specification": {
+                              "description": "Specification",
+                              "enum": [
+                                "debtor",
+                                "creditor",
+                                "invoice",
+                                "cost",
+                                "authority",
+                                "partner"
+                              ],
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Resource name",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "interestToDate": {
+                    "description": "MAX interest to date from related debts and costs",
+                    "type": "string"
+                  },
+                  "remainingAmounts": {
+                    "description": "Remaining case amounts",
+                    "type": "object",
+                    "properties": {
+                      "principal": {
+                        "format": "double",
+                        "description": "Principal",
+                        "type": "number"
+                      },
+                      "cost": {
+                        "format": "double",
+                        "description": "Cost",
+                        "type": "number"
+                      },
+                      "interest": {
+                        "format": "double",
+                        "description": "Interest",
+                        "type": "number"
+                      },
+                      "fee": {
+                        "format": "double",
+                        "description": "Fee",
+                        "type": "number"
+                      },
+                      "costInterest": {
+                        "format": "double",
+                        "description": "Cost interest",
+                        "type": "number"
+                      },
+                      "total": {
+                        "format": "double",
+                        "description": "Total",
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "turnedInAmounts": {
+                    "description": "Turned in amounts",
+                    "type": "object",
+                    "properties": {
+                      "principal": {
+                        "format": "double",
+                        "description": "Principal",
+                        "type": "number"
+                      },
+                      "cost": {
+                        "format": "double",
+                        "description": "Cost",
+                        "type": "number"
+                      },
+                      "interest": {
+                        "format": "double",
+                        "description": "Interest",
+                        "type": "number"
+                      },
+                      "fee": {
+                        "format": "double",
+                        "description": "Fee",
+                        "type": "number"
+                      },
+                      "costInterest": {
+                        "format": "double",
+                        "description": "Cost interest",
+                        "type": "number"
+                      },
+                      "total": {
+                        "format": "double",
+                        "description": "Total",
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "mergedCases": {
+                    "description": "Sub case details",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "description": "Sub case details",
+                      "type": "object",
+                      "properties": {
+                        "objectIdentifiers": {
+                          "description": "Sub case object identifiers",
+                          "type": "object",
+                          "properties": {
+                            "objectType": {
+                              "description": "Resource type",
+                              "enum": [
+                                "case",
+                                "party",
+                                "claim",
+                                "verdict",
+                                "payment"
+                              ],
+                              "type": "string"
+                            },
+                            "specification": {
+                              "description": "Specification",
+                              "enum": [
+                                "normal",
+                                "sub",
+                                "joint"
+                              ],
+                              "type": "string"
+                            },
+                            "internal": {
+                              "format": "int32",
+                              "description": "Case No",
+                              "type": "integer"
+                            },
+                            "subinternal1": {
+                              "format": "int32",
+                              "description": "Joint collection case No",
+                              "type": "integer"
+                            },
+                            "external1": {
+                              "description": "Reference No",
+                              "type": "string"
+                            },
+                            "external2": {
+                              "description": "Previous No",
+                              "type": "string"
+                            },
+                            "PaymentReference": {
+                              "description": "Payment reference No",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/debtors/{debtorNo}/cases1/{caseNo}": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "summary": "Gets the detailed case information using Nova debtor number and case number",
+        "operationId": "GetDebtorCase",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the detailed case information for the specified Nova debtor number and case number",
+            "schema": {
+              "description": "Case details",
+              "type": "object",
+              "properties": {
+                "objectIdentifiers": {
+                  "description": "Case identifiers",
+                  "type": "object",
+                  "properties": {
+                    "objectType": {
+                      "description": "Resource type",
+                      "enum": [
+                        "case",
+                        "party",
+                        "claim",
+                        "verdict",
+                        "payment"
+                      ],
+                      "type": "string"
+                    },
+                    "specification": {
+                      "description": "Specification",
+                      "enum": [
+                        "normal",
+                        "sub",
+                        "joint"
+                      ],
+                      "type": "string"
+                    },
+                    "internal": {
+                      "format": "int32",
+                      "description": "Case No",
+                      "type": "integer"
+                    },
+                    "subinternal1": {
+                      "format": "int32",
+                      "description": "Joint collection case No",
+                      "type": "integer"
+                    },
+                    "external1": {
+                      "description": "Reference No",
+                      "type": "string"
+                    },
+                    "external2": {
+                      "description": "Previous No",
+                      "type": "string"
+                    },
+                    "PaymentReference": {
+                      "description": "Payment reference No",
+                      "type": "string"
+                    }
+                  }
+                },
+                "workflows": {
+                  "description": "Workflows",
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "description": "Position",
+                        "enum": [
+                          "case_only",
+                          "case_debtor",
+                          "debtor_only",
+                          "amortisation_plan"
+                        ],
+                        "type": "string"
+                      },
+                      "automatic": {
+                        "description": "Automatic",
+                        "type": "boolean"
+                      },
+                      "category": {
+                        "description": "Category",
+                        "enum": [
+                          "Debt collection",
+                          "Debt surveillance",
+                          "Amortisation",
+                          "Respite",
+                          "Waiting",
+                          "Debtor only",
+                          "Creditor only",
+                          "Partner",
+                          "Surveillance",
+                          "Invoicing",
+                          "Document"
+                        ],
+                        "type": "string"
+                      },
+                      "status": {
+                        "description": "Status",
+                        "type": "string"
+                      },
+                      "tree": {
+                        "description": "Tree",
+                        "type": "string"
+                      },
+                      "treeDescription": {
+                        "description": "Tree description",
+                        "type": "string"
+                      },
+                      "action": {
+                        "description": "Action",
+                        "type": "string"
+                      },
+                      "actionDescription": {
+                        "description": "Action description",
+                        "type": "string"
+                      },
+                      "date": {
+                        "description": "Date",
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "Type",
+                        "enum": [
+                          "Letter",
+                          "Phone",
+                          "GoTo",
+                          "Manual",
+                          "Note",
+                          "Update",
+                          "Export",
+                          "List",
+                          "Move",
+                          "Change",
+                          "Wait",
+                          "Close",
+                          "Error",
+                          "JumpTo",
+                          "Return",
+                          "Watchdog",
+                          "TempLetter",
+                          "Cost",
+                          "Email",
+                          "History"
+                        ],
+                        "type": "string"
+                      },
+                      "extendedStatus": {
+                        "description": "Extended status",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "state": {
+                  "description": "Case state",
+                  "enum": [
+                    "Invoicing",
+                    "Debt collection",
+                    "Debt surveillance"
+                  ],
+                  "type": "string"
+                },
+                "registration": {
+                  "description": "Registration details",
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "format": "date-time",
+                      "description": "Case registration date",
+                      "type": "string"
+                    },
+                    "userName": {
+                      "description": "Collector user name",
+                      "type": "string"
+                    }
+                  }
+                },
+                "closed": {
+                  "description": "Is the case closed?",
+                  "type": "boolean"
+                },
+                "parties": {
+                  "description": "Parties",
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "objectIdentifiers": {
+                        "description": "PartyObjectIdentifierDto can either be CreditorObjectIdentifiersDto or DebtorObjectIdentifiersDto",
+                        "type": "object",
+                        "properties": {
+                          "objectType": {
+                            "description": "Resource type",
+                            "enum": [
+                              "case",
+                              "party",
+                              "claim",
+                              "verdict",
+                              "payment"
+                            ],
+                            "type": "string"
+                          },
+                          "specification": {
+                            "description": "Specification",
+                            "enum": [
+                              "debtor",
+                              "creditor",
+                              "invoice",
+                              "cost",
+                              "authority",
+                              "partner"
+                            ],
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Resource name",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "interestToDate": {
+                  "description": "MAX interest to date from related debts and costs",
+                  "type": "string"
+                },
+                "remainingAmounts": {
+                  "description": "Remaining case amounts",
+                  "type": "object",
+                  "properties": {
+                    "principal": {
+                      "format": "double",
+                      "description": "Principal",
+                      "type": "number"
+                    },
+                    "cost": {
+                      "format": "double",
+                      "description": "Cost",
+                      "type": "number"
+                    },
+                    "interest": {
+                      "format": "double",
+                      "description": "Interest",
+                      "type": "number"
+                    },
+                    "fee": {
+                      "format": "double",
+                      "description": "Fee",
+                      "type": "number"
+                    },
+                    "costInterest": {
+                      "format": "double",
+                      "description": "Cost interest",
+                      "type": "number"
+                    },
+                    "total": {
+                      "format": "double",
+                      "description": "Total",
+                      "type": "number"
+                    }
+                  }
+                },
+                "turnedInAmounts": {
+                  "description": "Turned in amounts",
+                  "type": "object",
+                  "properties": {
+                    "principal": {
+                      "format": "double",
+                      "description": "Principal",
+                      "type": "number"
+                    },
+                    "cost": {
+                      "format": "double",
+                      "description": "Cost",
+                      "type": "number"
+                    },
+                    "interest": {
+                      "format": "double",
+                      "description": "Interest",
+                      "type": "number"
+                    },
+                    "fee": {
+                      "format": "double",
+                      "description": "Fee",
+                      "type": "number"
+                    },
+                    "costInterest": {
+                      "format": "double",
+                      "description": "Cost interest",
+                      "type": "number"
+                    },
+                    "total": {
+                      "format": "double",
+                      "description": "Total",
+                      "type": "number"
+                    }
+                  }
+                },
+                "mergedCases": {
+                  "description": "Sub case details",
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "description": "Sub case details",
+                    "type": "object",
+                    "properties": {
+                      "objectIdentifiers": {
+                        "description": "Sub case object identifiers",
+                        "type": "object",
+                        "properties": {
+                          "objectType": {
+                            "description": "Resource type",
+                            "enum": [
+                              "case",
+                              "party",
+                              "claim",
+                              "verdict",
+                              "payment"
+                            ],
+                            "type": "string"
+                          },
+                          "specification": {
+                            "description": "Specification",
+                            "enum": [
+                              "normal",
+                              "sub",
+                              "joint"
+                            ],
+                            "type": "string"
+                          },
+                          "internal": {
+                            "format": "int32",
+                            "description": "Case No",
+                            "type": "integer"
+                          },
+                          "subinternal1": {
+                            "format": "int32",
+                            "description": "Joint collection case No",
+                            "type": "integer"
+                          },
+                          "external1": {
+                            "description": "Reference No",
+                            "type": "string"
+                          },
+                          "external2": {
+                            "description": "Previous No",
+                            "type": "string"
+                          },
+                          "PaymentReference": {
+                            "description": "Payment reference No",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/debtors/{debtorNo}/Claims": {
+      "get": {
+        "tags": [
+          "Claim"
+        ],
+        "summary": "Gets claims based on the specified debtor number",
+        "operationId": "GetClaimsByDebtorNo",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "Number of records per page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "Claim info",
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "description": "Reference identifier",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "format": "int32",
+                        "description": "ID",
+                        "type": "integer"
+                      },
+                      "specification": {
+                        "description": "Object Specification",
+                        "enum": [
+                          "case",
+                          "solicitor",
+                          "creditor",
+                          "debtor",
+                          "pledge",
+                          "cost",
+                          "debt",
+                          "payment",
+                          "amort",
+                          "partner",
+                          "document",
+                          "collateral",
+                          "collateralaccount",
+                          "mandate",
+                          "collector",
+                          "lawyer",
+                          "instance",
+                          "claim",
+                          "invoice",
+                          "creditinvoice",
+                          "fee",
+                          "debtorcost",
+                          "history",
+                          "addressupdate",
+                          "email"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "external": {
+                    "description": "External identifier",
+                    "type": "object",
+                    "properties": {
+                      "id1": {
+                        "description": "Customer No.",
+                        "type": "string"
+                      },
+                      "id2": {
+                        "description": "Customer No. 2",
+                        "type": "string"
+                      },
+                      "id3": {
+                        "description": "Journal No.",
+                        "type": "string"
+                      },
+                      "id4": {
+                        "description": "Original invoice",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "linkedCaseNo": {
+                    "format": "int32",
+                    "description": "Linked case No.",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "description": "Name",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Description",
+                    "type": "string"
+                  },
+                  "category": {
+                    "description": "Category",
+                    "type": "string"
+                  },
+                  "linkedClaim": {
+                    "description": "Linked claim Id and specification",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "format": "int32",
+                        "description": "ID",
+                        "type": "integer"
+                      },
+                      "specification": {
+                        "description": "Object Specification",
+                        "enum": [
+                          "case",
+                          "solicitor",
+                          "creditor",
+                          "debtor",
+                          "pledge",
+                          "cost",
+                          "debt",
+                          "payment",
+                          "amort",
+                          "partner",
+                          "document",
+                          "collateral",
+                          "collateralaccount",
+                          "mandate",
+                          "collector",
+                          "lawyer",
+                          "instance",
+                          "claim",
+                          "invoice",
+                          "creditinvoice",
+                          "fee",
+                          "debtorcost",
+                          "history",
+                          "addressupdate",
+                          "email"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "registration": {
+                    "description": "Invoice registration date",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Registered by",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "invoiceDate": {
+                    "format": "date-time",
+                    "description": "Invoice date",
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "format": "date-time",
+                    "description": "Invoice due date",
+                    "type": "string"
+                  },
+                  "paymentTerms": {
+                    "format": "int32",
+                    "description": "Payment terms",
+                    "type": "integer"
+                  },
+                  "interestCondition": {
+                    "format": "int32",
+                    "description": "Interest condition",
+                    "type": "integer"
+                  },
+                  "amounts": {
+                    "description": "Amounts details",
+                    "type": "object",
+                    "properties": {
+                      "layer": {
+                        "description": "Amounts layer type",
+                        "enum": [
+                          "original",
+                          "limitedcommitment",
+                          "adjuged"
+                        ],
+                        "type": "string"
+                      },
+                      "currency": {
+                        "description": "Amounts currency code",
+                        "type": "string"
+                      },
+                      "principal": {
+                        "description": "Amounts principal",
+                        "type": "object",
+                        "properties": {
+                          "original": {
+                            "format": "double",
+                            "description": "Original amount",
+                            "type": "number"
+                          },
+                          "turnedIn": {
+                            "format": "double",
+                            "description": "TurnedIn amount",
+                            "type": "number"
+                          },
+                          "paid": {
+                            "format": "double",
+                            "description": "Paid amount",
+                            "type": "number"
+                          },
+                          "remaining": {
+                            "format": "double",
+                            "description": "Remaining amount",
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "interest": {
+                        "description": "Amounts interest",
+                        "type": "object",
+                        "properties": {
+                          "updateddate": {
+                            "format": "date-time",
+                            "description": "Interest updated date",
+                            "type": "string"
+                          },
+                          "original": {
+                            "format": "double",
+                            "description": "Original interest",
+                            "type": "number"
+                          },
+                          "turnedIn": {
+                            "format": "double",
+                            "description": "TurnedIn interest",
+                            "type": "number"
+                          },
+                          "paid": {
+                            "format": "double",
+                            "description": "Paid interest",
+                            "type": "number"
+                          },
+                          "remaining": {
+                            "format": "double",
+                            "description": "Remaining interest",
+                            "type": "number"
+                          },
+                          "interestSplit": {
+                            "description": "Interest Split",
+                            "type": "object",
+                            "properties": {
+                              "capitalized": {
+                                "format": "double",
+                                "description": "Capitalized interest",
+                                "type": "number"
+                              },
+                              "toCapitalize": {
+                                "format": "double",
+                                "description": "ToCapitalize interest",
+                                "type": "number"
+                              },
+                              "notToCapitalize": {
+                                "format": "double",
+                                "description": "Not ToCapitalize interest",
+                                "type": "number"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "interestConditions": {
+                    "description": "Interest conditions",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "description": "Interest condition",
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "description": "Interest condition based on role type",
+                          "enum": [
+                            "original",
+                            "temporary",
+                            "limitedcommitment"
+                          ],
+                          "type": "string"
+                        },
+                        "rate": {
+                          "format": "double",
+                          "description": "Interest rate",
+                          "type": "number"
+                        },
+                        "code": {
+                          "description": "Interest code",
+                          "type": "string"
+                        },
+                        "usedRate": {
+                          "format": "double",
+                          "description": "Usedrate",
+                          "type": "number"
+                        },
+                        "fromDate": {
+                          "format": "date-time",
+                          "description": "From date",
+                          "type": "string"
+                        },
+                        "toDate": {
+                          "format": "date-time",
+                          "description": "To date",
+                          "type": "string"
+                        },
+                        "stopDate": {
+                          "format": "date-time",
+                          "description": "Stop date",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "invoiceRows": {
+                    "description": "Invoice rows",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "description": "Invoice detail",
+                      "type": "object",
+                      "properties": {
+                        "stockNo": {
+                          "description": "Stock No",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "Description",
+                          "type": "string"
+                        },
+                        "price": {
+                          "format": "double",
+                          "description": "Unit price",
+                          "type": "number"
+                        },
+                        "quantity": {
+                          "format": "int32",
+                          "description": "Quantity",
+                          "type": "integer"
+                        },
+                        "unit": {
+                          "description": "Invoice unit",
+                          "type": "string"
+                        },
+                        "discount": {
+                          "format": "int32",
+                          "description": "Invoice discount",
+                          "type": "integer"
+                        },
+                        "total": {
+                          "format": "double",
+                          "description": "Invoice total",
+                          "type": "number"
+                        },
+                        "vatRate": {
+                          "format": "double",
+                          "description": "Vat rate",
+                          "type": "number"
+                        },
+                        "vatTotal": {
+                          "format": "double",
+                          "description": "Vat total",
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "vatDetails": {
+                    "description": "Vat details",
+                    "type": "object",
+                    "properties": {
+                      "rate": {
+                        "format": "double",
+                        "description": "Rate",
+                        "type": "number"
+                      },
+                      "original": {
+                        "format": "double",
+                        "description": "Original",
+                        "type": "number"
+                      },
+                      "paid": {
+                        "format": "double",
+                        "description": "Paid",
+                        "type": "number"
+                      },
+                      "remaining": {
+                        "format": "double",
+                        "description": "Remaining",
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/debtors/{debtorNo}/cases/{caseNo}/claims": {
+      "get": {
+        "tags": [
+          "Claim"
+        ],
+        "summary": "Gets the basic claim details (dates, identifiers, references, etc.) based on the specified debtor and case number.",
+        "description": "ExternalIdentifierDto fields:\r\nId1: Invoice number or credit invoice number\r\nId2: Other reference for invoice, or original invoice number for credit invoice\r\nId3: Journal number for invoice\r\n\r\nReferenceIdentifierDto fields:\r\nId: Claim number (e.g. Nova cost number)\r\nSpecification: Claim type (e.g. debtorcost)",
+        "operationId": "GetClaimsByDebtorNoCaseNo",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "spec",
+            "in": "query",
+            "description": "invoice, creditinvoice, fee, or debtorcost",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "case",
+              "solicitor",
+              "creditor",
+              "debtor",
+              "pledge",
+              "cost",
+              "debt",
+              "payment",
+              "amort",
+              "partner",
+              "document",
+              "collateral",
+              "collateralaccount",
+              "mandate",
+              "collector",
+              "lawyer",
+              "instance",
+              "claim",
+              "invoice",
+              "creditinvoice",
+              "fee",
+              "debtorcost",
+              "history",
+              "addressupdate",
+              "email"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "Claim core info",
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "description": "Reference identifier",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "format": "int32",
+                        "description": "ID",
+                        "type": "integer"
+                      },
+                      "specification": {
+                        "description": "Object Specification",
+                        "enum": [
+                          "case",
+                          "solicitor",
+                          "creditor",
+                          "debtor",
+                          "pledge",
+                          "cost",
+                          "debt",
+                          "payment",
+                          "amort",
+                          "partner",
+                          "document",
+                          "collateral",
+                          "collateralaccount",
+                          "mandate",
+                          "collector",
+                          "lawyer",
+                          "instance",
+                          "claim",
+                          "invoice",
+                          "creditinvoice",
+                          "fee",
+                          "debtorcost",
+                          "history",
+                          "addressupdate",
+                          "email"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "external": {
+                    "description": "External identifier",
+                    "type": "object",
+                    "properties": {
+                      "id1": {
+                        "description": "Customer No.",
+                        "type": "string"
+                      },
+                      "id2": {
+                        "description": "Customer No. 2",
+                        "type": "string"
+                      },
+                      "id3": {
+                        "description": "Journal No.",
+                        "type": "string"
+                      },
+                      "id4": {
+                        "description": "Original invoice",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "linkedCaseNo": {
+                    "format": "int32",
+                    "description": "Linked case number",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "description": "Claim name",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Claim description",
+                    "type": "string"
+                  },
+                  "category": {
+                    "description": "Categorization within the claim type, e.g. type of invoice or cost",
+                    "type": "string"
+                  },
+                  "linkedClaim": {
+                    "description": "Linked claim ID and specification",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "format": "int32",
+                        "description": "ID",
+                        "type": "integer"
+                      },
+                      "specification": {
+                        "description": "Object Specification",
+                        "enum": [
+                          "case",
+                          "solicitor",
+                          "creditor",
+                          "debtor",
+                          "pledge",
+                          "cost",
+                          "debt",
+                          "payment",
+                          "amort",
+                          "partner",
+                          "document",
+                          "collateral",
+                          "collateralaccount",
+                          "mandate",
+                          "collector",
+                          "lawyer",
+                          "instance",
+                          "claim",
+                          "invoice",
+                          "creditinvoice",
+                          "fee",
+                          "debtorcost",
+                          "history",
+                          "addressupdate",
+                          "email"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "registration": {
+                    "description": "Invoice registration date",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Registered by",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "invoiceDate": {
+                    "format": "date-time",
+                    "description": "Invoice date",
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "format": "date-time",
+                    "description": "Invoice due date",
+                    "type": "string"
+                  },
+                  "paymentTerms": {
+                    "format": "int32",
+                    "description": "Payment terms in number of days",
+                    "type": "integer"
+                  },
+                  "interestCondition": {
+                    "format": "int32",
+                    "description": "Interest terms in number of days",
+                    "type": "integer"
+                  },
+                  "foreign": {
+                    "description": "Original currency is converted to default currency",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/cases/{caseNo}/claims": {
+      "get": {
+        "tags": [
+          "Claim"
+        ],
+        "summary": "Gets basic claim details (dates, identifiers, references, etc.) based on the specified case number.",
+        "description": "ExternalIdentifierDto fields:\r\nId1: Invoice number or credit invoice number\r\nId2: Other reference for invoice, or original invoice number for credit invoice\r\nId3: Journal number for invoice\r\n\r\nReferenceIdentifierDto fields:\r\nId: Claim number (e.g. Nova cost number)\r\nSpecification: Claim type (e.g. debtorcost)",
+        "operationId": "GetClaimsByCaseNo",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "spec",
+            "in": "query",
+            "description": "invoice, creditinvoice, fee, or debtorcost",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "case",
+              "solicitor",
+              "creditor",
+              "debtor",
+              "pledge",
+              "cost",
+              "debt",
+              "payment",
+              "amort",
+              "partner",
+              "document",
+              "collateral",
+              "collateralaccount",
+              "mandate",
+              "collector",
+              "lawyer",
+              "instance",
+              "claim",
+              "invoice",
+              "creditinvoice",
+              "fee",
+              "debtorcost",
+              "history",
+              "addressupdate",
+              "email"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "Claim core info",
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "description": "Reference identifier",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "format": "int32",
+                        "description": "ID",
+                        "type": "integer"
+                      },
+                      "specification": {
+                        "description": "Object Specification",
+                        "enum": [
+                          "case",
+                          "solicitor",
+                          "creditor",
+                          "debtor",
+                          "pledge",
+                          "cost",
+                          "debt",
+                          "payment",
+                          "amort",
+                          "partner",
+                          "document",
+                          "collateral",
+                          "collateralaccount",
+                          "mandate",
+                          "collector",
+                          "lawyer",
+                          "instance",
+                          "claim",
+                          "invoice",
+                          "creditinvoice",
+                          "fee",
+                          "debtorcost",
+                          "history",
+                          "addressupdate",
+                          "email"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "external": {
+                    "description": "External identifier",
+                    "type": "object",
+                    "properties": {
+                      "id1": {
+                        "description": "Customer No.",
+                        "type": "string"
+                      },
+                      "id2": {
+                        "description": "Customer No. 2",
+                        "type": "string"
+                      },
+                      "id3": {
+                        "description": "Journal No.",
+                        "type": "string"
+                      },
+                      "id4": {
+                        "description": "Original invoice",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "linkedCaseNo": {
+                    "format": "int32",
+                    "description": "Linked case number",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "description": "Claim name",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Claim description",
+                    "type": "string"
+                  },
+                  "category": {
+                    "description": "Categorization within the claim type, e.g. type of invoice or cost",
+                    "type": "string"
+                  },
+                  "linkedClaim": {
+                    "description": "Linked claim ID and specification",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "format": "int32",
+                        "description": "ID",
+                        "type": "integer"
+                      },
+                      "specification": {
+                        "description": "Object Specification",
+                        "enum": [
+                          "case",
+                          "solicitor",
+                          "creditor",
+                          "debtor",
+                          "pledge",
+                          "cost",
+                          "debt",
+                          "payment",
+                          "amort",
+                          "partner",
+                          "document",
+                          "collateral",
+                          "collateralaccount",
+                          "mandate",
+                          "collector",
+                          "lawyer",
+                          "instance",
+                          "claim",
+                          "invoice",
+                          "creditinvoice",
+                          "fee",
+                          "debtorcost",
+                          "history",
+                          "addressupdate",
+                          "email"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "registration": {
+                    "description": "Invoice registration date",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Registered by",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "invoiceDate": {
+                    "format": "date-time",
+                    "description": "Invoice date",
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "format": "date-time",
+                    "description": "Invoice due date",
+                    "type": "string"
+                  },
+                  "paymentTerms": {
+                    "format": "int32",
+                    "description": "Payment terms in number of days",
+                    "type": "integer"
+                  },
+                  "interestCondition": {
+                    "format": "int32",
+                    "description": "Interest terms in number of days",
+                    "type": "integer"
+                  },
+                  "foreign": {
+                    "description": "Original currency is converted to default currency",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/claims/spec/{spec}/refId/{refId}": {
+      "get": {
+        "tags": [
+          "Claim"
+        ],
+        "summary": "Gets basic details (dates, identifiers, references, etc.) of a particular claim.",
+        "description": "ExternalIdentifierDto fields:\r\nId1: Invoice number or credit invoice number.\r\nId2: Other reference for invoice, or original invoice number for credit invoice.\r\nId3: Journal number for invoice.\r\n\r\nReferenceIdentifierDto fields:\r\nId: Claim number (e.g. Nova cost number)\r\nSpecification: Claim type (e.g. debtorcost)",
+        "operationId": "GetClaimBySpecAndId",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "invoice, creditinvoice, fee, or debtorcost",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "case",
+              "solicitor",
+              "creditor",
+              "debtor",
+              "pledge",
+              "cost",
+              "debt",
+              "payment",
+              "amort",
+              "partner",
+              "document",
+              "collateral",
+              "collateralaccount",
+              "mandate",
+              "collector",
+              "lawyer",
+              "instance",
+              "claim",
+              "invoice",
+              "creditinvoice",
+              "fee",
+              "debtorcost",
+              "history",
+              "addressupdate",
+              "email"
+            ]
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "claim number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "schema": {
+              "description": "Claim core info",
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "description": "Reference identifier",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "format": "int32",
+                      "description": "ID",
+                      "type": "integer"
+                    },
+                    "specification": {
+                      "description": "Object Specification",
+                      "enum": [
+                        "case",
+                        "solicitor",
+                        "creditor",
+                        "debtor",
+                        "pledge",
+                        "cost",
+                        "debt",
+                        "payment",
+                        "amort",
+                        "partner",
+                        "document",
+                        "collateral",
+                        "collateralaccount",
+                        "mandate",
+                        "collector",
+                        "lawyer",
+                        "instance",
+                        "claim",
+                        "invoice",
+                        "creditinvoice",
+                        "fee",
+                        "debtorcost",
+                        "history",
+                        "addressupdate",
+                        "email"
+                      ],
+                      "type": "string"
+                    }
+                  }
+                },
+                "external": {
+                  "description": "External identifier",
+                  "type": "object",
+                  "properties": {
+                    "id1": {
+                      "description": "Customer No.",
+                      "type": "string"
+                    },
+                    "id2": {
+                      "description": "Customer No. 2",
+                      "type": "string"
+                    },
+                    "id3": {
+                      "description": "Journal No.",
+                      "type": "string"
+                    },
+                    "id4": {
+                      "description": "Original invoice",
+                      "type": "string"
+                    }
+                  }
+                },
+                "linkedCaseNo": {
+                  "format": "int32",
+                  "description": "Linked case number",
+                  "type": "integer"
+                },
+                "name": {
+                  "description": "Claim name",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Claim description",
+                  "type": "string"
+                },
+                "category": {
+                  "description": "Categorization within the claim type, e.g. type of invoice or cost",
+                  "type": "string"
+                },
+                "linkedClaim": {
+                  "description": "Linked claim ID and specification",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "format": "int32",
+                      "description": "ID",
+                      "type": "integer"
+                    },
+                    "specification": {
+                      "description": "Object Specification",
+                      "enum": [
+                        "case",
+                        "solicitor",
+                        "creditor",
+                        "debtor",
+                        "pledge",
+                        "cost",
+                        "debt",
+                        "payment",
+                        "amort",
+                        "partner",
+                        "document",
+                        "collateral",
+                        "collateralaccount",
+                        "mandate",
+                        "collector",
+                        "lawyer",
+                        "instance",
+                        "claim",
+                        "invoice",
+                        "creditinvoice",
+                        "fee",
+                        "debtorcost",
+                        "history",
+                        "addressupdate",
+                        "email"
+                      ],
+                      "type": "string"
+                    }
+                  }
+                },
+                "registration": {
+                  "description": "Invoice registration date",
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "format": "date-time",
+                      "description": "Registration date",
+                      "type": "string"
+                    },
+                    "userName": {
+                      "description": "Registered by",
+                      "type": "string"
+                    }
+                  }
+                },
+                "invoiceDate": {
+                  "format": "date-time",
+                  "description": "Invoice date",
+                  "type": "string"
+                },
+                "dueDate": {
+                  "format": "date-time",
+                  "description": "Invoice due date",
+                  "type": "string"
+                },
+                "paymentTerms": {
+                  "format": "int32",
+                  "description": "Payment terms in number of days",
+                  "type": "integer"
+                },
+                "interestCondition": {
+                  "format": "int32",
+                  "description": "Interest terms in number of days",
+                  "type": "integer"
+                },
+                "foreign": {
+                  "description": "Original currency is converted to default currency",
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/debtors/{debtorNo}": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Finds debtor using Nova debtor number",
+        "operationId": "GetDebtorByNo",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the core debtor information (name, postal address, contact information, registration, and statistics information) for the specified Nova debtor number",
+            "schema": {
+              "description": "Debtor model class",
+              "type": "object",
+              "properties": {
+                "objectIdentifiers": {
+                  "description": "Nova debtor identifier",
+                  "type": "object",
+                  "properties": {
+                    "internal": {
+                      "format": "int32",
+                      "description": "Nova debtor number",
+                      "type": "integer"
+                    },
+                    "external1": {
+                      "description": "Debtor Id",
+                      "type": "string"
+                    },
+                    "external2": {
+                      "description": "Debtor Id1",
+                      "type": "string"
+                    },
+                    "external3": {
+                      "description": "Debtor Id2",
+                      "type": "string"
+                    },
+                    "external4": {
+                      "description": "New debtor Id number",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Debtor name",
+                      "type": "string"
+                    },
+                    "PaymentReference": {
+                      "description": "Payment reference No",
+                      "type": "string"
+                    },
+                    "objectType": {
+                      "description": "Object type",
+                      "enum": [
+                        "case",
+                        "party",
+                        "claim",
+                        "verdict",
+                        "payment"
+                      ],
+                      "type": "string"
+                    },
+                    "specification": {
+                      "description": "Specification",
+                      "enum": [
+                        "debtor",
+                        "creditor",
+                        "invoice",
+                        "cost",
+                        "authority",
+                        "partner"
+                      ],
+                      "type": "string"
+                    }
+                  }
+                },
+                "partyType": {
+                  "description": "Type of Party:",
+                  "enum": [
+                    "naturalPerson",
+                    "legalPerson"
+                  ],
+                  "type": "string"
+                },
+                "naturalPerson": {
+                  "description": "Debtor as a 'Person'",
+                  "type": "object",
+                  "properties": {
+                    "idNo": {
+                      "description": "Debtor Id of the 'Natural Person'",
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "Title of the 'Natural Person'",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Full name of the 'Natural Person'",
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "description": "First name of the 'Natural Person'",
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "description": "Last name of the 'Natural Person'",
+                      "type": "string"
+                    },
+                    "secondaryIdNo": {
+                      "description": "New debtor Id number",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Type of Person:",
+                      "enum": [
+                        "person",
+                        "firm"
+                      ],
+                      "type": "string"
+                    },
+                    "birthDate": {
+                      "description": "Date of birth",
+                      "type": "string"
+                    },
+                    "nameExtensions": {
+                      "description": "Name extension details",
+                      "type": "object",
+                      "properties": {
+                        "initial": {
+                          "description": "Initial",
+                          "type": "string"
+                        },
+                        "infix": {
+                          "description": "Infix",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "gender": {
+                      "description": "Gender",
+                      "type": "string"
+                    },
+                    "alien": {
+                      "description": "Foreigner status",
+                      "type": "boolean"
+                    },
+                    "civilStatus": {
+                      "format": "int32",
+                      "description": "Marital status",
+                      "type": "integer"
+                    },
+                    "nationality": {
+                      "description": "Nationality",
+                      "type": "string"
+                    }
+                  }
+                },
+                "legalPerson": {
+                  "description": "Debtor as an 'Organization'",
+                  "type": "object",
+                  "properties": {
+                    "idNo": {
+                      "description": "Debtor Id of 'Organization'",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Organization name",
+                      "type": "string"
+                    },
+                    "organizationType": {
+                      "description": "Organization type",
+                      "type": "string"
+                    },
+                    "organization": {
+                      "format": "int32",
+                      "description": "Organization",
+                      "type": "integer"
+                    }
+                  }
+                },
+                "postalAddresses": {
+                  "description": "Postal addresses of the debtor",
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "description": "Postal address of the 'Person'",
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "description": "Type of Postal Address:",
+                        "enum": [
+                          "main",
+                          "alternate",
+                          "multipleAddress"
+                        ],
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Name",
+                        "type": "string"
+                      },
+                      "addressLine1": {
+                        "description": "Address line1",
+                        "type": "string"
+                      },
+                      "addressLine2": {
+                        "description": "Address line2",
+                        "type": "string"
+                      },
+                      "addressLine3": {
+                        "description": "Address line3",
+                        "type": "string"
+                      },
+                      "addressLine4": {
+                        "description": "Address line4",
+                        "type": "string"
+                      },
+                      "streetNo": {
+                        "description": "Street number",
+                        "type": "string"
+                      },
+                      "flatNo": {
+                        "description": "Flat number",
+                        "type": "string"
+                      },
+                      "zipCode": {
+                        "description": "Zip code",
+                        "type": "string"
+                      },
+                      "city": {
+                        "description": "City",
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "description": "Country code",
+                        "type": "string"
+                      },
+                      "wrongAddress": {
+                        "description": "Status of the 'Wrong address'",
+                        "type": "boolean"
+                      },
+                      "wrongAddressDate": {
+                        "format": "date-time",
+                        "description": "Date on which the ‘Wrong address’ was provided",
+                        "type": "string"
+                      },
+                      "addressProtected": {
+                        "description": "Status of the 'Protected address'",
+                        "type": "boolean"
+                      },
+                      "region": {
+                        "description": "Region",
+                        "type": "string"
+                      },
+                      "zipCodeExtension": {
+                        "description": "Zip code extension",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "contactPoints": {
+                  "description": "Contact points of the debtor",
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "description": "Contact point of the 'Person'",
+                    "type": "object",
+                    "properties": {
+                      "medium": {
+                        "description": "Type of contact medium:",
+                        "enum": [
+                          "phone",
+                          "fax",
+                          "email"
+                        ],
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "Value of the contact point",
+                        "type": "string"
+                      },
+                      "role": {
+                        "description": "Type of contact role:",
+                        "enum": [
+                          "private1",
+                          "work",
+                          "private2",
+                          "alternate"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "contactPreferences": {
+                  "description": "Contact preferences of the debtor",
+                  "type": "object",
+                  "properties": {
+                    "doNotCall": {
+                      "description": "'Do not Call' status",
+                      "type": "boolean"
+                    },
+                    "doNotCallDate": {
+                      "format": "date-time",
+                      "description": "Date on which the ‘Do not call’ was selected",
+                      "type": "string"
+                    },
+                    "emailOk": {
+                      "description": "Is the email Id correct?",
+                      "type": "boolean"
+                    },
+                    "emailOkDate": {
+                      "format": "date-time",
+                      "description": "Date on which the email Id was confirmed",
+                      "type": "string"
+                    },
+                    "wrongPhone": {
+                      "description": "Is the phone number incorrect?",
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "registration": {
+                  "description": "Registration details of the debtor",
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "format": "date-time",
+                      "description": "Registration date",
+                      "type": "string"
+                    },
+                    "userName": {
+                      "description": "Registered by",
+                      "type": "string"
+                    }
+                  }
+                },
+                "statistics": {
+                  "description": "Statistics of the debtor",
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "description": "Number of injunction or distress calls made by  the 'Person'",
+                    "type": "object",
+                    "properties": {
+                      "category": {
+                        "description": "Statistics Category:",
+                        "enum": [
+                          "legal"
+                        ],
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Statistics Name:",
+                        "enum": [
+                          "noOfInjunction",
+                          "noOfDistress"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "format": "int32",
+                        "description": "Number of injunction or distress calls",
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "authorityCode": {
+                  "description": "Authority code of the debtor",
+                  "type": "string"
+                },
+                "languageCode": {
+                  "description": "Language code of the debtor",
+                  "enum": [
+                    "undefined",
+                    "BEL",
+                    "DAN",
+                    "ENG",
+                    "FIN",
+                    "FRA",
+                    "GER",
+                    "IRL",
+                    "ITA",
+                    "NLD",
+                    "NOR",
+                    "POL",
+                    "PRT",
+                    "RUS",
+                    "SPA",
+                    "SWE",
+                    "TUR",
+                    "CZE",
+                    "HUN",
+                    "EST",
+                    "LTU",
+                    "LVA",
+                    "SUI",
+                    "AUT",
+                    "ESP",
+                    "SLK"
+                  ],
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/debtors": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Finds debtors using a unique personal identification number (Debtor Id)",
+        "operationId": "GetDebtorByID",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorID",
+            "in": "query",
+            "description": "Debtor Id number",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the basic debtor information (name and Nova debtor Id) for the specified debtor Id number",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "Debtor model class",
+                "type": "object",
+                "properties": {
+                  "objectIdentifiers": {
+                    "description": "Nova debtor identifier",
+                    "type": "object",
+                    "properties": {
+                      "internal": {
+                        "format": "int32",
+                        "description": "Nova debtor number",
+                        "type": "integer"
+                      },
+                      "external1": {
+                        "description": "Debtor Id",
+                        "type": "string"
+                      },
+                      "external2": {
+                        "description": "Debtor Id1",
+                        "type": "string"
+                      },
+                      "external3": {
+                        "description": "Debtor Id2",
+                        "type": "string"
+                      },
+                      "external4": {
+                        "description": "New debtor Id number",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Debtor name",
+                        "type": "string"
+                      },
+                      "PaymentReference": {
+                        "description": "Payment reference No",
+                        "type": "string"
+                      },
+                      "objectType": {
+                        "description": "Object type",
+                        "enum": [
+                          "case",
+                          "party",
+                          "claim",
+                          "verdict",
+                          "payment"
+                        ],
+                        "type": "string"
+                      },
+                      "specification": {
+                        "description": "Specification",
+                        "enum": [
+                          "debtor",
+                          "creditor",
+                          "invoice",
+                          "cost",
+                          "authority",
+                          "partner"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "partyType": {
+                    "description": "Type of Party:",
+                    "enum": [
+                      "naturalPerson",
+                      "legalPerson"
+                    ],
+                    "type": "string"
+                  },
+                  "naturalPerson": {
+                    "description": "Debtor as a 'Person'",
+                    "type": "object",
+                    "properties": {
+                      "idNo": {
+                        "description": "Debtor Id of the 'Natural Person'",
+                        "type": "string"
+                      },
+                      "title": {
+                        "description": "Title of the 'Natural Person'",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Full name of the 'Natural Person'",
+                        "type": "string"
+                      },
+                      "firstName": {
+                        "description": "First name of the 'Natural Person'",
+                        "type": "string"
+                      },
+                      "lastName": {
+                        "description": "Last name of the 'Natural Person'",
+                        "type": "string"
+                      },
+                      "secondaryIdNo": {
+                        "description": "New debtor Id number",
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "Type of Person:",
+                        "enum": [
+                          "person",
+                          "firm"
+                        ],
+                        "type": "string"
+                      },
+                      "birthDate": {
+                        "description": "Date of birth",
+                        "type": "string"
+                      },
+                      "nameExtensions": {
+                        "description": "Name extension details",
+                        "type": "object",
+                        "properties": {
+                          "initial": {
+                            "description": "Initial",
+                            "type": "string"
+                          },
+                          "infix": {
+                            "description": "Infix",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "gender": {
+                        "description": "Gender",
+                        "type": "string"
+                      },
+                      "alien": {
+                        "description": "Foreigner status",
+                        "type": "boolean"
+                      },
+                      "civilStatus": {
+                        "format": "int32",
+                        "description": "Marital status",
+                        "type": "integer"
+                      },
+                      "nationality": {
+                        "description": "Nationality",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "legalPerson": {
+                    "description": "Debtor as an 'Organization'",
+                    "type": "object",
+                    "properties": {
+                      "idNo": {
+                        "description": "Debtor Id of 'Organization'",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Organization name",
+                        "type": "string"
+                      },
+                      "organizationType": {
+                        "description": "Organization type",
+                        "type": "string"
+                      },
+                      "organization": {
+                        "format": "int32",
+                        "description": "Organization",
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "postalAddresses": {
+                    "description": "Postal addresses of the debtor",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "description": "Postal address of the 'Person'",
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "description": "Type of Postal Address:",
+                          "enum": [
+                            "main",
+                            "alternate",
+                            "multipleAddress"
+                          ],
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Name",
+                          "type": "string"
+                        },
+                        "addressLine1": {
+                          "description": "Address line1",
+                          "type": "string"
+                        },
+                        "addressLine2": {
+                          "description": "Address line2",
+                          "type": "string"
+                        },
+                        "addressLine3": {
+                          "description": "Address line3",
+                          "type": "string"
+                        },
+                        "addressLine4": {
+                          "description": "Address line4",
+                          "type": "string"
+                        },
+                        "streetNo": {
+                          "description": "Street number",
+                          "type": "string"
+                        },
+                        "flatNo": {
+                          "description": "Flat number",
+                          "type": "string"
+                        },
+                        "zipCode": {
+                          "description": "Zip code",
+                          "type": "string"
+                        },
+                        "city": {
+                          "description": "City",
+                          "type": "string"
+                        },
+                        "countryCode": {
+                          "description": "Country code",
+                          "type": "string"
+                        },
+                        "wrongAddress": {
+                          "description": "Status of the 'Wrong address'",
+                          "type": "boolean"
+                        },
+                        "wrongAddressDate": {
+                          "format": "date-time",
+                          "description": "Date on which the ‘Wrong address’ was provided",
+                          "type": "string"
+                        },
+                        "addressProtected": {
+                          "description": "Status of the 'Protected address'",
+                          "type": "boolean"
+                        },
+                        "region": {
+                          "description": "Region",
+                          "type": "string"
+                        },
+                        "zipCodeExtension": {
+                          "description": "Zip code extension",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "contactPoints": {
+                    "description": "Contact points of the debtor",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "description": "Contact point of the 'Person'",
+                      "type": "object",
+                      "properties": {
+                        "medium": {
+                          "description": "Type of contact medium:",
+                          "enum": [
+                            "phone",
+                            "fax",
+                            "email"
+                          ],
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "Value of the contact point",
+                          "type": "string"
+                        },
+                        "role": {
+                          "description": "Type of contact role:",
+                          "enum": [
+                            "private1",
+                            "work",
+                            "private2",
+                            "alternate"
+                          ],
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "contactPreferences": {
+                    "description": "Contact preferences of the debtor",
+                    "type": "object",
+                    "properties": {
+                      "doNotCall": {
+                        "description": "'Do not Call' status",
+                        "type": "boolean"
+                      },
+                      "doNotCallDate": {
+                        "format": "date-time",
+                        "description": "Date on which the ‘Do not call’ was selected",
+                        "type": "string"
+                      },
+                      "emailOk": {
+                        "description": "Is the email Id correct?",
+                        "type": "boolean"
+                      },
+                      "emailOkDate": {
+                        "format": "date-time",
+                        "description": "Date on which the email Id was confirmed",
+                        "type": "string"
+                      },
+                      "wrongPhone": {
+                        "description": "Is the phone number incorrect?",
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "registration": {
+                    "description": "Registration details of the debtor",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Registered by",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "statistics": {
+                    "description": "Statistics of the debtor",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "description": "Number of injunction or distress calls made by  the 'Person'",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Statistics Category:",
+                          "enum": [
+                            "legal"
+                          ],
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Statistics Name:",
+                          "enum": [
+                            "noOfInjunction",
+                            "noOfDistress"
+                          ],
+                          "type": "string"
+                        },
+                        "value": {
+                          "format": "int32",
+                          "description": "Number of injunction or distress calls",
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  },
+                  "authorityCode": {
+                    "description": "Authority code of the debtor",
+                    "type": "string"
+                  },
+                  "languageCode": {
+                    "description": "Language code of the debtor",
+                    "enum": [
+                      "undefined",
+                      "BEL",
+                      "DAN",
+                      "ENG",
+                      "FIN",
+                      "FRA",
+                      "GER",
+                      "IRL",
+                      "ITA",
+                      "NLD",
+                      "NOR",
+                      "POL",
+                      "PRT",
+                      "RUS",
+                      "SPA",
+                      "SWE",
+                      "TUR",
+                      "CZE",
+                      "HUN",
+                      "EST",
+                      "LTU",
+                      "LVA",
+                      "SUI",
+                      "AUT",
+                      "ESP",
+                      "SLK"
+                    ],
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/cases/{caseNo}/history": {
+      "get": {
+        "tags": [
+          "History"
+        ],
+        "summary": "Returns basic information of history entries related to a case.",
+        "operationId": "GetHistoryByCaseNo",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "History details",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "format": "int32",
+                    "description": "Id of history",
+                    "type": "integer"
+                  },
+                  "linkedObjects": {
+                    "description": "Linked objects id and specification",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "description": "Generic DTO for object identification. Please refer to the respective APIs for more details.",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "format": "int32",
+                          "description": "ID",
+                          "type": "integer"
+                        },
+                        "specification": {
+                          "description": "Object Specification",
+                          "enum": [
+                            "case",
+                            "solicitor",
+                            "creditor",
+                            "debtor",
+                            "pledge",
+                            "cost",
+                            "debt",
+                            "payment",
+                            "amort",
+                            "partner",
+                            "document",
+                            "collateral",
+                            "collateralaccount",
+                            "mandate",
+                            "collector",
+                            "lawyer",
+                            "instance",
+                            "claim",
+                            "invoice",
+                            "creditinvoice",
+                            "fee",
+                            "debtorcost",
+                            "history",
+                            "addressupdate",
+                            "email"
+                          ],
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "referenceNo": {
+                    "format": "int32",
+                    "description": "Reference number of system note history",
+                    "type": "integer"
+                  },
+                  "title": {
+                    "description": "Title of history",
+                    "type": "string"
+                  },
+                  "category": {
+                    "description": "Category of history",
+                    "enum": [
+                      "letter",
+                      "contactpoints",
+                      "payment",
+                      "note",
+                      "general",
+                      "userdefined"
+                    ],
+                    "type": "string"
+                  },
+                  "type": {
+                    "description": "Type of history",
+                    "enum": [
+                      "letterPrinted",
+                      "letterSaved",
+                      "letterModifiedSaved",
+                      "letterReceived",
+                      "letterReceviedScanned",
+                      "phoneCallMade",
+                      "phoneCallReceived",
+                      "manualNote",
+                      "systemNote",
+                      "postalAddressUpdated",
+                      "payment",
+                      "objectMoved",
+                      "letterModifiedOnly",
+                      "ole",
+                      "archiveExternalFile",
+                      "paymentRetransfered",
+                      "emailSent",
+                      "emailReceived",
+                      "amortisationPlanCreated",
+                      "visitDebtor",
+                      "dynamic",
+                      "smsSend",
+                      "onlineRequest",
+                      "xmlLetterPrinted",
+                      "noteReceivedFromENova",
+                      "noteSentToENova",
+                      "limitationInterruption",
+                      "noteSentFromdebtorRegistret",
+                      "externalData",
+                      "postalAddressUpdatedForMultipleAddress",
+                      "contactPointsUpdatedForMultipleAddress",
+                      "creditInformationExport",
+                      "creditInformationOnlineRequest",
+                      "ocrGeneratedUsingOb"
+                    ],
+                    "type": "string"
+                  },
+                  "subType": {
+                    "description": "SubType of history",
+                    "enum": [
+                      "paymentDeleted",
+                      "approvedPaymentDeleted",
+                      "caseOrCreditorSpecificAddressChanged",
+                      "caseOrCreditorSpecificAddressAdded",
+                      "addressObliterated",
+                      "mainAddressSwitched",
+                      "caseOrCreditorSpecificAddressDeleted",
+                      "phoneNumberChanged",
+                      "phoneNumberAdded",
+                      "phoneNumberObliterated",
+                      "mainPhoneNumberChanged"
+                    ],
+                    "type": "string"
+                  },
+                  "priority": {
+                    "description": "Priority",
+                    "enum": [
+                      "normal",
+                      "high"
+                    ],
+                    "type": "string"
+                  },
+                  "code": {
+                    "description": "Code assigned to a note",
+                    "type": "string"
+                  },
+                  "registration": {
+                    "description": "Registration details",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Registered by",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "ocr": {
+                    "description": "OCR Number",
+                    "type": "string"
+                  },
+                  "obliterated": {
+                    "description": "Destroyed history details",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Obliterated Date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Obliterated by",
+                        "type": "string"
+                      },
+                      "note": {
+                        "description": "Notes for obliterated history",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "quantity": {
+                    "format": "int32",
+                    "description": "Number of letters printed",
+                    "type": "integer"
+                  },
+                  "typeOfContact": {
+                    "description": "Type of contact for history note",
+                    "enum": [
+                      "debtor",
+                      "creditor",
+                      "authority",
+                      "others"
+                    ],
+                    "type": "string"
+                  },
+                  "attachmentAvailable": {
+                    "description": "Indicates whether the history record contains an attachment or not",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/debtors/{debtorNo}/history": {
+      "get": {
+        "tags": [
+          "History"
+        ],
+        "summary": "Returns basic information of history entries related to a debtor.",
+        "operationId": "GetHistoryByDebtorNo",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "History details",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "format": "int32",
+                    "description": "Id of history",
+                    "type": "integer"
+                  },
+                  "linkedObjects": {
+                    "description": "Linked objects id and specification",
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                      "description": "Generic DTO for object identification. Please refer to the respective APIs for more details.",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "format": "int32",
+                          "description": "ID",
+                          "type": "integer"
+                        },
+                        "specification": {
+                          "description": "Object Specification",
+                          "enum": [
+                            "case",
+                            "solicitor",
+                            "creditor",
+                            "debtor",
+                            "pledge",
+                            "cost",
+                            "debt",
+                            "payment",
+                            "amort",
+                            "partner",
+                            "document",
+                            "collateral",
+                            "collateralaccount",
+                            "mandate",
+                            "collector",
+                            "lawyer",
+                            "instance",
+                            "claim",
+                            "invoice",
+                            "creditinvoice",
+                            "fee",
+                            "debtorcost",
+                            "history",
+                            "addressupdate",
+                            "email"
+                          ],
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "referenceNo": {
+                    "format": "int32",
+                    "description": "Reference number of system note history",
+                    "type": "integer"
+                  },
+                  "title": {
+                    "description": "Title of history",
+                    "type": "string"
+                  },
+                  "category": {
+                    "description": "Category of history",
+                    "enum": [
+                      "letter",
+                      "contactpoints",
+                      "payment",
+                      "note",
+                      "general",
+                      "userdefined"
+                    ],
+                    "type": "string"
+                  },
+                  "type": {
+                    "description": "Type of history",
+                    "enum": [
+                      "letterPrinted",
+                      "letterSaved",
+                      "letterModifiedSaved",
+                      "letterReceived",
+                      "letterReceviedScanned",
+                      "phoneCallMade",
+                      "phoneCallReceived",
+                      "manualNote",
+                      "systemNote",
+                      "postalAddressUpdated",
+                      "payment",
+                      "objectMoved",
+                      "letterModifiedOnly",
+                      "ole",
+                      "archiveExternalFile",
+                      "paymentRetransfered",
+                      "emailSent",
+                      "emailReceived",
+                      "amortisationPlanCreated",
+                      "visitDebtor",
+                      "dynamic",
+                      "smsSend",
+                      "onlineRequest",
+                      "xmlLetterPrinted",
+                      "noteReceivedFromENova",
+                      "noteSentToENova",
+                      "limitationInterruption",
+                      "noteSentFromdebtorRegistret",
+                      "externalData",
+                      "postalAddressUpdatedForMultipleAddress",
+                      "contactPointsUpdatedForMultipleAddress",
+                      "creditInformationExport",
+                      "creditInformationOnlineRequest",
+                      "ocrGeneratedUsingOb"
+                    ],
+                    "type": "string"
+                  },
+                  "subType": {
+                    "description": "SubType of history",
+                    "enum": [
+                      "paymentDeleted",
+                      "approvedPaymentDeleted",
+                      "caseOrCreditorSpecificAddressChanged",
+                      "caseOrCreditorSpecificAddressAdded",
+                      "addressObliterated",
+                      "mainAddressSwitched",
+                      "caseOrCreditorSpecificAddressDeleted",
+                      "phoneNumberChanged",
+                      "phoneNumberAdded",
+                      "phoneNumberObliterated",
+                      "mainPhoneNumberChanged"
+                    ],
+                    "type": "string"
+                  },
+                  "priority": {
+                    "description": "Priority",
+                    "enum": [
+                      "normal",
+                      "high"
+                    ],
+                    "type": "string"
+                  },
+                  "code": {
+                    "description": "Code assigned to a note",
+                    "type": "string"
+                  },
+                  "registration": {
+                    "description": "Registration details",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Registered by",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "ocr": {
+                    "description": "OCR Number",
+                    "type": "string"
+                  },
+                  "obliterated": {
+                    "description": "Destroyed history details",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Obliterated Date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Obliterated by",
+                        "type": "string"
+                      },
+                      "note": {
+                        "description": "Notes for obliterated history",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "quantity": {
+                    "format": "int32",
+                    "description": "Number of letters printed",
+                    "type": "integer"
+                  },
+                  "typeOfContact": {
+                    "description": "Type of contact for history note",
+                    "enum": [
+                      "debtor",
+                      "creditor",
+                      "authority",
+                      "others"
+                    ],
+                    "type": "string"
+                  },
+                  "attachmentAvailable": {
+                    "description": "Indicates whether the history record contains an attachment or not",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/authenticate": {
+      "post": {
+        "tags": [
+          "Identity"
+        ],
+        "summary": "Validates user credentials and returns a token for accessing the APIs.",
+        "operationId": "Login",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "The user name and password",
+            "required": false,
+            "schema": {
+              "description": "User credentials",
+              "type": "object",
+              "properties": {
+                "userName": {
+                  "description": "User Name",
+                  "type": "string"
+                },
+                "password": {
+                  "description": "Password",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Access token enabling user to access the Nova APIs"
+          },
+          "400": {
+            "description": "Empty or incorrect user parameters"
+          },
+          "401": {
+            "description": "User credentials are invalid"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/debtors/{debtorNo}/cases/{caseNo}": {
+      "get": {
+        "tags": [
+          "Interest"
+        ],
+        "summary": "Get interest calculation for specific debtor and case with split between remaining invoice interest and remaining cost interest",
+        "operationId": "GetDebtorCaseInterest",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Interest data retrieved successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "interest": {
+                  "description": "Debt interest details",
+                  "type": "object",
+                  "properties": {
+                    "remaining": {
+                      "format": "double",
+                      "description": "Remaining interest amount",
+                      "type": "number"
+                    },
+                    "splitInterest": {
+                      "description": "Captitalization of interest",
+                      "type": "object",
+                      "properties": {
+                        "capitalized": {
+                          "format": "double",
+                          "description": "Capitalized interest amount",
+                          "type": "number"
+                        },
+                        "notToCapitalize": {
+                          "format": "double",
+                          "description": "Not to capitalize interest amount",
+                          "type": "number"
+                        },
+                        "toCapitalize": {
+                          "format": "double",
+                          "description": "To capitalize interest amount",
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "costInterest": {
+                  "description": "Cost interest details",
+                  "type": "object",
+                  "properties": {
+                    "remaining": {
+                      "format": "double",
+                      "description": "Remaining interest amount",
+                      "type": "number"
+                    },
+                    "splitInterest": {
+                      "description": "Captitalization of interest",
+                      "type": "object",
+                      "properties": {
+                        "capitalized": {
+                          "format": "double",
+                          "description": "Capitalized interest amount",
+                          "type": "number"
+                        },
+                        "notToCapitalize": {
+                          "format": "double",
+                          "description": "Not to capitalize interest amount",
+                          "type": "number"
+                        },
+                        "toCapitalize": {
+                          "format": "double",
+                          "description": "To capitalize interest amount",
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/cases/{caseNo}": {
+      "get": {
+        "tags": [
+          "Interest"
+        ],
+        "summary": "Get interest calculation for specific case with split between remaining invoice interest and remaining cost interest",
+        "operationId": "GetCaseInterest",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Interest data retrieved successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "interest": {
+                  "description": "Debt interest details",
+                  "type": "object",
+                  "properties": {
+                    "remaining": {
+                      "format": "double",
+                      "description": "Remaining interest amount",
+                      "type": "number"
+                    },
+                    "splitInterest": {
+                      "description": "Captitalization of interest",
+                      "type": "object",
+                      "properties": {
+                        "capitalized": {
+                          "format": "double",
+                          "description": "Capitalized interest amount",
+                          "type": "number"
+                        },
+                        "notToCapitalize": {
+                          "format": "double",
+                          "description": "Not to capitalize interest amount",
+                          "type": "number"
+                        },
+                        "toCapitalize": {
+                          "format": "double",
+                          "description": "To capitalize interest amount",
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "costInterest": {
+                  "description": "Cost interest details",
+                  "type": "object",
+                  "properties": {
+                    "remaining": {
+                      "format": "double",
+                      "description": "Remaining interest amount",
+                      "type": "number"
+                    },
+                    "splitInterest": {
+                      "description": "Captitalization of interest",
+                      "type": "object",
+                      "properties": {
+                        "capitalized": {
+                          "format": "double",
+                          "description": "Capitalized interest amount",
+                          "type": "number"
+                        },
+                        "notToCapitalize": {
+                          "format": "double",
+                          "description": "Not to capitalize interest amount",
+                          "type": "number"
+                        },
+                        "toCapitalize": {
+                          "format": "double",
+                          "description": "To capitalize interest amount",
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/debtors/{debtorNo}/claims/spec/{spec}/refid/{refId}": {
+      "get": {
+        "tags": [
+          "Interest"
+        ],
+        "summary": "Get interest calculation for specific debtor and invoice or creditinvoice or debtorcost",
+        "operationId": "GetDebtorClaimInterest",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Invoice, Creditinvoice or Debtorcost",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "case",
+              "solicitor",
+              "creditor",
+              "debtor",
+              "pledge",
+              "cost",
+              "debt",
+              "payment",
+              "amort",
+              "partner",
+              "document",
+              "collateral",
+              "collateralaccount",
+              "mandate",
+              "collector",
+              "lawyer",
+              "instance",
+              "claim",
+              "invoice",
+              "creditinvoice",
+              "fee",
+              "debtorcost",
+              "history",
+              "addressupdate",
+              "email"
+            ]
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Invoice id or Creditor invoice id or Debtor cost id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Interest data retrieved successfully",
+            "schema": {
+              "description": "Interest details",
+              "type": "object",
+              "properties": {
+                "remaining": {
+                  "format": "double",
+                  "description": "Remaining interest amount",
+                  "type": "number"
+                },
+                "splitInterest": {
+                  "description": "Captitalization of interest",
+                  "type": "object",
+                  "properties": {
+                    "capitalized": {
+                      "format": "double",
+                      "description": "Capitalized interest amount",
+                      "type": "number"
+                    },
+                    "notToCapitalize": {
+                      "format": "double",
+                      "description": "Not to capitalize interest amount",
+                      "type": "number"
+                    },
+                    "toCapitalize": {
+                      "format": "double",
+                      "description": "To capitalize interest amount",
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/claims/spec/{spec}/refid/{refId}": {
+      "get": {
+        "tags": [
+          "Interest"
+        ],
+        "summary": "Get interest calculation for specific invoice or creditinvoice or debtorcost",
+        "operationId": "GetClaimInterest",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "Invoice, Creditinvoice or Debtorcost",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "case",
+              "solicitor",
+              "creditor",
+              "debtor",
+              "pledge",
+              "cost",
+              "debt",
+              "payment",
+              "amort",
+              "partner",
+              "document",
+              "collateral",
+              "collateralaccount",
+              "mandate",
+              "collector",
+              "lawyer",
+              "instance",
+              "claim",
+              "invoice",
+              "creditinvoice",
+              "fee",
+              "debtorcost",
+              "history",
+              "addressupdate",
+              "email"
+            ]
+          },
+          {
+            "name": "refId",
+            "in": "path",
+            "description": "Invoice id or Creditor invoice id or Debtor cost id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Interest data retrieved successfully",
+            "schema": {
+              "description": "Interest details",
+              "type": "object",
+              "properties": {
+                "remaining": {
+                  "format": "double",
+                  "description": "Remaining interest amount",
+                  "type": "number"
+                },
+                "splitInterest": {
+                  "description": "Captitalization of interest",
+                  "type": "object",
+                  "properties": {
+                    "capitalized": {
+                      "format": "double",
+                      "description": "Capitalized interest amount",
+                      "type": "number"
+                    },
+                    "notToCapitalize": {
+                      "format": "double",
+                      "description": "Not to capitalize interest amount",
+                      "type": "number"
+                    },
+                    "toCapitalize": {
+                      "format": "double",
+                      "description": "To capitalize interest amount",
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/messages": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Gets message based on receiver or sender type",
+        "operationId": "GetMessagesAsync",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "actionType",
+            "in": "query",
+            "description": "Message sent or received",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "sent",
+              "received"
+            ]
+          },
+          {
+            "name": "entityType",
+            "in": "query",
+            "description": "Message sender or receiver entity type",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "collector",
+              "creditor",
+              "debtor"
+            ]
+          },
+          {
+            "name": "objectId",
+            "in": "query",
+            "description": "Message sender or receiver Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "objectSubId",
+            "in": "query",
+            "description": "Creditor department number if the message sender or receiver type is ‘creditor’",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "Number of records per page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "includeNames",
+            "in": "query",
+            "description": "Includes names of message receiver and sender with response if the default value is true",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message retrieved successfully",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "Message to send",
+                "required": [
+                  "parentMessageId",
+                  "originalMessageId",
+                  "sendDate",
+                  "subject",
+                  "body",
+                  "senderId",
+                  "senderType",
+                  "receiver"
+                ],
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "format": "int32",
+                    "description": "Id of Message",
+                    "type": "integer"
+                  },
+                  "parentMessageId": {
+                    "format": "int32",
+                    "description": "Id of parent message",
+                    "type": "integer"
+                  },
+                  "originalMessageId": {
+                    "format": "int32",
+                    "description": "Id of Original message",
+                    "type": "integer"
+                  },
+                  "sendDate": {
+                    "format": "date-time",
+                    "description": "Date on which the message was sent",
+                    "type": "string"
+                  },
+                  "subject": {
+                    "description": "Message subject",
+                    "type": "string"
+                  },
+                  "body": {
+                    "description": "Message Body",
+                    "type": "string"
+                  },
+                  "senderId": {
+                    "format": "int32",
+                    "description": "Id of sender of message",
+                    "type": "integer"
+                  },
+                  "senderType": {
+                    "description": "Type Of sender : 1=Collector; 2=Creditor; 3=Debtor;",
+                    "enum": [
+                      "collector",
+                      "creditor",
+                      "debtor"
+                    ],
+                    "type": "string"
+                  },
+                  "senderSubId": {
+                    "format": "int32",
+                    "description": "Department Id of creditor",
+                    "type": "integer"
+                  },
+                  "receiver": {
+                    "description": "Message receiver",
+                    "required": [
+                      "receiverId",
+                      "receiverType"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "receiverId": {
+                        "format": "int32",
+                        "description": "Message receiver id",
+                        "type": "integer"
+                      },
+                      "receiverSubId": {
+                        "format": "int32",
+                        "description": "Department Id of creditor",
+                        "type": "integer"
+                      },
+                      "receiverType": {
+                        "description": "Type of message receiver : 1=Collector; 2=Creditor; 3=Debtor",
+                        "enum": [
+                          "collector",
+                          "creditor",
+                          "debtor"
+                        ],
+                        "type": "string"
+                      },
+                      "readDate": {
+                        "format": "date-time",
+                        "description": "Message read date",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Sends message to debtor or creditor",
+        "operationId": "MessageAsync",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "message",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "description": "Message to send",
+              "required": [
+                "parentMessageId",
+                "originalMessageId",
+                "sendDate",
+                "subject",
+                "body",
+                "senderId",
+                "senderType",
+                "receiver"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "format": "int32",
+                  "description": "Id of Message",
+                  "type": "integer"
+                },
+                "parentMessageId": {
+                  "format": "int32",
+                  "description": "Id of parent message",
+                  "type": "integer"
+                },
+                "originalMessageId": {
+                  "format": "int32",
+                  "description": "Id of Original message",
+                  "type": "integer"
+                },
+                "sendDate": {
+                  "format": "date-time",
+                  "description": "Date on which the message was sent",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "Message subject",
+                  "type": "string"
+                },
+                "body": {
+                  "description": "Message Body",
+                  "type": "string"
+                },
+                "senderId": {
+                  "format": "int32",
+                  "description": "Id of sender of message",
+                  "type": "integer"
+                },
+                "senderType": {
+                  "description": "Type Of sender : 1=Collector; 2=Creditor; 3=Debtor;",
+                  "enum": [
+                    "collector",
+                    "creditor",
+                    "debtor"
+                  ],
+                  "type": "string"
+                },
+                "senderSubId": {
+                  "format": "int32",
+                  "description": "Department Id of creditor",
+                  "type": "integer"
+                },
+                "receiver": {
+                  "description": "Message receiver",
+                  "required": [
+                    "receiverId",
+                    "receiverType"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "receiverId": {
+                      "format": "int32",
+                      "description": "Message receiver id",
+                      "type": "integer"
+                    },
+                    "receiverSubId": {
+                      "format": "int32",
+                      "description": "Department Id of creditor",
+                      "type": "integer"
+                    },
+                    "receiverType": {
+                      "description": "Type of message receiver : 1=Collector; 2=Creditor; 3=Debtor",
+                      "enum": [
+                        "collector",
+                        "creditor",
+                        "debtor"
+                      ],
+                      "type": "string"
+                    },
+                    "readDate": {
+                      "format": "date-time",
+                      "description": "Message read date",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message saved successfully"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/messages/{messageId}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Get Message by message id",
+        "operationId": "GetMessageByIdAsync",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "description": "Id of message",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message retrieved successfully",
+            "schema": {
+              "description": "Message to send",
+              "required": [
+                "parentMessageId",
+                "originalMessageId",
+                "sendDate",
+                "subject",
+                "body",
+                "senderId",
+                "senderType",
+                "receiver"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "format": "int32",
+                  "description": "Id of Message",
+                  "type": "integer"
+                },
+                "parentMessageId": {
+                  "format": "int32",
+                  "description": "Id of parent message",
+                  "type": "integer"
+                },
+                "originalMessageId": {
+                  "format": "int32",
+                  "description": "Id of Original message",
+                  "type": "integer"
+                },
+                "sendDate": {
+                  "format": "date-time",
+                  "description": "Date on which the message was sent",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "Message subject",
+                  "type": "string"
+                },
+                "body": {
+                  "description": "Message Body",
+                  "type": "string"
+                },
+                "senderId": {
+                  "format": "int32",
+                  "description": "Id of sender of message",
+                  "type": "integer"
+                },
+                "senderType": {
+                  "description": "Type Of sender : 1=Collector; 2=Creditor; 3=Debtor;",
+                  "enum": [
+                    "collector",
+                    "creditor",
+                    "debtor"
+                  ],
+                  "type": "string"
+                },
+                "senderSubId": {
+                  "format": "int32",
+                  "description": "Department Id of creditor",
+                  "type": "integer"
+                },
+                "receiver": {
+                  "description": "Message receiver",
+                  "required": [
+                    "receiverId",
+                    "receiverType"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "receiverId": {
+                      "format": "int32",
+                      "description": "Message receiver id",
+                      "type": "integer"
+                    },
+                    "receiverSubId": {
+                      "format": "int32",
+                      "description": "Department Id of creditor",
+                      "type": "integer"
+                    },
+                    "receiverType": {
+                      "description": "Type of message receiver : 1=Collector; 2=Creditor; 3=Debtor",
+                      "enum": [
+                        "collector",
+                        "creditor",
+                        "debtor"
+                      ],
+                      "type": "string"
+                    },
+                    "readDate": {
+                      "format": "date-time",
+                      "description": "Message read date",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/messages/{messageId}/readdate": {
+      "put": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Update message read date",
+        "operationId": "UpdateReadDateAsync",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "description": "Id of message",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "date",
+            "in": "body",
+            "description": "Message read date",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Date updated successfully"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/messages/search": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Search message by collector, creditor or debtor.",
+        "operationId": "SearchMessageAsync",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchBy",
+            "in": "query",
+            "description": "Search message sent or received by collector, debtor or creditor",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "collector",
+              "creditor",
+              "debtor"
+            ]
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "Nova collector Id, creditor Id or debtor Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "depNo",
+            "in": "query",
+            "description": "Department number when searching content by creditor",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "searchContent",
+            "in": "query",
+            "description": "Search content",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "Number of records per page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data retrieved successfully",
+            "schema": {
+              "description": "Message to send",
+              "required": [
+                "parentMessageId",
+                "originalMessageId",
+                "sendDate",
+                "subject",
+                "body",
+                "senderId",
+                "senderType",
+                "receiver"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "format": "int32",
+                  "description": "Id of Message",
+                  "type": "integer"
+                },
+                "parentMessageId": {
+                  "format": "int32",
+                  "description": "Id of parent message",
+                  "type": "integer"
+                },
+                "originalMessageId": {
+                  "format": "int32",
+                  "description": "Id of Original message",
+                  "type": "integer"
+                },
+                "sendDate": {
+                  "format": "date-time",
+                  "description": "Date on which the message was sent",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "Message subject",
+                  "type": "string"
+                },
+                "body": {
+                  "description": "Message Body",
+                  "type": "string"
+                },
+                "senderId": {
+                  "format": "int32",
+                  "description": "Id of sender of message",
+                  "type": "integer"
+                },
+                "senderType": {
+                  "description": "Type Of sender : 1=Collector; 2=Creditor; 3=Debtor;",
+                  "enum": [
+                    "collector",
+                    "creditor",
+                    "debtor"
+                  ],
+                  "type": "string"
+                },
+                "senderSubId": {
+                  "format": "int32",
+                  "description": "Department Id of creditor",
+                  "type": "integer"
+                },
+                "receiver": {
+                  "description": "Message receiver",
+                  "required": [
+                    "receiverId",
+                    "receiverType"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "receiverId": {
+                      "format": "int32",
+                      "description": "Message receiver id",
+                      "type": "integer"
+                    },
+                    "receiverSubId": {
+                      "format": "int32",
+                      "description": "Department Id of creditor",
+                      "type": "integer"
+                    },
+                    "receiverType": {
+                      "description": "Type of message receiver : 1=Collector; 2=Creditor; 3=Debtor",
+                      "enum": [
+                        "collector",
+                        "creditor",
+                        "debtor"
+                      ],
+                      "type": "string"
+                    },
+                    "readDate": {
+                      "format": "date-time",
+                      "description": "Message read date",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/messages/archive": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Archive message",
+        "operationId": "ArchiveAsync",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "messageIds",
+            "in": "body",
+            "description": "Integer list of message Ids",
+            "required": false,
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message archived successfully"
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/debtors/{debtorNo}/payments": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Gets the payments based on specified debtor number",
+        "operationId": "GetPaymentsByDebtorNo",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Debtor number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "Number of records per page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "Payment DTO",
+                "type": "object",
+                "properties": {
+                  "paymentNo": {
+                    "format": "int32",
+                    "description": "Payment number",
+                    "type": "integer"
+                  },
+                  "sender": {
+                    "description": "Sender",
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "description": "Sender role",
+                        "enum": [
+                          "unknown",
+                          "debtor",
+                          "authority",
+                          "other"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "beneficiary": {
+                    "description": "Beneficiary",
+                    "type": "object",
+                    "properties": {
+                      "debtorNo": {
+                        "format": "int32",
+                        "description": "Debtor number",
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "senderAccount": {
+                    "description": "Sender Account",
+                    "type": "object",
+                    "properties": {
+                      "acountNo": {
+                        "description": "List of account numbers",
+                        "uniqueItems": false,
+                        "type": "array",
+                        "items": {
+                          "description": "",
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "description": "Account Type",
+                              "enum": [
+                                "unidentified"
+                              ],
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "Account Number",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "receiver": {
+                    "description": "Receiver",
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "description": "Role of receiver",
+                        "enum": [
+                          "creditor",
+                          "solicitor"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "paymentMethod": {
+                    "description": "Payment Method",
+                    "type": "string"
+                  },
+                  "currency": {
+                    "description": "Currency Code",
+                    "type": "string"
+                  },
+                  "receivedAmount": {
+                    "format": "double",
+                    "description": "Total payment received",
+                    "type": "number"
+                  },
+                  "bookedAmount": {
+                    "format": "double",
+                    "description": "Amount from the payments being distributed on debts or costs",
+                    "type": "number"
+                  },
+                  "date": {
+                    "format": "date-time",
+                    "description": "Date",
+                    "type": "string"
+                  },
+                  "accountingDate": {
+                    "format": "date-time",
+                    "description": "Accounting Date",
+                    "type": "string"
+                  },
+                  "deductionDate": {
+                    "format": "date-time",
+                    "description": "Deduction Date",
+                    "type": "string"
+                  },
+                  "amortisationPlan": {
+                    "description": "Tells whether payment is made against case, debtor or amortisation plan",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "format": "int32",
+                        "description": "ID",
+                        "type": "integer"
+                      },
+                      "specification": {
+                        "description": "Object Specification",
+                        "enum": [
+                          "case",
+                          "solicitor",
+                          "creditor",
+                          "debtor",
+                          "pledge",
+                          "cost",
+                          "debt",
+                          "payment",
+                          "amort",
+                          "partner",
+                          "document",
+                          "collateral",
+                          "collateralaccount",
+                          "mandate",
+                          "collector",
+                          "lawyer",
+                          "instance",
+                          "claim",
+                          "invoice",
+                          "creditinvoice",
+                          "fee",
+                          "debtorcost",
+                          "history",
+                          "addressupdate",
+                          "email"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "registration": {
+                    "description": "Registration",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Registered by",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "description": {
+                    "description": "Description",
+                    "type": "string"
+                  },
+                  "information": {
+                    "description": "Information",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "Status",
+                    "enum": [
+                      "booked",
+                      "deducted"
+                    ],
+                    "type": "string"
+                  },
+                  "manual": {
+                    "description": "Manual",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/cases/{caseNo}/payments": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Gets the payments based on specified case number",
+        "operationId": "GetPaymentsByCaseNo",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Case number",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "Number of records per page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request processed successfully",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "description": "Payment DTO",
+                "type": "object",
+                "properties": {
+                  "paymentNo": {
+                    "format": "int32",
+                    "description": "Payment number",
+                    "type": "integer"
+                  },
+                  "sender": {
+                    "description": "Sender",
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "description": "Sender role",
+                        "enum": [
+                          "unknown",
+                          "debtor",
+                          "authority",
+                          "other"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "beneficiary": {
+                    "description": "Beneficiary",
+                    "type": "object",
+                    "properties": {
+                      "debtorNo": {
+                        "format": "int32",
+                        "description": "Debtor number",
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "senderAccount": {
+                    "description": "Sender Account",
+                    "type": "object",
+                    "properties": {
+                      "acountNo": {
+                        "description": "List of account numbers",
+                        "uniqueItems": false,
+                        "type": "array",
+                        "items": {
+                          "description": "",
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "description": "Account Type",
+                              "enum": [
+                                "unidentified"
+                              ],
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "Account Number",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "receiver": {
+                    "description": "Receiver",
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "description": "Role of receiver",
+                        "enum": [
+                          "creditor",
+                          "solicitor"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "paymentMethod": {
+                    "description": "Payment Method",
+                    "type": "string"
+                  },
+                  "currency": {
+                    "description": "Currency Code",
+                    "type": "string"
+                  },
+                  "receivedAmount": {
+                    "format": "double",
+                    "description": "Total payment received",
+                    "type": "number"
+                  },
+                  "bookedAmount": {
+                    "format": "double",
+                    "description": "Amount from the payments being distributed on debts or costs",
+                    "type": "number"
+                  },
+                  "date": {
+                    "format": "date-time",
+                    "description": "Date",
+                    "type": "string"
+                  },
+                  "accountingDate": {
+                    "format": "date-time",
+                    "description": "Accounting Date",
+                    "type": "string"
+                  },
+                  "deductionDate": {
+                    "format": "date-time",
+                    "description": "Deduction Date",
+                    "type": "string"
+                  },
+                  "amortisationPlan": {
+                    "description": "Tells whether payment is made against case, debtor or amortisation plan",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "format": "int32",
+                        "description": "ID",
+                        "type": "integer"
+                      },
+                      "specification": {
+                        "description": "Object Specification",
+                        "enum": [
+                          "case",
+                          "solicitor",
+                          "creditor",
+                          "debtor",
+                          "pledge",
+                          "cost",
+                          "debt",
+                          "payment",
+                          "amort",
+                          "partner",
+                          "document",
+                          "collateral",
+                          "collateralaccount",
+                          "mandate",
+                          "collector",
+                          "lawyer",
+                          "instance",
+                          "claim",
+                          "invoice",
+                          "creditinvoice",
+                          "fee",
+                          "debtorcost",
+                          "history",
+                          "addressupdate",
+                          "email"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "registration": {
+                    "description": "Registration",
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "format": "date-time",
+                        "description": "Registration date",
+                        "type": "string"
+                      },
+                      "userName": {
+                        "description": "Registered by",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "description": {
+                    "description": "Description",
+                    "type": "string"
+                  },
+                  "information": {
+                    "description": "Information",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "Status",
+                    "enum": [
+                      "booked",
+                      "deducted"
+                    ],
+                    "type": "string"
+                  },
+                  "manual": {
+                    "description": "Manual",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/Telephony/DisplayCallPopUp": {
+      "post": {
+        "tags": [
+          "Telephony"
+        ],
+        "summary": "Displays debtor or case pop-up in Nova desktop client application based on information received from an external telephony system.\r\n\r\nNote: This method is deprecated and will be removed in future releases.",
+        "operationId": "Telephony_DisplayCallPopUp",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "popUpDetails",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "description": "Popup details Model class",
+              "required": [
+                "ObjectId"
+              ],
+              "type": "object",
+              "properties": {
+                "ObjectId": {
+                  "format": "int64",
+                  "description": "Nova case or debtor Id",
+                  "type": "integer"
+                },
+                "UserId": {
+                  "description": "Nova user Id",
+                  "type": "string"
+                },
+                "AgentId": {
+                  "description": "User Id of external telephony system",
+                  "type": "string"
+                },
+                "ObjectType": {
+                  "format": "int32",
+                  "description": "Value of ObjectType: The default value is 4.1 = Case, 4 = Debtor",
+                  "enum": [
+                    1,
+                    4
+                  ],
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Request is unauthorized",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/tieto/collection/telephonysvc/notifyuser/{userId}/type/{objectType}/object/{objectId}": {
+      "post": {
+        "tags": [
+          "Telephony"
+        ],
+        "summary": "Displays debtor or case pop-up in Nova desktop client application based on information received from an external telephony system.",
+        "operationId": "Telephony_NotifyUser",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "objectType",
+            "in": "path",
+            "description": "1 = Case, 4 = Debtor",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              1,
+              4
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Request is unauthorized",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/tieto/collection/telephonysvc/notifyagent/{agentId}/type/{objectType}/object/{objectId}": {
+      "post": {
+        "tags": [
+          "Telephony"
+        ],
+        "summary": "Displays debtor or case pop-up in Nova desktop client application based on information received from an external telephony system.",
+        "operationId": "Telephony_NotifyAgent",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "text/html",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "objectType",
+            "in": "path",
+            "description": "1 = Case, 4 = Debtor",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              1,
+              4
+            ]
+          },
+          {
+            "name": "agentId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Request is unauthorized",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    },
+    "basic": {
+      "type": "basic",
+      "description": "Basic HTTP Authentication"
+    },
+    "Authorization": {
+      "type": "apiKey",
+      "description": "API Key Authentication",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
