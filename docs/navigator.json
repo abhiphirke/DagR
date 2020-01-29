@@ -15,20 +15,6 @@
                     ]
                 },
                 {
-                    "name": "19r4",
-                    "services": [
-                        { "name": "Case", "jsonUrl": "docs/nova/19r4/19r4_casesvc.json" },
-                        { "name": "Claim", "jsonUrl": "docs/nova/19r4/19r4_claimsvc.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/nova/19r4/19r4_debtorsvc.json" },
-                        { "name": "History", "jsonUrl": "docs/nova/19r4/19r4_historysvc.json" },
-                        { "name": "Identity", "jsonUrl": "docs/nova/19r4/19r4_identitysvc.json" },
-                        { "name": "Interest", "jsonUrl": "docs/nova/19r4/19r4_interestsvc.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/nova/19r4/19r4_messagingsvc.json" },
-                        { "name": "Payments", "jsonUrl": "docs/nova/19r4/19r4_paymentssvc.json" },
-                        { "name": "Telephony", "jsonUrl": "docs/nova/19r4/19r4_telephonysvc.json" }
-                    ]
-                },
-                {
                     "name": "Vindhya",
                     "services": [
                         { "name": "Amortisation", "jsonUrl": "docs/nova/vindhya/vindhya_amortisationsvc.json" },
@@ -44,6 +30,20 @@
                         { "name": "Ocr", "jsonUrl": "docs/nova/vindhya/vindhya_ocrsvc.json" },
                         { "name": "Payment", "jsonUrl": "docs/nova/vindhya/vindhya_paymentsvc.json" },
                         { "name": "Workflow", "jsonUrl": "docs/nova/vindhya/vindhya_workflowsvc.json" }
+                    ]
+                },
+                {
+                    "name": "19r4",
+                    "services": [
+                        { "name": "Case", "jsonUrl": "docs/nova/19r4/19r4_casesvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/nova/19r4/19r4_claimsvc.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/nova/19r4/19r4_debtorsvc.json" },
+                        { "name": "History", "jsonUrl": "docs/nova/19r4/19r4_historysvc.json" },
+                        { "name": "Identity", "jsonUrl": "docs/nova/19r4/19r4_identitysvc.json" },
+                        { "name": "Interest", "jsonUrl": "docs/nova/19r4/19r4_interestsvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/nova/19r4/19r4_messagingsvc.json" },
+                        { "name": "Payments", "jsonUrl": "docs/nova/19r4/19r4_paymentssvc.json" },
+                        { "name": "Telephony", "jsonUrl": "docs/nova/19r4/19r4_telephonysvc.json" }
                     ]
                 },
                 {
