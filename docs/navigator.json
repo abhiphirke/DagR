@@ -4,24 +4,6 @@
             "name": "Nova",
             "versions": [
                 {
-                    "name": "Vindhya",
-                    "services": [
-                        { "name": "Amortisation", "jsonUrl": "docs/nova/vindhya/vindhya_amortisationsvc.json" },
-                        { "name": "Case", "jsonUrl": "docs/nova/vindhya/vindhya_casesvc.json" },
-                        { "name": "Claim", "jsonUrl": "docs/nova/vindhya/vindhya_claimsvc.json" },
-                        { "name": "Config", "jsonUrl": "docs/nova/vindhya/vindhya_configsvc.json" },
-                        { "name": "Creditor", "jsonUrl": "docs/nova/vindhya/vindhya_creditorsvc.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/nova/vindhya/vindhya_debtorsvc.json" },
-                        { "name": "History", "jsonUrl": "docs/nova/vindhya/vindhya_historysvc.json" },
-                        { "name": "Identity", "jsonUrl": "docs/nova/vindhya/vindhya_identitysvc.json" },
-                        { "name": "LimCom", "jsonUrl": "docs/nova/vindhya/vindhya_limcomsvc.json" },
-                        { "name": "Messaging", "jsonUrl": "docs/nova/vindhya/vindhya_messagesvc.json" },
-                        { "name": "Ocr", "jsonUrl": "docs/nova/vindhya/vindhya_ocrsvc.json" },
-                        { "name": "Payment", "jsonUrl": "docs/nova/vindhya/vindhya_paymentsvc.json" },
-                        { "name": "Workflow", "jsonUrl": "docs/nova/vindhya/vindhya_workflowsvc.json" }
-                    ]
-                },
-                {
                     "name": "20r1",
                     "services": [
                         { "name": "Case", "jsonUrl": "docs/nova/20r1/20r1_casesvc.json" },
@@ -44,6 +26,24 @@
                         { "name": "Messaging", "jsonUrl": "docs/nova/19r4/19r4_messagingsvc.json" },
                         { "name": "Payments", "jsonUrl": "docs/nova/19r4/19r4_paymentssvc.json" },
                         { "name": "Telephony", "jsonUrl": "docs/nova/19r4/19r4_telephonysvc.json" }
+                    ]
+                },
+                {
+                    "name": "Vindhya",
+                    "services": [
+                        { "name": "Amortisation", "jsonUrl": "docs/nova/vindhya/vindhya_amortisationsvc.json" },
+                        { "name": "Case", "jsonUrl": "docs/nova/vindhya/vindhya_casesvc.json" },
+                        { "name": "Claim", "jsonUrl": "docs/nova/vindhya/vindhya_claimsvc.json" },
+                        { "name": "Config", "jsonUrl": "docs/nova/vindhya/vindhya_configsvc.json" },
+                        { "name": "Creditor", "jsonUrl": "docs/nova/vindhya/vindhya_creditorsvc.json" },
+                        { "name": "Debtor", "jsonUrl": "docs/nova/vindhya/vindhya_debtorsvc.json" },
+                        { "name": "History", "jsonUrl": "docs/nova/vindhya/vindhya_historysvc.json" },
+                        { "name": "Identity", "jsonUrl": "docs/nova/vindhya/vindhya_identitysvc.json" },
+                        { "name": "LimCom", "jsonUrl": "docs/nova/vindhya/vindhya_limcomsvc.json" },
+                        { "name": "Messaging", "jsonUrl": "docs/nova/vindhya/vindhya_messagesvc.json" },
+                        { "name": "Ocr", "jsonUrl": "docs/nova/vindhya/vindhya_ocrsvc.json" },
+                        { "name": "Payment", "jsonUrl": "docs/nova/vindhya/vindhya_paymentsvc.json" },
+                        { "name": "Workflow", "jsonUrl": "docs/nova/vindhya/vindhya_workflowsvc.json" }
                     ]
                 },
                 {
