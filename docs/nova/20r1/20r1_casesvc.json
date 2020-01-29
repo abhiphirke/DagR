@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Case Service",
-    "description": "Case API performs Nova case operations and exposes the basic and core case information.",
-    "version": "1.0.0.0"
+    "title": "Nova Case Service",
+    "description": "The Nova case service exposes the case information and performs operations on case objects.\r\n\r\nFollowing are the DTOs that are common across many services:\r\n\r\n**ExternalIdentifierDTO fields**\r\n\r\nNova case identifiers are defined in this Data Transfer Object (DTO).  \r\n  * id1: *Case reference number*\r\n  * id2: *Case previous number*\r\n\r\n**AdditionalIdentifierDTO fields**\r\n\r\nCase additional information. \r\n  * id1: *Joint case number*\r\n",
+    "version": "20.1.141.0"
   },
   "servers": [
     {
-      "url": "/tieto/collection/CaseSvc"
+      "url": "/tieto/collection/casesvc"
     }
   ],
   "paths": {
@@ -16,7 +16,8 @@
         "tags": [
           "Cases"
         ],
-        "summary": "Get core information about a specific case using Nova Case number",
+        "summary": "Returns the core information of a case.",
+        "description": "[TCAPI-3.3]",
         "parameters": [
           {
             "name": "caseNo",
@@ -31,7 +32,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the core case information for the specified Nova debtor number.  (Nova.DTO.Case.CaseCoreInfoDTO)",
+            "description": "Success.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -58,6 +59,9 @@
           },
           "401": {
             "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
           },
           "500": {
             "description": "The server encountered an error while processing the request"
@@ -70,7 +74,8 @@
         "tags": [
           "Cases"
         ],
-        "summary": "Get list of parties for a specific case.",
+        "summary": "Returns list of parties for a case.",
+        "description": "[TCAPI-3.5]",
         "parameters": [
           {
             "name": "caseNo",
@@ -85,7 +90,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the parties information for the specified Nova case number.  (Nova.DTO.Party.PartyDTO)",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -112,6 +117,9 @@
           },
           "401": {
             "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
           },
           "500": {
             "description": "The server encountered an error while processing the request"
@@ -124,7 +132,8 @@
         "tags": [
           "Cases"
         ],
-        "summary": "Get list of merged cases for a specific case.",
+        "summary": "Returns a list of merged cases of a Joint case.",
+        "description": "[TCAPI-3.7]",
         "parameters": [
           {
             "name": "caseNo",
@@ -139,7 +148,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the merged cases information for the specified Nova case number.  (Nova.DTO.Case.CaseDTO)",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -175,6 +184,9 @@
           },
           "401": {
             "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
           },
           "500": {
             "description": "The server encountered an error while processing the request"
@@ -187,7 +199,8 @@
         "tags": [
           "Cases"
         ],
-        "summary": "Get joint case for a specific case.",
+        "summary": "Returns the identifier information of a joint case and all its merged cases for a specific merged case.",
+        "description": "[TCAPI-3.8]",
         "parameters": [
           {
             "name": "caseNo",
@@ -202,7 +215,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the joint case information for the specified Nova case number.  (Nova.DTO.Case.JointCaseDTO)",
+            "description": "Success.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -230,68 +243,8 @@
           "401": {
             "description": "Unauthorized request"
           },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/Debtors/{debtorNo}/cases/idinfo": {
-      "get": {
-        "tags": [
-          "Debtors"
-        ],
-        "summary": "Get the list of cases number and specification of a debtor using Nova Debtor number",
-        "parameters": [
-          {
-            "name": "debtorNo",
-            "in": "path",
-            "description": "Nova debtor number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the list of case number and specification information for the specified Nova debtor number.  (Nova.DTO.Case.CaseCoreInfoDTO)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CaseDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CaseDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CaseDTO"
-                  }
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
+          "402": {
+            "description": "License is missing"
           },
           "500": {
             "description": "The server encountered an error while processing the request"
@@ -304,7 +257,8 @@
         "tags": [
           "Debtors"
         ],
-        "summary": "Get the list of cases core information of a debtor using Nova Debtor number",
+        "summary": "Returns the core information of cases of a debtor.",
+        "description": "[TCAPI-3.4]",
         "parameters": [
           {
             "name": "debtorNo",
@@ -319,7 +273,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the core case information for the specified Nova debtor number.  (Nova.DTO.Case.CaseCoreInfoDTO)",
+            "description": "Success.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -356,18 +310,22 @@
           "401": {
             "description": "Unauthorized request"
           },
+          "402": {
+            "description": "License is missing"
+          },
           "500": {
             "description": "The server encountered an error while processing the request"
           }
         }
       }
     },
-    "/Debtors/{debtorNo}/cases": {
+    "/Debtors/{debtorNo}/cases/idinfo": {
       "get": {
         "tags": [
-          "Deprecated"
+          "Debtors"
         ],
-        "summary": "Get the list of cases number and specification of a debtor using Nova Debtor number",
+        "summary": "Return case identifiers of all the cases related to a debtor.",
+        "description": "[TCAPI-3.6]",
         "parameters": [
           {
             "name": "debtorNo",
@@ -382,13 +340,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the list of case number and specification information for the specified Nova debtor number.  (Nova.DTO.DeprecatedDTOs.CaseDto)",
+            "description": "Success.",
             "content": {
               "text/plain": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CaseDto"
+                    "$ref": "#/components/schemas/CaseDTO"
                   }
                 }
               },
@@ -396,7 +354,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CaseDto"
+                    "$ref": "#/components/schemas/CaseDTO"
                   }
                 }
               },
@@ -404,7 +362,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CaseDto"
+                    "$ref": "#/components/schemas/CaseDTO"
                   }
                 }
               }
@@ -419,52 +377,8 @@
           "401": {
             "description": "Unauthorized request"
           },
-          "500": {
-            "description": "The server encountered an error while processing the request"
-          }
-        }
-      }
-    },
-    "/Debtors/{debtorNo}/cases/{caseNo}": {
-      "get": {
-        "tags": [
-          "Deprecated"
-        ],
-        "summary": "Get the list of cases core information of a debtor using Nova Debtor number",
-        "parameters": [
-          {
-            "name": "debtorNo",
-            "in": "path",
-            "description": "Nova debtor number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "caseNo",
-            "in": "path",
-            "description": "Nova case number",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the core case information for the specified Nova debtor number.  (Nova.DTO.DeprecatedDTOs.CaseDto)"
-          },
-          "204": {
-            "description": "No records found"
-          },
-          "400": {
-            "description": "Incorrect input parameters"
-          },
-          "401": {
-            "description": "Unauthorized request"
+          "402": {
+            "description": "License is missing"
           },
           "500": {
             "description": "The server encountered an error while processing the request"
@@ -482,37 +396,37 @@
           "surveillance"
         ],
         "type": "string",
-        "description": "Provides state of a case"
+        "description": "State of a case"
       },
       "RegistrationDTO": {
         "type": "object",
         "properties": {
           "date": {
             "type": "string",
-            "description": "Registration date.",
+            "description": "",
             "format": "date-time",
             "nullable": true
           },
           "userName": {
             "type": "string",
-            "description": "Registered by.",
+            "description": "",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Object registration."
+        "description": "Object registration"
       },
       "CaseClosureDTO": {
         "type": "object",
         "properties": {
           "code": {
             "type": "string",
-            "description": "Closure code as configured within Nova settings",
+            "description": "Closure code configured in Nova settings",
             "nullable": true
           },
           "codeDescription": {
             "type": "string",
-            "description": "Closure code description as configured within Nova settings",
+            "description": "Closure code description configured in Nova settings",
             "nullable": true
           },
           "date": {
@@ -522,7 +436,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Provides information about closure details of a case"
+        "description": "Case closure details"
       },
       "CaseSpecificationDTO": {
         "enum": [
@@ -531,7 +445,7 @@
           "joint"
         ],
         "type": "string",
-        "description": "Provides information about specification of case."
+        "description": "Specification of a case"
       },
       "ExternalIdentifierDTO": {
         "type": "object",
@@ -558,75 +472,104 @@
           }
         },
         "additionalProperties": false,
-        "description": "Object references other than the Nova unique object identifier. Elements are described in the context where DTO is being used."
+        "description": "Object references other than the Nova unique object identifier. Elements are described in context of the DTO being used."
       },
       "AdditionalIdentifierDTO": {
         "type": "object",
         "properties": {
           "id1": {
             "type": "integer",
-            "description": "Id1",
+            "description": "",
             "format": "int32",
             "nullable": true
           },
           "id2": {
             "type": "integer",
-            "description": "Id2",
+            "description": "",
             "format": "int32",
             "nullable": true
           },
           "id3": {
             "type": "string",
-            "description": "Id3",
+            "description": "",
             "nullable": true
           },
           "name": {
             "type": "string",
-            "description": "Name",
+            "description": "",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": ""
+        "description": "Additional information of an object."
       },
       "CaseCoreInfoDTO": {
         "type": "object",
         "properties": {
           "state": {
-            "$ref": "#/components/schemas/CaseStateDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CaseStateDTO"
+              }
+            ],
+            "description": "State of a case"
           },
           "registration": {
-            "$ref": "#/components/schemas/RegistrationDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RegistrationDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "closed": {
             "type": "boolean",
             "description": "Indicates whether a case is closed or active. True if case is closed."
           },
           "closureDetails": {
-            "$ref": "#/components/schemas/CaseClosureDTO"
-          },
-          "paymentReference": {
-            "type": "string",
-            "description": "This is used as payment reference number for matching incoming payment into Nova.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CaseClosureDTO"
+              }
+            ],
+            "description": "",
             "nullable": true
           },
           "id": {
             "type": "integer",
-            "description": "Unique (within Nova) Id of a case",
+            "description": "Nova case number",
             "format": "int32"
           },
           "specification": {
-            "$ref": "#/components/schemas/CaseSpecificationDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CaseSpecificationDTO"
+              }
+            ],
+            "description": ""
           },
           "external": {
-            "$ref": "#/components/schemas/ExternalIdentifierDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalIdentifierDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "additional": {
-            "$ref": "#/components/schemas/AdditionalIdentifierDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdditionalIdentifierDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides core information about a case"
+        "description": "Case core information."
       },
       "ResourceSpecificationDTO": {
         "enum": [
@@ -655,47 +598,60 @@
           "addressUpdate"
         ],
         "type": "string",
-        "description": "ResourceSpecificationDTO."
+        "description": ""
       },
       "ReferenceIdentifierDTO": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Unique identification number",
+            "description": "",
             "format": "int32"
           },
           "specification": {
-            "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceSpecificationDTO"
+              }
+            ],
+            "description": ""
           }
         },
         "additionalProperties": false,
-        "description": "Unique identification for the reference types (that cannot be identified by an unique identification number) within Nova."
+        "description": "Uniquely identifies a specified object."
       },
       "PartyDTO": {
         "type": "object",
         "properties": {
           "reference": {
-            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
-          },
-          "subReference": {
-            "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+              }
+            ],
+            "description": "Unique identification(in Nova) of a party/>",
+            "nullable": true
           },
           "role": {
             "type": "string",
             "description": "Role of the entity (party) in the associated case",
             "nullable": true
+          },
+          "secondaryRole": {
+            "type": "string",
+            "description": "Secondary role of the entity (party) in the associated case",
+            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Information about different entities associated with a case"
+        "description": "Information of entities associated with a case."
       },
       "CasePartyDTO": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Unique identification number of Case in Nova",
+            "description": "Nova case number",
             "format": "int32"
           },
           "parties": {
@@ -715,21 +671,38 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Unique (within Nova) Id of a case",
+            "description": "Nova case number",
             "format": "int32"
           },
           "specification": {
-            "$ref": "#/components/schemas/CaseSpecificationDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CaseSpecificationDTO"
+              }
+            ],
+            "description": ""
           },
           "external": {
-            "$ref": "#/components/schemas/ExternalIdentifierDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalIdentifierDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "additional": {
-            "$ref": "#/components/schemas/AdditionalIdentifierDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdditionalIdentifierDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Provides case identification number and specifications information."
+        "description": "Case identifiers and specifications."
       },
       "JointCaseDTO": {
         "type": "object",
@@ -739,381 +712,43 @@
             "items": {
               "$ref": "#/components/schemas/ReferenceIdentifierDTO"
             },
-            "description": "List of cases merged under this joint case. Refer: Nova.DTO.Common.Identifiers.ReferenceIdentifierDTO",
+            "description": "List of merged cases of a joint case.",
             "nullable": true
           },
           "id": {
             "type": "integer",
-            "description": "Unique (within Nova) Id of a case",
+            "description": "Nova case number",
             "format": "int32"
           },
           "specification": {
-            "$ref": "#/components/schemas/CaseSpecificationDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CaseSpecificationDTO"
+              }
+            ],
+            "description": ""
           },
           "external": {
-            "$ref": "#/components/schemas/ExternalIdentifierDTO"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalIdentifierDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
           },
           "additional": {
-            "$ref": "#/components/schemas/AdditionalIdentifierDTO"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides subcase information if a case is merged into a joint case."
-      },
-      "ObjectTypeDto": {
-        "enum": [
-          "case",
-          "party",
-          "claim",
-          "verdict",
-          "payment"
-        ],
-        "type": "string",
-        "description": "The object_type property which is part of object_identifiers"
-      },
-      "CaseSpecificationDto": {
-        "enum": [
-          "normal",
-          "sub",
-          "joint"
-        ],
-        "type": "string",
-        "description": "The specification property which is part of case object_identifiers"
-      },
-      "CaseObjectIdentifiersDto": {
-        "type": "object",
-        "properties": {
-          "objectType": {
-            "$ref": "#/components/schemas/ObjectTypeDto"
-          },
-          "specification": {
-            "$ref": "#/components/schemas/CaseSpecificationDto"
-          },
-          "internal": {
-            "type": "integer",
-            "description": "Case No",
-            "format": "int32"
-          },
-          "subInternal1": {
-            "type": "integer",
-            "description": "Joint collection case No",
-            "format": "int32"
-          },
-          "external1": {
-            "type": "string",
-            "description": "Reference No",
-            "nullable": true
-          },
-          "external2": {
-            "type": "string",
-            "description": "Previous No",
-            "nullable": true
-          },
-          "paymentReference": {
-            "type": "string",
-            "description": "Payment reference No",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdditionalIdentifierDTO"
+              }
+            ],
+            "description": "",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Case identifiers"
-      },
-      "PositionDto": {
-        "enum": [
-          "caseOnly",
-          "caseDebtor",
-          "debtorOnly",
-          "amortizationPlan"
-        ],
-        "type": "string",
-        "description": "Position values"
-      },
-      "CategoryDto": {
-        "enum": [
-          "aT_NORMAL",
-          "aT_AFTERGUARD",
-          "aT_AMORT",
-          "aT_DELAY",
-          "aT_WAIT",
-          "aT_DEBTOR",
-          "aT_CREDITOR",
-          "aT_PARTNER",
-          "aT_WATCH",
-          "aT_INVOICE",
-          "aT_DOCUMENT"
-        ],
-        "type": "string",
-        "description": "Category values"
-      },
-      "TypeDto": {
-        "enum": [
-          "aA_LETTER",
-          "aA_PHONE",
-          "aA_GOTO",
-          "aA_MANUAL",
-          "aA_NOTE",
-          "aA_UPDATE",
-          "aA_EXPORT",
-          "aA_REPORT",
-          "aA_MOVE",
-          "aA_CHANGE",
-          "aA_WAIT",
-          "aA_END",
-          "aA_ERROR",
-          "aA_GOSUB",
-          "aA_RETURN",
-          "aA_WATCH",
-          "aA_TMPMODLTR",
-          "aA_ADDCOST",
-          "aA_EMAIL",
-          "aA_HISTORY"
-        ],
-        "type": "string",
-        "description": "Workflow type values"
-      },
-      "WorkflowDto": {
-        "type": "object",
-        "properties": {
-          "position": {
-            "$ref": "#/components/schemas/PositionDto"
-          },
-          "automatic": {
-            "type": "boolean",
-            "description": "Automatic"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryDto"
-          },
-          "status": {
-            "type": "string",
-            "description": "Status",
-            "nullable": true
-          },
-          "tree": {
-            "type": "string",
-            "description": "Tree",
-            "nullable": true
-          },
-          "treeDescription": {
-            "type": "string",
-            "description": "Tree description",
-            "nullable": true
-          },
-          "action": {
-            "type": "string",
-            "description": "Action",
-            "nullable": true
-          },
-          "actionDescription": {
-            "type": "string",
-            "description": "Action description",
-            "nullable": true
-          },
-          "date": {
-            "type": "string",
-            "description": "Date",
-            "nullable": true
-          },
-          "type": {
-            "$ref": "#/components/schemas/TypeDto"
-          },
-          "extendedStatus": {
-            "type": "string",
-            "description": "Extended status",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CaseState": {
-        "enum": [
-          "invoicing",
-          "collection",
-          "surveillance"
-        ],
-        "type": "string",
-        "description": "Case State values"
-      },
-      "RegistrationDto": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "description": "Date on which the Debtor was registered in Nova",
-            "format": "date-time",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "description": "User name of the collector",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Registration details of the 'Person'"
-      },
-      "SpecificationDto": {
-        "enum": [
-          "debtor",
-          "creditor",
-          "invoice",
-          "cost",
-          "authority",
-          "partner"
-        ],
-        "type": "string",
-        "description": "The specification property which is part of object_identifiers"
-      },
-      "PartyObjectIdentifierDto": {
-        "type": "object",
-        "properties": {
-          "objectType": {
-            "$ref": "#/components/schemas/ObjectTypeDto"
-          },
-          "specification": {
-            "$ref": "#/components/schemas/SpecificationDto"
-          },
-          "internal": {
-            "type": "integer",
-            "description": "Creditor id",
-            "format": "int32"
-          },
-          "subInternal1": {
-            "type": "integer",
-            "description": "Creditor number",
-            "format": "int32"
-          },
-          "subInternal2": {
-            "type": "integer",
-            "description": "Department number",
-            "format": "int32"
-          },
-          "role": {
-            "type": "string",
-            "description": "Debtor Role",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "PartyObjectIdentifierDto can either be CreditorObjectIdentifiersDto or DebtorObjectIdentifiersDto"
-      },
-      "PartyDto": {
-        "type": "object",
-        "properties": {
-          "objectIdentifiers": {
-            "$ref": "#/components/schemas/PartyObjectIdentifierDto"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CaseAmountsDto": {
-        "type": "object",
-        "properties": {
-          "principal": {
-            "type": "number",
-            "description": "Principal",
-            "format": "double"
-          },
-          "cost": {
-            "type": "number",
-            "description": "Cost",
-            "format": "double"
-          },
-          "interest": {
-            "type": "number",
-            "description": "Interest",
-            "format": "double"
-          },
-          "fee": {
-            "type": "number",
-            "description": "Fee",
-            "format": "double"
-          },
-          "costInterest": {
-            "type": "number",
-            "description": "Cost interest",
-            "format": "double",
-            "nullable": true
-          },
-          "total": {
-            "type": "number",
-            "description": "Total",
-            "format": "double",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Remaining case amounts"
-      },
-      "MergedCaseDto": {
-        "type": "object",
-        "properties": {
-          "objectIdentifiers": {
-            "$ref": "#/components/schemas/CaseObjectIdentifiersDto"
-          },
-          "interestToDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Sub case details"
-      },
-      "CaseDto": {
-        "type": "object",
-        "properties": {
-          "objectIdentifiers": {
-            "$ref": "#/components/schemas/CaseObjectIdentifiersDto"
-          },
-          "workflows": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/WorkflowDto"
-            },
-            "description": "Workflows",
-            "nullable": true
-          },
-          "state": {
-            "$ref": "#/components/schemas/CaseState"
-          },
-          "registration": {
-            "$ref": "#/components/schemas/RegistrationDto"
-          },
-          "closed": {
-            "type": "boolean",
-            "description": "Is the case closed?"
-          },
-          "parties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PartyDto"
-            },
-            "description": "Parties",
-            "nullable": true
-          },
-          "interestToDate": {
-            "type": "string",
-            "description": "MAX interest to date from related debts and costs",
-            "nullable": true
-          },
-          "remainingAmounts": {
-            "$ref": "#/components/schemas/CaseAmountsDto"
-          },
-          "turnedInAmounts": {
-            "$ref": "#/components/schemas/CaseAmountsDto"
-          },
-          "mergedCases": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MergedCaseDto"
-            },
-            "description": "Sub case details",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Case details"
+        "description": "Merged Case information of a joint case."
       }
     },
     "securitySchemes": {

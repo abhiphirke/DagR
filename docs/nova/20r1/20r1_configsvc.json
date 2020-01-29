@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Nova configuration store Service",
-    "description": "Nova configuration store Commitment API to expose related information and perform relevant Nova operations.",
-    "version": "20.1.0.0"
+    "title": "Nova Configuration Service",
+    "description": "The **Nova configuration service** enables configuring objects (SystemVariable,  TypeLists, etc. ) for performing various Nova Operations.\r\n",
+    "version": "20.1.141.0"
   },
   "servers": [
     {
@@ -11,251 +11,16 @@
     }
   ],
   "paths": {
-    "/CostDefinitions": {
-      "get": {
-        "tags": [
-          "CostDefinitions"
-        ],
-        "summary": "Get system variable",
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CostDefinitionDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CostDefinitionDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CostDefinitionDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Currency/base": {
-      "get": {
-        "tags": [
-          "Currency"
-        ],
-        "summary": "Get system variable",
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/DebtTypes/language/{language}": {
-      "get": {
-        "tags": [
-          "DebtTypes"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "language",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/LanguageCodesDTO"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DebtTypeDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DebtTypeDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DebtTypeDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InterestDefinitions/interestcodes": {
-      "get": {
-        "tags": [
-          "InterestDefinitions"
-        ],
-        "summary": "Get system variable",
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestCodeDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestCodeDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestCodeDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InterestDefinitions/interesttables": {
-      "get": {
-        "tags": [
-          "InterestDefinitions"
-        ],
-        "summary": "Get system variable",
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InterestTableDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/PaymentMethods": {
-      "get": {
-        "tags": [
-          "PaymentMethods"
-        ],
-        "summary": "Get system variable",
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PaymentMethodDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PaymentMethodDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PaymentMethodDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/SystemVariables/defaultcountrycode": {
       "get": {
         "tags": [
           "SystemVariables"
         ],
-        "summary": "Get default country code",
+        "summary": "Get default country code for current Nova enviornment",
+        "description": "[TCAPI-10.4]",
         "responses": {
           "200": {
-            "description": "Return value/default value",
+            "description": "Default country code",
             "content": {
               "text/plain": {
                 "schema": {
@@ -283,6 +48,7 @@
           "SystemVariables"
         ],
         "summary": "Get system variable",
+        "description": "[TCAPI-10.3]",
         "parameters": [
           {
             "name": "keyName",
@@ -311,145 +77,6 @@
               "text/json": {
                 "schema": {
                   "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/SystemVariables/{keyName}": {
-      "get": {
-        "tags": [
-          "SystemVariables"
-        ],
-        "summary": "Get system variable",
-        "parameters": [
-          {
-            "name": "keyName",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemVariableDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemVariableDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemVariableDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/SystemVariables": {
-      "put": {
-        "tags": [
-          "SystemVariables"
-        ],
-        "summary": "Update system variable",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SystemVariableDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SystemVariableDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SystemVariableDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "SystemVariables"
-        ],
-        "summary": "Update system variable",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SystemVariableDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SystemVariableDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SystemVariableDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
                 }
               }
             }
@@ -462,12 +89,13 @@
         "tags": [
           "TypeLists"
         ],
-        "summary": "Get system variable",
+        "summary": "Returns TypeList values for a specific category.",
+        "description": "[TCAPI-10.2]",
         "parameters": [
           {
             "name": "keyName",
             "in": "path",
-            "description": "",
+            "description": "Category name",
             "required": true,
             "schema": {
               "type": "string"
@@ -476,7 +104,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Return value/default value",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -499,116 +127,6 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/TypeListDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/TypeLists": {
-      "get": {
-        "tags": [
-          "TypeLists"
-        ],
-        "summary": "Get system variable",
-        "responses": {
-          "200": {
-            "description": "Return value/default value",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TypeListDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TypeListDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TypeListDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Users/list": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get creditor",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Message retrieved successfully",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDTO"
                   }
                 }
               }
@@ -623,6 +141,64 @@
           "401": {
             "description": "Unauthorized request"
           },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/TypeLists": {
+      "get": {
+        "tags": [
+          "TypeLists"
+        ],
+        "summary": "Returns all TypeList values in Nova.",
+        "description": "[TCAPI-10.1]",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TypeListDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TypeListDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TypeListDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
           "500": {
             "description": "The server encountered an error while processing the request"
           }
@@ -632,455 +208,52 @@
   },
   "components": {
     "schemas": {
-      "VatTypeDTO": {
-        "enum": [
-          "none",
-          "capital",
-          "capitalInterest",
-          "interest"
-        ],
-        "type": "string",
-        "description": "VatTypeDTO"
-      },
-      "OutlayDTO": {
-        "enum": [
-          "fee",
-          "outlayInAdvance",
-          "outlayInvoice"
-        ],
-        "type": "string",
-        "description": "OutlayDTO"
-      },
-      "CostDefinitionDTO": {
-        "type": "object",
-        "properties": {
-          "countryCode": {
-            "type": "string",
-            "description": "CountryCode",
-            "nullable": true
-          },
-          "costName": {
-            "type": "string",
-            "description": "CostName",
-            "nullable": true
-          },
-          "costType": {
-            "type": "string",
-            "description": "CostType",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "description": "Description",
-            "nullable": true
-          },
-          "costGroup": {
-            "type": "string",
-            "description": "CostGroup",
-            "nullable": true
-          },
-          "accountCode": {
-            "type": "string",
-            "description": "AccountCode",
-            "nullable": true
-          },
-          "amount": {
-            "type": "number",
-            "description": "Amount",
-            "format": "double"
-          },
-          "costTariff": {
-            "type": "string",
-            "description": "CostTariff",
-            "nullable": true
-          },
-          "costTariffBase": {
-            "type": "string",
-            "description": "CostTariffBase",
-            "nullable": true
-          },
-          "interestRate": {
-            "type": "number",
-            "description": "InterestRate",
-            "format": "double"
-          },
-          "interestCode": {
-            "type": "string",
-            "description": "InterestCode",
-            "nullable": true
-          },
-          "debtorCost": {
-            "type": "boolean",
-            "description": "DebtorCost"
-          },
-          "courtCost": {
-            "type": "boolean",
-            "description": "CourtCost"
-          },
-          "vat": {
-            "$ref": "#/components/schemas/VatTypeDTO"
-          },
-          "writeOffTime": {
-            "type": "integer",
-            "description": "WriteOffTime",
-            "format": "int32",
-            "nullable": true
-          },
-          "disbursement": {
-            "type": "string",
-            "description": "Disbursement",
-            "nullable": true
-          },
-          "debtorVat": {
-            "type": "number",
-            "description": "DebtorVat",
-            "format": "double"
-          },
-          "retainer": {
-            "$ref": "#/components/schemas/OutlayDTO"
-          },
-          "defaultLimitInterval": {
-            "type": "integer",
-            "description": "DefaultLimitInterval",
-            "format": "int32",
-            "nullable": true
-          },
-          "noComission": {
-            "type": "boolean",
-            "description": "NoComission"
-          },
-          "excludeCostEnforcement": {
-            "type": "boolean",
-            "description": "ExcludeCostEnforcement"
-          },
-          "consumerCosts": {
-            "type": "boolean",
-            "description": "ConsumerCosts"
-          },
-          "santraCostDefinition": {
-            "type": "string",
-            "description": "SantraCostDefinition",
-            "nullable": true
-          },
-          "obcode": {
-            "type": "string",
-            "description": "Obcode",
-            "nullable": true
-          },
-          "highCostCredit": {
-            "type": "boolean",
-            "description": "HighCostCredit"
-          }
-        },
-        "additionalProperties": false,
-        "description": "CostDefinitionDTO"
-      },
-      "LanguageCodesDTO": {
-        "enum": [
-          "dan",
-          "dut",
-          "eng",
-          "fin",
-          "fra",
-          "ger",
-          "aut",
-          "pol",
-          "ice",
-          "ita",
-          "irl",
-          "nld",
-          "bel",
-          "tur",
-          "rus",
-          "ltu",
-          "nor",
-          "swe",
-          "esp",
-          "cze",
-          "hun",
-          "est",
-          "sui",
-          "slk",
-          "lva"
-        ],
-        "type": "string",
-        "description": "Language codes supported in Nova system."
-      },
-      "DebtTypeDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of debt type",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "description": "Detail description of debt type configured",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides information about DebtType configured in Nova settings"
-      },
-      "InterestCalculationTypeDTO": {
-        "enum": [
-          "calcType360By360",
-          "calcType365By365",
-          "calcType2831By360",
-          "calcType2831By365",
-          "calcType2831By366"
-        ],
-        "type": "string",
-        "description": "InterestCalculationTypeDTO"
-      },
-      "InterestPeriodicityTypeDTO": {
-        "enum": [
-          "dayByDay",
-          "monthByMonth",
-          "days30"
-        ],
-        "type": "string",
-        "description": "InterestPeriodicityTypeDTO"
-      },
-      "InterestCodeDTO": {
-        "type": "object",
-        "properties": {
-          "interestCode": {
-            "type": "string",
-            "description": "InterestCode",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "description": "Description",
-            "nullable": true
-          },
-          "tableCode": {
-            "type": "string",
-            "description": "TableCode",
-            "nullable": true
-          },
-          "calculationType": {
-            "$ref": "#/components/schemas/InterestCalculationTypeDTO"
-          },
-          "periodicityType": {
-            "$ref": "#/components/schemas/InterestPeriodicityTypeDTO"
-          },
-          "capitalize": {
-            "type": "boolean",
-            "description": "Capitalize"
-          }
-        },
-        "additionalProperties": false,
-        "description": "InterestCodeDTO"
-      },
-      "InterestTableDTO": {
-        "type": "object",
-        "properties": {
-          "tableCode": {
-            "type": "string",
-            "description": "TableCode",
-            "nullable": true
-          },
-          "startingDate": {
-            "type": "string",
-            "description": "StartingDate",
-            "format": "date-time"
-          },
-          "interestRate": {
-            "type": "number",
-            "description": "InterestRate",
-            "format": "double"
-          },
-          "maxInterest": {
-            "type": "number",
-            "description": "MaxInterest",
-            "format": "double",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "InterestTableDTO"
-      },
-      "PaymentMethodDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name",
-            "nullable": true
-          },
-          "giro": {
-            "type": "string",
-            "description": "Giro",
-            "nullable": true
-          },
-          "transCode": {
-            "type": "string",
-            "description": "TransCode",
-            "nullable": true
-          },
-          "deductionCode": {
-            "type": "string",
-            "description": "DeductionCode",
-            "nullable": true
-          },
-          "accountingBook": {
-            "type": "string",
-            "description": "AccountingBook",
-            "nullable": true
-          },
-          "fromCreditor": {
-            "type": "boolean",
-            "description": "FromCreditor"
-          },
-          "fromInstance": {
-            "type": "boolean",
-            "description": "FromInstance"
-          },
-          "lawyer": {
-            "type": "boolean",
-            "description": "Lawyer"
-          },
-          "access": {
-            "type": "string",
-            "description": "Access",
-            "nullable": true
-          },
-          "iban": {
-            "type": "string",
-            "description": "IBAN",
-            "nullable": true
-          },
-          "bic": {
-            "type": "string",
-            "description": "BIC",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "PaymentMethodDTO"
-      },
-      "SystemVariableDTO": {
-        "type": "object",
-        "properties": {
-          "varId": {
-            "type": "string",
-            "description": "VarId",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "description": "Description",
-            "nullable": true
-          },
-          "dateCreate": {
-            "type": "string",
-            "description": "DateCreate",
-            "format": "date-time"
-          },
-          "dateUpdate": {
-            "type": "string",
-            "description": "DateUpdate",
-            "format": "date-time"
-          },
-          "updatedBy": {
-            "type": "string",
-            "description": "UpdatedBy",
-            "nullable": true
-          },
-          "value": {
-            "type": "string",
-            "description": "Value",
-            "nullable": true
-          },
-          "cachable": {
-            "type": "boolean",
-            "description": "Cachable"
-          }
-        },
-        "additionalProperties": false,
-        "description": "SystemVariableDTO"
-      },
       "TypeListDTO": {
         "type": "object",
         "properties": {
           "typeListNo": {
             "type": "integer",
-            "description": "TypeListNo",
             "format": "int32"
           },
           "category": {
             "type": "string",
-            "description": "Category",
             "nullable": true
           },
           "typeRowId": {
             "type": "integer",
-            "description": "TypeRowId",
             "format": "int32"
           },
           "sortOrder": {
             "type": "integer",
-            "description": "SortOrder",
             "format": "int32"
           },
           "defaultText": {
             "type": "string",
-            "description": "DefaultText",
             "nullable": true
           },
           "available": {
             "type": "integer",
-            "description": "Available",
             "format": "int32"
           },
           "subcategoryType": {
             "type": "integer",
-            "description": "SubcategoryType",
             "format": "int32",
             "nullable": true
           },
           "subcategory": {
             "type": "string",
-            "description": "Subcategory",
             "nullable": true
           },
           "dataString": {
             "type": "string",
-            "description": "DataString",
             "nullable": true
           },
           "isDefault": {
-            "type": "boolean",
-            "description": "IsDefault"
+            "type": "boolean"
           }
         },
         "additionalProperties": false,
-        "description": "TypeListDTO"
-      },
-      "UserDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Unique identifiation number",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name",
-            "nullable": true
-          },
-          "loginName": {
-            "type": "string",
-            "description": "Login Name",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides information about Nova user (collector)."
+        "description": "Nova TypeList object"
       }
     },
     "securitySchemes": {

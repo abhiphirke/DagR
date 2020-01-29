@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Nova Identity Service",
-    "description": "An ***Nova Identity Service*** enable you to securely manage identities, resources, and permissions. Identity Services allow you to establish a single identity and access different services. It facilitates **username/password based validation** for customer.\r\n\r\nIt performs following operation:\r\n\r\n* Username/Password verification in system\r\n* JWT Token generation",
-    "version": "20.1.141.0"
+    "title": "Identity Service",
+    "description": "Identity Service to expose related information and perform relevant Nova operations.",
+    "version": "20.1.0.0"
   },
   "servers": [
     {
@@ -17,7 +17,6 @@
           "Identity"
         ],
         "summary": "Validates user credentials and returns a token for accessing the APIs.",
-        "description": "[TCAPI-1.1]",
         "requestBody": {
           "description": "The user name and password",
           "content": {
