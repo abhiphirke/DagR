@@ -12,7 +12,7 @@
                         { "name": "Creditor", "jsonUrl": "docs/nova/20r1/20r1_creditorsvc.json" },        
                         { "name": "Debtor", "jsonUrl": "docs/nova/20r1/20r1_debtorsvc.json" },          
                         { "name": "Identity", "jsonUrl": "docs/nova/20r1/20r1_identitysvc.json" },        
-                        { "name": "Interestcalc", "jsonUrl": "docs/nova/20r1/20r1_interestcalcsvc.json" },    
+                        { "name": "Interest Calc", "jsonUrl": "docs/nova/20r1/20r1_interestcalcsvc.json" },    
                         { "name": "Interest", "jsonUrl": "docs/nova/20r1/20r1_interestsvc.json" },        
                         { "name": "Case Service", "jsonUrl": "docs/nova/20r1/20r1_legacy_casesvc.json" },     
                         { "name": "Debtor Service", "jsonUrl": "docs/nova/20r1/20r1_legacy_debtorsvc.json" },   
