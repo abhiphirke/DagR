@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Nova Configuration Service",
-    "description": "The **Nova configuration service** enables configuring objects (SystemVariable,  TypeLists, etc. ) for performing various Nova Operations.\r\n",
-    "version": "20.1.141.0"
+    "title": "Configuration Service",
+    "description": "The ***Configuration Service*** performs operations on Nova configuration and settings.\r\n",
+    "version": "20.1.348.0"
   },
   "servers": [
     {
@@ -11,12 +11,422 @@
     }
   ],
   "paths": {
+    "/CostDefinitions": {
+      "get": {
+        "tags": [
+          "CostDefinitions"
+        ],
+        "summary": "Returns all debtor cost definitions.",
+        "description": "[TCAPI-10.5]",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostDefinitionDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostDefinitionDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostDefinitionDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Currency/base": {
+      "get": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Returns the value for the default currency code.",
+        "description": "[TCAPI-10.9]",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/DebtTypes/language/{language}": {
+      "get": {
+        "tags": [
+          "DebtTypes"
+        ],
+        "summary": "Returns debt types that have a description in the specified language.",
+        "description": "[TCAPI-10.6]",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/LanguageCodesDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DebtTypeDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DebtTypeDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DebtTypeDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/InterestDefinitions/interestcodes": {
+      "get": {
+        "tags": [
+          "InterestDefinitions"
+        ],
+        "summary": "Returns the interest code definitions",
+        "description": "[TCAPI-10.7]",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCodeDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCodeDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCodeDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/InterestDefinitions/interesttables": {
+      "get": {
+        "tags": [
+          "InterestDefinitions"
+        ],
+        "summary": "Returns the interest table definitions",
+        "description": "[TCAPI-10.8]",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestTableDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestTableDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestTableDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/PaymentMethods": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Returns all the payment method definitions",
+        "description": "[TCAPI-10.10]",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/PaymentMethods/list": {
+      "post": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Returns all the payment method definitions for a list of payment methods",
+        "description": "[TCAPI-10.11]",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
     "/SystemVariables/defaultcountrycode": {
       "get": {
         "tags": [
           "SystemVariables"
         ],
-        "summary": "Get default country code for current Nova enviornment",
+        "summary": "Returns the value of system variable 'DefaultCountryCode'.",
         "description": "[TCAPI-10.4]",
         "responses": {
           "200": {
@@ -38,6 +448,21 @@
                 }
               }
             }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
           }
         }
       }
@@ -47,7 +472,7 @@
         "tags": [
           "SystemVariables"
         ],
-        "summary": "Get system variable",
+        "summary": "Returns the value of a system variable.",
         "description": "[TCAPI-10.3]",
         "parameters": [
           {
@@ -62,7 +487,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Return value/default value",
+            "description": "Success.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -80,6 +505,21 @@
                 }
               }
             }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
           }
         }
       }
@@ -89,7 +529,7 @@
         "tags": [
           "TypeLists"
         ],
-        "summary": "Returns TypeList values for a specific category.",
+        "summary": "Returns type list definitions for a category.",
         "description": "[TCAPI-10.2]",
         "parameters": [
           {
@@ -155,7 +595,7 @@
         "tags": [
           "TypeLists"
         ],
-        "summary": "Returns all TypeList values in Nova.",
+        "summary": "Returns all type list definitions.",
         "description": "[TCAPI-10.1]",
         "responses": {
           "200": {
@@ -208,6 +648,362 @@
   },
   "components": {
     "schemas": {
+      "CostTariffBaseTypeDTO": {
+        "enum": [
+          "capital",
+          "totalDebt",
+          "limitedCapital",
+          "limitedTotalDebt"
+        ],
+        "type": "string",
+        "description": "Cost tariff types"
+      },
+      "VatTypeDTO": {
+        "enum": [
+          "none",
+          "capitalInterest",
+          "capital",
+          "interest"
+        ],
+        "type": "string",
+        "description": "VatTypeDTO"
+      },
+      "OutlayDTO": {
+        "enum": [
+          "fee",
+          "outlayInAdvance",
+          "outlayInvoice"
+        ],
+        "type": "string",
+        "description": "OutlayDTO"
+      },
+      "CostDefinitionDTO": {
+        "type": "object",
+        "properties": {
+          "countryCode": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "costName": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "costType": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "costGroup": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "accountCode": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "description": "",
+            "format": "double"
+          },
+          "costTariff": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "costTariffBase": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CostTariffBaseTypeDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "",
+            "format": "double"
+          },
+          "interestCode": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "debtorCost": {
+            "type": "boolean",
+            "description": ""
+          },
+          "courtCost": {
+            "type": "boolean",
+            "description": ""
+          },
+          "vat": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VatTypeDTO"
+              }
+            ],
+            "description": ""
+          },
+          "writeOffTime": {
+            "type": "integer",
+            "description": "",
+            "format": "int32",
+            "nullable": true
+          },
+          "disbursement": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "debtorVat": {
+            "type": "number",
+            "description": "",
+            "format": "double"
+          },
+          "retainer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OutlayDTO"
+              }
+            ],
+            "description": ""
+          },
+          "defaultLimitInterval": {
+            "type": "integer",
+            "description": "",
+            "format": "int32",
+            "nullable": true
+          },
+          "noComission": {
+            "type": "boolean",
+            "description": ""
+          },
+          "excludeCostEnforcement": {
+            "type": "boolean",
+            "description": ""
+          },
+          "consumerCosts": {
+            "type": "boolean",
+            "description": ""
+          },
+          "santraCostDefinition": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "obCode": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "highCostCredit": {
+            "type": "boolean",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "LanguageCodesDTO": {
+        "enum": [
+          "dan",
+          "dut",
+          "eng",
+          "fin",
+          "fra",
+          "ger",
+          "aut",
+          "pol",
+          "ice",
+          "ita",
+          "irl",
+          "nld",
+          "bel",
+          "tur",
+          "rus",
+          "ltu",
+          "nor",
+          "swe",
+          "spa",
+          "cze",
+          "hun",
+          "est",
+          "sui",
+          "slk",
+          "lva"
+        ],
+        "type": "string",
+        "description": "Language codes supported in Nova."
+      },
+      "DebtTypeDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Nova DebtType object"
+      },
+      "InterestCalculationTypeDTO": {
+        "enum": [
+          "calcType360By360",
+          "calcType365By365",
+          "calcType365By360",
+          "calcType2831By360",
+          "calcType2831By365",
+          "calcType2831By366"
+        ],
+        "type": "string",
+        "description": "InterestCalculationTypeDTO"
+      },
+      "InterestPeriodicityTypeDTO": {
+        "enum": [
+          "dayByDay",
+          "monthByMonth",
+          "days30"
+        ],
+        "type": "string",
+        "description": "InterestPeriodicityTypeDTO"
+      },
+      "InterestCodeDTO": {
+        "type": "object",
+        "properties": {
+          "interestCode": {
+            "type": "string",
+            "description": "Interest code",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of interest code",
+            "nullable": true
+          },
+          "tableCode": {
+            "type": "string",
+            "description": "Table code of interest code",
+            "nullable": true
+          },
+          "calculationType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InterestCalculationTypeDTO"
+              }
+            ],
+            "description": "Calculation type for interest calculation"
+          },
+          "periodicityType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InterestPeriodicityTypeDTO"
+              }
+            ],
+            "description": "Periodization type for interest calculation"
+          },
+          "capitalize": {
+            "type": "boolean",
+            "description": "Interest to be capitalized or not"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Interest code information configured in Nova."
+      },
+      "InterestTableDTO": {
+        "type": "object",
+        "properties": {
+          "tableCode": {
+            "type": "string",
+            "description": "Table code",
+            "nullable": true
+          },
+          "startingDate": {
+            "type": "string",
+            "description": "Interest rate effective date",
+            "format": "date-time"
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "Interest rate for interest calculation",
+            "format": "double"
+          },
+          "maxInterest": {
+            "type": "number",
+            "description": "Maximum Interest",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Table code information configured in Nova."
+      },
+      "PaymentMethodDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "giro": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "specificationCode": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "deductionCode": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "toCreditor": {
+            "type": "boolean",
+            "description": ""
+          },
+          "fromAuthority": {
+            "type": "boolean",
+            "description": ""
+          },
+          "access": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "iban": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "bic": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Payment method settings defined in Nova."
+      },
       "TypeListDTO": {
         "type": "object",
         "properties": {
@@ -250,6 +1046,11 @@
           },
           "isDefault": {
             "type": "boolean"
+          },
+          "index": {
+            "type": "integer",
+            "description": "Index is computed field.it is used to mapped the value against information for respective entity.",
+            "format": "int32"
           }
         },
         "additionalProperties": false,

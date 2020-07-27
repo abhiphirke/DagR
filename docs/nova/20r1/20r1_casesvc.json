@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Nova Case Service",
-    "description": "The Nova case service exposes the case information and performs operations on case objects.\r\n\r\nFollowing are the DTOs that are common across many services:\r\n\r\n**ExternalIdentifierDTO fields**\r\n\r\nNova case identifiers are defined in this Data Transfer Object (DTO).  \r\n  * id1: *Case reference number*\r\n  * id2: *Case previous number*\r\n\r\n**AdditionalIdentifierDTO fields**\r\n\r\nCase additional information. \r\n  * id1: *Joint case number*\r\n",
-    "version": "20.1.141.0"
+    "title": "Case Service",
+    "description": "The Case Service performs operations on the case object, exposing information that identifies and describes a case in Nova.\r\n\r\nThe service also exposes the identifiers of parties related to a case, where a case party can be a debtor, a creditor or a partner. \r\n\r\nWithin the Case Service the keys of context-based DTOs is as follows:\r\n\r\n\r\n**ExternalIdentifierDTO**\r\n\r\n  * id1: reference number\r\n  * id2: previous number\r\n\r\n**AdditionalIdentifierDTO**\r\n\r\n  * id1: case number of related joint case\r\n",
+    "version": "20.1.348.0"
   },
   "servers": [
     {
@@ -74,7 +74,7 @@
         "tags": [
           "Cases"
         ],
-        "summary": "Returns list of parties for a case.",
+        "summary": "Returns the parties related to a case.",
         "description": "[TCAPI-3.5]",
         "parameters": [
           {
@@ -132,7 +132,7 @@
         "tags": [
           "Cases"
         ],
-        "summary": "Returns a list of merged cases of a Joint case.",
+        "summary": "Returns identifiers of all cases related to a joint case.",
         "description": "[TCAPI-3.7]",
         "parameters": [
           {
@@ -199,7 +199,7 @@
         "tags": [
           "Cases"
         ],
-        "summary": "Returns the identifier information of a joint case and all its merged cases for a specific merged case.",
+        "summary": "Returns identifiers of all cases in a joint case constellation based on a sub case.",
         "description": "[TCAPI-3.8]",
         "parameters": [
           {
@@ -252,12 +252,99 @@
         }
       }
     },
+    "/Cases/mergedcases/list": {
+      "post": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns identifiers of all the subcases related to the list of joint cases.",
+        "description": "[TCAPI-3.9]",
+        "requestBody": {
+          "description": "Nova case numbers",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CaseDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CaseDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CaseDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
     "/Debtors/{debtorNo}/cases/coreinfo": {
       "get": {
         "tags": [
           "Debtors"
         ],
-        "summary": "Returns the core information of cases of a debtor.",
+        "summary": "Returns core information of a debtor’s cases.",
         "description": "[TCAPI-3.4]",
         "parameters": [
           {
@@ -324,7 +411,7 @@
         "tags": [
           "Debtors"
         ],
-        "summary": "Return case identifiers of all the cases related to a debtor.",
+        "summary": "Returns identifiers of a debtor’s cases.",
         "description": "[TCAPI-3.6]",
         "parameters": [
           {
@@ -392,8 +479,8 @@
       "CaseStateDTO": {
         "enum": [
           "invoicing",
-          "collection",
-          "surveillance"
+          "debtCollection",
+          "debtSurveillance"
         ],
         "type": "string",
         "description": "State of a case"
@@ -618,7 +705,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Uniquely identifies a specified object."
+        "description": "Generic DTO for object identification. Elements are described in context of the DTO being used."
       },
       "PartyDTO": {
         "type": "object",
@@ -629,7 +716,7 @@
                 "$ref": "#/components/schemas/ReferenceIdentifierDTO"
               }
             ],
-            "description": "Unique identification(in Nova) of a party/>",
+            "description": "Unique identification(in Nova) of a party",
             "nullable": true
           },
           "role": {

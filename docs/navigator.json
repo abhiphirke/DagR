@@ -6,12 +6,20 @@
                 {
                     "name": "20r1",
                     "services": [
-                        { "name": "Case", "jsonUrl": "docs/nova/20r1/20r1_casesvc.json" },
-                        { "name": "Config", "jsonUrl": "docs/nova/20r1/20r1_configsvc.json" },
-                        { "name": "Debtor", "jsonUrl": "docs/nova/20r1/20r1_debtorsvc.json" },
-                        { "name": "Identity", "jsonUrl": "docs/nova/20r1/20r1_identitysvc.json" },
-                        { "name": "Interest", "jsonUrl": "docs/nova/20r1/20r1_interestsvc.json" },
-                        { "name": "Telephony", "jsonUrl": "docs/nova/20r1/20r1_telephonysvc.json" }
+                        { "name": "Case", "jsonUrl": "docs/nova/20r1/20r1_casesvc.json" },            
+                        { "name": "Claim", "jsonUrl": "docs/nova/20r1/20r1_claimsvc.json" },           
+                        { "name": "Config", "jsonUrl": "docs/nova/20r1/20r1_configsvc.json" },          
+                        { "name": "Creditor", "jsonUrl": "docs/nova/20r1/20r1_creditorsvc.json" },        
+                        { "name": "Debtor", "jsonUrl": "docs/nova/20r1/20r1_debtorsvc.json" },          
+                        { "name": "Identity", "jsonUrl": "docs/nova/20r1/20r1_identitysvc.json" },        
+                        { "name": "Interestcalc", "jsonUrl": "docs/nova/20r1/20r1_interestcalcsvc.json" },    
+                        { "name": "Interest", "jsonUrl": "docs/nova/20r1/20r1_interestsvc.json" },        
+                        { "name": "Case Service", "jsonUrl": "docs/nova/20r1/20r1_legacy_casesvc.json" },     
+                        { "name": "Debtor Service", "jsonUrl": "docs/nova/20r1/20r1_legacy_debtorsvc.json" },   
+                        { "name": "History Service", "jsonUrl": "docs/nova/20r1/20r1_legacy_historysvc.json" },  
+                        { "name": "Messaging Service", "jsonUrl": "docs/nova/20r1/20r1_legacy_messagingsvc.json" },
+                        { "name": "Payment", "jsonUrl": "docs/nova/20r1/20r1_paymentsvc.json" },         
+                        { "name": "Telephony", "jsonUrl": "docs/nova/20r1/20r1_telephonysvc.json" },       
                     ]
                 },
                 {

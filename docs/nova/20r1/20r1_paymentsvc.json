@@ -1,0 +1,541 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Payment Service",
+    "description": "The Payment Service performs operations on the payment object, exposing information that identifies and describes a payment in Nova.\r\n\r\nWithin the Payment Service, the keys of context-based DTOs are as follows:\r\n\r\n**ReferenceIdentifierDTO**\r\n* id: *unique identification number (e.g. Nova debtor number)*\r\n* specification: *specification type (e.g. debtor)*",
+    "version": "20.1.348.0"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/paymentsvc"
+    }
+  ],
+  "paths": {
+    "/Cases/{caseNo}/payments": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns payments made against a case",
+        "description": "[TCAPI-4.2]\r\n\r\nThe value of overpaidAmount is always ‘0’.",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "includeDeleted",
+            "in": "query",
+            "description": "'true' if deleted payments must be included",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/payments": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns payments made by a debtor",
+        "description": "[TCAPI-4.1]",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "includeDeleted",
+            "in": "query",
+            "description": "'true' if deleted payments must be included",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SenderRoleDTO": {
+        "enum": [
+          "unknown",
+          "debtor",
+          "authority",
+          "other"
+        ],
+        "type": "string",
+        "description": "Types of payers"
+      },
+      "SenderDTO": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SenderRoleDTO"
+              }
+            ],
+            "description": "Refer: SenderRoleDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about sender of payment"
+      },
+      "ReceiverRoleDTO": {
+        "enum": [
+          "creditor",
+          "solicitor"
+        ],
+        "type": "string",
+        "description": "Types of recipients of a payment"
+      },
+      "ReceiverDTO": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReceiverRoleDTO"
+              }
+            ],
+            "description": "Refer: ReceiverRoleDTO"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about recipient of payment"
+      },
+      "ResourceSpecificationDTO": {
+        "enum": [
+          "case",
+          "solicitor",
+          "creditor",
+          "debtor",
+          "pledge",
+          "payment",
+          "amortisationPlan",
+          "partner",
+          "document",
+          "collateral",
+          "collateralAccount",
+          "mandate",
+          "collector",
+          "lawyer",
+          "instance",
+          "claim",
+          "invoice",
+          "creditInvoice",
+          "fee",
+          "debtorCost",
+          "history",
+          "email",
+          "addressUpdate"
+        ],
+        "type": "string",
+        "description": ""
+      },
+      "ReferenceIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "specification": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceSpecificationDTO"
+              }
+            ],
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": "Generic DTO for object identification. Elements are described in context of the DTO being used."
+      },
+      "AccountTypeDTO": {
+        "enum": [
+          "unIdentified"
+        ],
+        "type": "string",
+        "description": "Account Types"
+      },
+      "AccountNumberDTO": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountTypeDTO"
+              }
+            ],
+            "description": "Type of bank account. Refer: AccountTypeDTO"
+          },
+          "value": {
+            "type": "string",
+            "description": "Bank account number",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Bank account information"
+      },
+      "AccountDTO": {
+        "type": "object",
+        "properties": {
+          "accountNo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountNumberDTO"
+            },
+            "description": "Account numbers",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "bankName": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "bankCode": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Prvides bank account information of an entity"
+      },
+      "RegistrationDTO": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Object registration"
+      },
+      "StatusDTO": {
+        "enum": [
+          "booked",
+          "deducted",
+          "deleted",
+          "unplaced",
+          "unplacedDeducted"
+        ],
+        "type": "string",
+        "description": "Payment status"
+      },
+      "DeletedInfoDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Nova payment number for the deletion record",
+            "format": "int32"
+          },
+          "registration": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RegistrationDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
+          },
+          "deductionDate": {
+            "type": "string",
+            "description": "",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about deleted payment"
+      },
+      "PaymentDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Nova payment number",
+            "format": "int32"
+          },
+          "sender": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SenderDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
+          },
+          "receiver": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReceiverDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
+          },
+          "beneficiary": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
+          },
+          "amortisationPlan": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
+          },
+          "senderAccount": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountDTO"
+              }
+            ],
+            "description": "Sender bank account information",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "receivedAmount": {
+            "type": "number",
+            "description": "Payment amount received",
+            "format": "double"
+          },
+          "bookedAmount": {
+            "type": "number",
+            "description": "Payment amount distributed on debts or costs",
+            "format": "double"
+          },
+          "overpaidAmount": {
+            "type": "number",
+            "description": "Excess amount paid",
+            "format": "double"
+          },
+          "paymentDate": {
+            "type": "string",
+            "description": "",
+            "format": "date-time"
+          },
+          "accountingDate": {
+            "type": "string",
+            "description": "",
+            "format": "date-time"
+          },
+          "deductionDate": {
+            "type": "string",
+            "description": "",
+            "format": "date-time",
+            "nullable": true
+          },
+          "registration": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RegistrationDTO"
+              }
+            ],
+            "description": "",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "information": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusDTO"
+              }
+            ],
+            "description": "Status of the payment"
+          },
+          "previousStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusDTO"
+              }
+            ],
+            "description": "Previous status of the payment"
+          },
+          "manual": {
+            "type": "boolean",
+            "description": "Indicates if payment is registered manually"
+          },
+          "foreign": {
+            "type": "boolean",
+            "description": "Indicates if payment is in foreign currency"
+          },
+          "deletedInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DeletedInfoDTO"
+              }
+            ],
+            "description": "Information about deleted payment",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Payment information."
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

@@ -1,0 +1,397 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Creditor Service",
+    "description": "The Creditor Service performs operations on the creditor object, exposing information that identifies and describes a creditor in Nova.\r\n\r\nWithin the Creditor Service the keys of context-based DTOs is as follows:\r\n\r\n**AdditionalIdentifierDTO**\r\n\r\n* id1: creditor number\r\n* id2: department number\r\n\r\n**ExternalIdentifierDTO**\r\n\r\n* id1: organization number\r\n* id2: own reference\r\n* id3: previous reference number\r\n* id4: portfolio number\r\n",
+    "version": "20.1.348.0"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/creditorsvc"
+    }
+  ],
+  "paths": {
+    "/Creditors/{creditorNo}/coreinfo": {
+      "get": {
+        "tags": [
+          "Creditors"
+        ],
+        "summary": "Returns core information of all departments of a creditor.",
+        "description": "[TCAPI-12.1]",
+        "parameters": [
+          {
+            "name": "creditorNo",
+            "in": "path",
+            "description": "Nova Creditor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Creditors/coreinfo/list": {
+      "post": {
+        "tags": [
+          "Creditors"
+        ],
+        "summary": "Returns core information for a list of creditor departments.",
+        "description": "[TCAPI-12.2]",
+        "requestBody": {
+          "description": "Nova Creditor Ids",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Creditors/creditorId/{creditorId}/coreinfo": {
+      "get": {
+        "tags": [
+          "Creditors"
+        ],
+        "summary": "Returns core information of a creditor department.",
+        "description": "[TCAPI-12.3]",
+        "parameters": [
+          {
+            "name": "creditorId",
+            "in": "path",
+            "description": "Nova Creditor Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditorCoreInfoDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdditionalIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id1": {
+            "type": "integer",
+            "description": "",
+            "format": "int32",
+            "nullable": true
+          },
+          "id2": {
+            "type": "integer",
+            "description": "",
+            "format": "int32",
+            "nullable": true
+          },
+          "id3": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Additional information of an object."
+      },
+      "RegistrationDTO": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Object registration"
+      },
+      "PersonTypeDTO": {
+        "enum": [
+          "naturalPerson",
+          "legalPerson"
+        ],
+        "type": "string",
+        "description": ""
+      },
+      "ExternalIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id1": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "id2": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "id3": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "id4": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Object references other than the Nova unique object identifier. Elements are described in context of the DTO being used."
+      },
+      "CreditorCoreInfoDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number within Nova. Use this id only for 'Read' access and not for 'Write' access i.e. for updating information.",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of creditor",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of creditor",
+            "nullable": true
+          },
+          "additional": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdditionalIdentifierDTO"
+              }
+            ],
+            "description": "Additional creditor identification information. Refer: AdditionalIdentifierDTO",
+            "nullable": true
+          },
+          "registration": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RegistrationDTO"
+              }
+            ],
+            "description": "Nova creditor registration information. Refer: RegistrationDTO",
+            "nullable": true
+          },
+          "partyType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonTypeDTO"
+              }
+            ],
+            "description": "Creditor Party type is always LegalPerson. It is not possible to have a Party type as NaturalPerson despite of assigning it any other value Refer: PersonTypeDTO"
+          },
+          "external": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalIdentifierDTO"
+              }
+            ],
+            "description": "Object references other than the Nova unique object identifier. Elements are described in context of the DTO being used. Refer: ExternalIdentifierDTO",
+            "nullable": true
+          },
+          "mainCreditorDepartment": {
+            "type": "integer",
+            "description": "It describes the main creditor department of the current creditor.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides creditor information"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

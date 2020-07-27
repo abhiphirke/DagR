@@ -1,0 +1,450 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Claim Service",
+    "description": "The Claim service performs operations on claim objects, such as invoices and costs. \r\nA claim object is identified by two parts; a *specification* of the object type and a numeric *identifier* of that object.\r\n\r\nA claim can represent a monetary claim, either on a specific object or as an aggregation of claim objects (e.g. the monetary claim on case level).  Endpoints either expose a neutral view without respect to a debtor’s liability, or a debtor’s liability of the same. Within the Claim Service the keys of context-based DTOs is as follows:\r\n\r\n**ExternalIdentifierDTO**\r\n* id1: *invoice number/credit invoice number*\r\n* id2: *other references on invoice/original invoice number on credit invoice*\r\n* Id3: *journal number on invoice*\r\n\r\n**ReferenceIdentifierDTO**\r\n* id: *claim number (e.g. Nova cost number)*\r\n* specification: *claim type (e.g. debtorCost)*\r\n",
+    "version": "20.1.348.0"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/claimsvc"
+    }
+  ],
+  "paths": {
+    "/Cases/{caseNo}/claims/coreinfo": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Returns core information of all claims on a case.",
+        "description": "[TCAPI-8.3]",
+        "parameters": [
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "spec",
+            "in": "query",
+            "description": "claim specfications : invoice | creditinvoice | fee | debtorcost",
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Claims/spec/{spec}/refid/{refid}/coreinfo": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "summary": "Returns core information of a claim.",
+        "description": "[TCAPI-8.4]",
+        "parameters": [
+          {
+            "name": "spec",
+            "in": "path",
+            "description": "invoice, creditinvoice, fee or debtorcost",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          },
+          {
+            "name": "refid",
+            "in": "path",
+            "description": "claim number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimDTO"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/Debtors/{debtorNo}/cases/{caseNo}/claims/coreinfo": {
+      "get": {
+        "tags": [
+          "Debtors"
+        ],
+        "summary": "Returns core information on a debtor claims on a case.",
+        "description": "[TCAPI-8.2]",
+        "parameters": [
+          {
+            "name": "debtorNo",
+            "in": "path",
+            "description": "Nova debtor number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "caseNo",
+            "in": "path",
+            "description": "Nova case number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "spec",
+            "in": "query",
+            "description": "invoice, creditinvoice, fee or debtorcost",
+            "schema": {
+              "$ref": "#/components/schemas/ResourceSpecificationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResourceSpecificationDTO": {
+        "enum": [
+          "case",
+          "solicitor",
+          "creditor",
+          "debtor",
+          "pledge",
+          "payment",
+          "amortisationPlan",
+          "partner",
+          "document",
+          "collateral",
+          "collateralAccount",
+          "mandate",
+          "collector",
+          "lawyer",
+          "instance",
+          "claim",
+          "invoice",
+          "creditInvoice",
+          "fee",
+          "debtorCost",
+          "history",
+          "email",
+          "addressUpdate"
+        ],
+        "type": "string",
+        "description": ""
+      },
+      "ReferenceIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "specification": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceSpecificationDTO"
+              }
+            ],
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": "Generic DTO for object identification. Elements are described in context of the DTO being used."
+      },
+      "ExternalIdentifierDTO": {
+        "type": "object",
+        "properties": {
+          "id1": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "id2": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "id3": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "id4": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Object references other than the Nova unique object identifier. Elements are described in context of the DTO being used."
+      },
+      "RegistrationDTO": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Object registration"
+      },
+      "ClaimDTO": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+              }
+            ],
+            "description": "Generic DTO for object identification. Please refer to the respective endpoints for more details.",
+            "nullable": true
+          },
+          "external": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalIdentifierDTO"
+              }
+            ],
+            "description": "Object references other than the Nova unique object identifier. Elements are described in context of the DTO being used.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "linkedCaseId": {
+            "type": "integer",
+            "description": "Identifier of related case.",
+            "format": "int32"
+          },
+          "linkedClaim": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceIdentifierDTO"
+              }
+            ],
+            "description": "Identifies a related claim..",
+            "nullable": true
+          },
+          "registration": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RegistrationDTO"
+              }
+            ],
+            "description": "Object registration",
+            "nullable": true
+          },
+          "invoiceDate": {
+            "type": "string",
+            "description": "",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "description": "",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentTerms": {
+            "type": "integer",
+            "description": "",
+            "format": "int32",
+            "nullable": true
+          },
+          "interestTerms": {
+            "type": "integer",
+            "description": "",
+            "format": "int32",
+            "nullable": true
+          },
+          "foreign": {
+            "type": "boolean",
+            "description": "Foreign Currency Flag information for a Claim of type Invoice, Fee, and Credit Invoice."
+          },
+          "interestFromDate": {
+            "type": "string",
+            "description": "",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Claim core information."
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

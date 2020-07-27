@@ -1,0 +1,273 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Interest Calculation Service",
+    "description": "The Interest Calculation Service performs interest calculation.\r\n\r\nThe service performs the calculation of remaining interest until today's date by default. Interest amounts stored in the Nova database are not affected by this service.",
+    "version": "20.1.348.0"
+  },
+  "servers": [
+    {
+      "url": "/tieto/collection/interestcalcsvc"
+    }
+  ],
+  "paths": {
+    "/InterestCalc/calculate/ontype": {
+      "post": {
+        "tags": [
+          "InterestCalc"
+        ],
+        "summary": "Returns the calculated interest based on amount, period, interest rate and calculation type 360/360 and periodicity type DayByDay",
+        "description": "[TCAPI-11.1]\r\n\r\nThe acceptable format for **From date** and **To date** is UTC e.g. 2020-04-20T05:34:43Z, the time part is not mandatory and is ignored even if provided.\r\n\r\n**From date** is mandatory, whereas, **To date** is not.\r\n\r\n**Start date** and **Interest Code** is not mandatory and is ignored even if provided.\r\n\r\nIn the absence of **To date**, the current date is considered.\r\n\r\n**Calculation type** is a mandatory field.\r\n\r\nThe default value of **Principal amount** and **Interest rate** is ‘0’.\r\n\r\nThe **Principal amount** and **Interest rate** do not accept a negative value.\r\n\r\n**CalculatedInterest**, **IsError** and **ErrorMessage** are not input fields. They are used for displaying output.",
+        "requestBody": {
+          "description": "interest calculation details",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    },
+    "/InterestCalc/calculate/oninterestcode": {
+      "post": {
+        "tags": [
+          "InterestCalc"
+        ],
+        "summary": "Returns the calculated interest based on amount, period, interest rate, interest code and calculation type 360/360 and periodicity type DayByDay",
+        "description": "[TCAPI-11.2]\r\n\r\nThe acceptable format for **From date** and **To date** is UTC e.g. 2020-04-20T05:34:43Z, the time part is not mandatory and is ignored even if provided.\r\n\r\n**From date** is mandatory, whereas, **To date** is not.\r\n\r\n**Start date** is not mandatory and is ignored even if provided.\r\n\r\nIn the absence of **To date**, the current date is considered.\r\n\r\n**Interest code** is mandatory and must be configured in Nova.\r\n\r\n**Calculation type** is not mandatory and is ignored even if provided.\r\n\r\nThe default value of **Principal amount** and **Interest rate** is ‘0’.\r\n\r\nThe **Principal amount** and **Interest rate** do not accept a negative value.\r\n\r\n**CalculatedInterest**, **IsError** and **ErrorMessage** are not input fields. They are used for displaying output.",
+        "requestBody": {
+          "description": "interest calculation details",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterestCalculationParamsDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InterestCalculationTypeDTO": {
+        "enum": [
+          "calcType360By360",
+          "calcType365By365",
+          "calcType365By360",
+          "calcType2831By360",
+          "calcType2831By365",
+          "calcType2831By366"
+        ],
+        "type": "string",
+        "description": "InterestCalculationTypeDTO"
+      },
+      "InterestCalculationParamsDTO": {
+        "type": "object",
+        "properties": {
+          "principal": {
+            "type": "number",
+            "description": "Interest is calculated on this amount",
+            "format": "double"
+          },
+          "interestRate": {
+            "type": "number",
+            "description": "Rate of interest",
+            "format": "double"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Date from which interest calculation starts",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fromDate": {
+            "type": "string",
+            "description": "Date from which interest is calculated",
+            "format": "date-time"
+          },
+          "toDate": {
+            "type": "string",
+            "description": "Date till which interest is calculated",
+            "format": "date-time"
+          },
+          "interestCode": {
+            "type": "string",
+            "description": "Interest code configured in Nova",
+            "nullable": true
+          },
+          "calculationType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InterestCalculationTypeDTO"
+              }
+            ],
+            "description": "Calculation type of interest calculation",
+            "nullable": true
+          },
+          "calculatedInterest": {
+            "type": "number",
+            "description": "Returns calculated interest",
+            "format": "double"
+          },
+          "isError": {
+            "type": "boolean",
+            "description": "Error"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Error Message",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request parameters for calculating interest"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

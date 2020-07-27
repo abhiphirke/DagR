@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Nova Identity Service",
-    "description": "An ***Nova Identity Service*** enable you to securely manage identities, resources, and permissions. Identity Services allow you to establish a single identity and access different services. It facilitates **username/password based validation** for customer.\r\n\r\nIt performs following operation:\r\n\r\n* Username/Password verification in system\r\n* JWT Token generation",
-    "version": "20.1.141.0"
+    "title": "Identity Service",
+    "description": "The ***Identity Service*** enables you to establish a single identity to access the collection services with. Validation is based on username & password.\r\n\r\nThe service performs the following operations:\r\n\r\n* Username/Password verification in Nova\r\n* JSON Web Token generation\r\n* Fetches core information for a list of users",
+    "version": "20.1.348.0"
   },
   "servers": [
     {
@@ -16,7 +16,7 @@
         "tags": [
           "Identity"
         ],
-        "summary": "Validates user credentials and returns a token for accessing the APIs.",
+        "summary": "Validates user credentials and returns a bearer token for accessing the collection services.",
         "description": "[TCAPI-1.1]",
         "requestBody": {
           "description": "The user name and password",
@@ -70,6 +70,93 @@
           }
         }
       }
+    },
+    "/Users/coreinfo/list": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Returns core information for a list of users",
+        "description": "[TCAPI-1.2]",
+        "requestBody": {
+          "description": "Unique identifiation number",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No records found"
+          },
+          "400": {
+            "description": "Incorrect input parameters"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "402": {
+            "description": "License is missing"
+          },
+          "500": {
+            "description": "The server encountered an error while processing the request"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -90,6 +177,28 @@
         },
         "additionalProperties": false,
         "description": "User credentials to be used for logging on to Nova"
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identification number",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name",
+            "nullable": true
+          },
+          "loginName": {
+            "type": "string",
+            "description": "Login Name",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides information about Nova user (collector)."
       }
     },
     "securitySchemes": {
